@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 09 Feb 2022 20:42:21 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目</title><link>https://blog.jhas.site/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/</link><pubDate>Wed, 09 Feb 2022 20:42:21 +0800</pubDate><guid>https://blog.jhas.site/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="2006-差的绝对值为-k-的数对数目httpsleetcode-cncomproblemscount-number-of-pairs-with-absolute-difference-k">&lt;a class="link" href="https://leetcode-cn.com/problems/count-number-of-pairs-with-absolute-difference-k/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 10 Feb 2022 08:40:23 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220210 每日一题 Leetcode1447 最简分数</title><link>https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</link><pubDate>Thu, 10 Feb 2022 08:40:23 +0800</pubDate><guid>https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</guid><description>&lt;h1 id="1447-最简分数httpsleetcode-cncomproblemssimplified-fractions">&lt;a class="link" href="https://leetcode-cn.com/problems/simplified-fractions/" target="_blank" rel="noopener"
+>1447. 最简分数&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给你一个整数 &lt;code>n&lt;/code> ，请你返回所有 0 到 1 之间（不包括 0 和 1）满足分母小于等于 &lt;code>n&lt;/code> 的 &lt;strong>最简&lt;/strong> 分数 。分数可以以 &lt;strong>任意&lt;/strong> 顺序返回。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>非常简单的暴力数论题，对于任意 $ i$ $j $ 来说，满足 $ 0&amp;lt; j/i &amp;lt;1 $ 即满足 $ j &amp;lt; i $ ,考虑到 $ 1\leq n \leq 100 $ 则只需暴力枚举每一个 $i$,$j$ 即可得出答案，对于任意$i$,$j$ ，满足$ j/i $为最简分数，即两数不可同时除以任意数且结果为整数，即两数互质，等价于 $ gcd(i,j) = 1 $&lt;/p>
+&lt;h2 id="解法">解法&lt;/h2>
+&lt;p>时间复杂度:$ O(N^2logN) $&lt;/p>
+&lt;p>代码如下:&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>string&lt;span style="color:#f92672">&amp;gt;&lt;/span> simplifiedFractions(&lt;span style="color:#66d9ef">int&lt;/span> n) {
+vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>string&lt;span style="color:#f92672">&amp;gt;&lt;/span> ret;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;=&lt;/span>n;i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> j &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;j&lt;span style="color:#f92672">&amp;lt;&lt;/span>i;j&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(__gcd(i,j) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>){
+ret.push_back(itoa(j)&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#e6db74">&amp;#34;/&amp;#34;&lt;/span>&lt;span style="color:#f92672">+&lt;/span>itoa(i));
+}
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> ret;
+}
+string &lt;span style="color:#a6e22e">itoa&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i){
+&lt;span style="color:#66d9ef">if&lt;/span>(i&lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>;
+&lt;span style="color:#66d9ef">return&lt;/span> itoa(i&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">10&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#66d9ef">char&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;0&amp;#39;&lt;/span> &lt;span style="color:#f92672">+&lt;/span> i&lt;span style="color:#f92672">%&lt;/span>&lt;span style="color:#ae81ff">10&lt;/span>);
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目</title><link>https://blog.jhas.site/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/</link><pubDate>Wed, 09 Feb 2022 20:42:21 +0800</pubDate><guid>https://blog.jhas.site/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="2006-差的绝对值为-k-的数对数目httpsleetcode-cncomproblemscount-number-of-pairs-with-absolute-difference-k">&lt;a class="link" href="https://leetcode-cn.com/problems/count-number-of-pairs-with-absolute-difference-k/" target="_blank" rel="noopener"
 >2006. 差的绝对值为 K 的数对数目&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数数组 nums 和一个整数 k ，请你返回数对 (i, j) 的数目，满足 i &amp;lt; j 且 |nums[i] - nums[j]| == k 。&lt;/p>
