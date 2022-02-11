@@ -2,14 +2,14 @@
 <head><meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="1447. 最简分数 题面 给你一个整数 n ，请你返回所有 0 到 1 之间（不包括 0 和 1）满足分母小于等于 n 的 最简 分数 。分数可以以 任意 顺序返回。
 解析 非常简单的暴力数论题，对于任意 $ i$ $j $ 来说，满足 $ 0&amp;lt; j/i &amp;lt;1 $ 即满足 $ j &amp;lt; i $ ,考虑到 $ 1\leq n \leq 100 $ 则只需暴力枚举每一个 $i$,$j$ 即可得出答案，对于任意$i$,$j$ ，满足$ j/i $为最简分数，即两数不可同时除以任意数且结果为整数，即两数互质，等价于 $ gcd(i,j) = 1 $
-解法 时间复杂度:$ O(N^2logN) $
+解法 时间复杂度:$ O(n^2\log n) $
 代码如下:
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  class Solution { public: vector&amp;lt;string&amp;gt; simplifiedFractions(int n) { vector&amp;lt;string&amp;gt; ret; for(int i = 2;i&amp;lt;=n;i++){ for(int j = 1;j&amp;lt;i;j++){ if(__gcd(i,j) == 1){ ret."><title>20220210 每日一题 Leetcode1447 最简分数</title>
 <link rel=canonical href=https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/>
 <link rel=stylesheet href=/scss/style.min.bbcfef3c56489f1f37b552146da519e6b6a74a4c92792bcc512c78e2f55f25e1.css><meta property="og:title" content="20220210 每日一题 Leetcode1447 最简分数">
 <meta property="og:description" content="1447. 最简分数 题面 给你一个整数 n ，请你返回所有 0 到 1 之间（不包括 0 和 1）满足分母小于等于 n 的 最简 分数 。分数可以以 任意 顺序返回。
 解析 非常简单的暴力数论题，对于任意 $ i$ $j $ 来说，满足 $ 0&amp;lt; j/i &amp;lt;1 $ 即满足 $ j &amp;lt; i $ ,考虑到 $ 1\leq n \leq 100 $ 则只需暴力枚举每一个 $i$,$j$ 即可得出答案，对于任意$i$,$j$ ，满足$ j/i $为最简分数，即两数不可同时除以任意数且结果为整数，即两数互质，等价于 $ gcd(i,j) = 1 $
-解法 时间复杂度:$ O(N^2logN) $
+解法 时间复杂度:$ O(n^2\log n) $
 代码如下:
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  class Solution { public: vector&amp;lt;string&amp;gt; simplifiedFractions(int n) { vector&amp;lt;string&amp;gt; ret; for(int i = 2;i&amp;lt;=n;i++){ for(int j = 1;j&amp;lt;i;j++){ if(__gcd(i,j) == 1){ ret.">
 <meta property="og:url" content="https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/">
@@ -18,7 +18,7 @@
 <meta name=twitter:title content="20220210 每日一题 Leetcode1447 最简分数">
 <meta name=twitter:description content="1447. 最简分数 题面 给你一个整数 n ，请你返回所有 0 到 1 之间（不包括 0 和 1）满足分母小于等于 n 的 最简 分数 。分数可以以 任意 顺序返回。
 解析 非常简单的暴力数论题，对于任意 $ i$ $j $ 来说，满足 $ 0&amp;lt; j/i &amp;lt;1 $ 即满足 $ j &amp;lt; i $ ,考虑到 $ 1\leq n \leq 100 $ 则只需暴力枚举每一个 $i$,$j$ 即可得出答案，对于任意$i$,$j$ ，满足$ j/i $为最简分数，即两数不可同时除以任意数且结果为整数，即两数互质，等价于 $ gcd(i,j) = 1 $
-解法 时间复杂度:$ O(N^2logN) $
+解法 时间复杂度:$ O(n^2\log n) $
 代码如下:
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  class Solution { public: vector&amp;lt;string&amp;gt; simplifiedFractions(int n) { vector&amp;lt;string&amp;gt; ret; for(int i = 2;i&amp;lt;=n;i++){ for(int j = 1;j&amp;lt;i;j++){ if(__gcd(i,j) == 1){ ret."><link rel="shortcut icon" href=/images/favicon.ico>
 </head>
@@ -62,7 +62,7 @@ Leetcode
 <h2 id=解析>解析</h2>
 <p>非常简单的暴力数论题，对于任意 $ i$ $j $ 来说，满足 $ 0&lt; j/i &lt;1 $ 即满足 $ j &lt; i $ ,考虑到 $ 1\leq n \leq 100 $ 则只需暴力枚举每一个 $i$,$j$ 即可得出答案，对于任意$i$,$j$ ，满足$ j/i $为最简分数，即两数不可同时除以任意数且结果为整数，即两数互质，等价于 $ gcd(i,j) = 1 $</p>
 <h2 id=解法>解法</h2>
-<p>时间复杂度:$ O(N^2logN) $</p>
+<p>时间复杂度:$ O(n^2\log n) $</p>
 <p>代码如下:</p>
 <div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
@@ -121,6 +121,13 @@ Leetcode
 <h2 class=section-title>相关文章</h2>
 <div class=related-contents>
 <div class="flex article-list--tile">
+<article>
+<a href=/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/>
+<div class=article-details>
+<h2 class=article-title>20220211 每日一题 Leetcode1984 学生分数的最小差值</h2>
+</div>
+</a>
+</article>
 <article>
 <a href=/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/>
 <div class=article-details>

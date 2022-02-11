@@ -1,26 +1,32 @@
 <!doctype html><html lang=en-us>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="2006. 差的绝对值为 K 的数对数目 题面 给你一个整数数组 nums 和一个整数 k ，请你返回数对 (i, j) 的数目，满足 i &amp;lt; j 且 |nums[i] - nums[j]| == k 。
-|x| 的值定义为：
-如果 x &amp;gt;= 0 ，那么值为 x 。 如果 x &amp;lt; 0 ，那么值为 -x 。
-解析 题目非常白给，照着题目意思顺下去分析即可
-对于 $$ |nums[i] - nums[j]| = k $$ 拆解后有两种可能 $$ nums[i] = k + nums[j] $$ 与 $$ nums[i] = nums[j] - k $$ 既对于任意 $ j $ 只需要统计到 $ i&amp;lt;j $ 的数目即可"><title>20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目</title>
-<link rel=canonical href=https://blog.jhas.site/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/>
-<link rel=stylesheet href=/scss/style.min.bbcfef3c56489f1f37b552146da519e6b6a74a4c92792bcc512c78e2f55f25e1.css><meta property="og:title" content="20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目">
-<meta property="og:description" content="2006. 差的绝对值为 K 的数对数目 题面 给你一个整数数组 nums 和一个整数 k ，请你返回数对 (i, j) 的数目，满足 i &amp;lt; j 且 |nums[i] - nums[j]| == k 。
-|x| 的值定义为：
-如果 x &amp;gt;= 0 ，那么值为 x 。 如果 x &amp;lt; 0 ，那么值为 -x 。
-解析 题目非常白给，照着题目意思顺下去分析即可
-对于 $$ |nums[i] - nums[j]| = k $$ 拆解后有两种可能 $$ nums[i] = k + nums[j] $$ 与 $$ nums[i] = nums[j] - k $$ 既对于任意 $ j $ 只需要统计到 $ i&amp;lt;j $ 的数目即可">
-<meta property="og:url" content="https://blog.jhas.site/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/">
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="1984. 学生分数的最小差值 题面 给你一个 下标从 0 开始 的整数数组 $nums$ ，其中 $nums[i]$ 表示第 $i$ 名学生的分数。另给你一个整数 $k$ 。
+从数组中选出任意 $k$ 名学生的分数，使这 $k$ 个分数间 最高分 和 最低分 的 差值 达到 最小化 。
+返回可能的 最小差值 。
+解析 若使$k$名学生的分数差值达到最小化，从$nums$取$k$个数，如果这$k$个数正好是最大最小数差值最小化，则$nums$必无其它数在这$k$个数之间。显然若使从$nums$取出任意$i$都满足从$i$后取$k$个数差值最小化，则数组必然有序。
+解法 将数组排序然后枚举$i$滑动窗口即可
+时间复杂度: $O( n \log n)$
+1 2 3 4 5 6 7 8 9 10 11 12  class Solution { public: int minimumDifference(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { int i,n = nums.size(),ans; sort(nums.begin(),nums.end()); ans = 100010; for(i = k - 1;i&amp;lt;n;i++){ ans = min(ans,nums[i] - nums[i - k + 1]); } return ans; } };   "><title>20220211 每日一题 Leetcode1984 学生分数的最小差值</title>
+<link rel=canonical href=https://blog.jhas.site/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/>
+<link rel=stylesheet href=/scss/style.min.bbcfef3c56489f1f37b552146da519e6b6a74a4c92792bcc512c78e2f55f25e1.css><meta property="og:title" content="20220211 每日一题 Leetcode1984 学生分数的最小差值">
+<meta property="og:description" content="1984. 学生分数的最小差值 题面 给你一个 下标从 0 开始 的整数数组 $nums$ ，其中 $nums[i]$ 表示第 $i$ 名学生的分数。另给你一个整数 $k$ 。
+从数组中选出任意 $k$ 名学生的分数，使这 $k$ 个分数间 最高分 和 最低分 的 差值 达到 最小化 。
+返回可能的 最小差值 。
+解析 若使$k$名学生的分数差值达到最小化，从$nums$取$k$个数，如果这$k$个数正好是最大最小数差值最小化，则$nums$必无其它数在这$k$个数之间。显然若使从$nums$取出任意$i$都满足从$i$后取$k$个数差值最小化，则数组必然有序。
+解法 将数组排序然后枚举$i$滑动窗口即可
+时间复杂度: $O( n \log n)$
+1 2 3 4 5 6 7 8 9 10 11 12  class Solution { public: int minimumDifference(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { int i,n = nums.size(),ans; sort(nums.begin(),nums.end()); ans = 100010; for(i = k - 1;i&amp;lt;n;i++){ ans = min(ans,nums[i] - nums[i - k + 1]); } return ans; } };   ">
+<meta property="og:url" content="https://blog.jhas.site/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/">
 <meta property="og:site_name" content="Jhas's Blog">
-<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2022-02-09T20:42:21+08:00"><meta property="article:modified_time" content="2022-02-09T20:42:21+08:00">
-<meta name=twitter:title content="20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目">
-<meta name=twitter:description content="2006. 差的绝对值为 K 的数对数目 题面 给你一个整数数组 nums 和一个整数 k ，请你返回数对 (i, j) 的数目，满足 i &amp;lt; j 且 |nums[i] - nums[j]| == k 。
-|x| 的值定义为：
-如果 x &amp;gt;= 0 ，那么值为 x 。 如果 x &amp;lt; 0 ，那么值为 -x 。
-解析 题目非常白给，照着题目意思顺下去分析即可
-对于 $$ |nums[i] - nums[j]| = k $$ 拆解后有两种可能 $$ nums[i] = k + nums[j] $$ 与 $$ nums[i] = nums[j] - k $$ 既对于任意 $ j $ 只需要统计到 $ i&amp;lt;j $ 的数目即可"><link rel="shortcut icon" href=/images/favicon.ico>
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2022-02-11T12:56:58+08:00"><meta property="article:modified_time" content="2022-02-11T12:56:58+08:00">
+<meta name=twitter:title content="20220211 每日一题 Leetcode1984 学生分数的最小差值">
+<meta name=twitter:description content="1984. 学生分数的最小差值 题面 给你一个 下标从 0 开始 的整数数组 $nums$ ，其中 $nums[i]$ 表示第 $i$ 名学生的分数。另给你一个整数 $k$ 。
+从数组中选出任意 $k$ 名学生的分数，使这 $k$ 个分数间 最高分 和 最低分 的 差值 达到 最小化 。
+返回可能的 最小差值 。
+解析 若使$k$名学生的分数差值达到最小化，从$nums$取$k$个数，如果这$k$个数正好是最大最小数差值最小化，则$nums$必无其它数在这$k$个数之间。显然若使从$nums$取出任意$i$都满足从$i$后取$k$个数差值最小化，则数组必然有序。
+解法 将数组排序然后枚举$i$滑动窗口即可
+时间复杂度: $O( n \log n)$
+1 2 3 4 5 6 7 8 9 10 11 12  class Solution { public: int minimumDifference(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { int i,n = nums.size(),ans; sort(nums.begin(),nums.end()); ans = 100010; for(i = k - 1;i&amp;lt;n;i++){ ans = min(ans,nums[i] - nums[i - k + 1]); } return ans; } };   "><link rel="shortcut icon" href=/images/favicon.ico>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
@@ -41,11 +47,11 @@ Leetcode
 </a>
 </header>
 <h2 class=article-title>
-<a href=/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/>20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目</a>
+<a href=/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/>20220211 每日一题 Leetcode1984 学生分数的最小差值</a>
 </h2>
 <footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>Feb 09, 2022</time>
+<time class=article-time--published>Feb 11, 2022</time>
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
@@ -56,35 +62,16 @@ Leetcode
 </div>
 </header>
 <section class=article-content>
-<h1 id=2006-差的绝对值为-k-的数对数目httpsleetcode-cncomproblemscount-number-of-pairs-with-absolute-difference-k><a class=link href=https://leetcode-cn.com/problems/count-number-of-pairs-with-absolute-difference-k/ target=_blank rel=noopener>2006. 差的绝对值为 K 的数对数目</a></h1>
+<h1 id=1984-学生分数的最小差值httpsleetcode-cncomproblemsminimum-difference-between-highest-and-lowest-of-k-scores><a class=link href=https://leetcode-cn.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/ target=_blank rel=noopener>1984. 学生分数的最小差值</a></h1>
 <h2 id=题面>题面</h2>
-<p>给你一个整数数组 nums 和一个整数 k ，请你返回数对 (i, j) 的数目，满足 i &lt; j 且 |nums[i] - nums[j]| == k 。</p>
-<p>|x| 的值定义为：</p>
-<p>如果 x >= 0 ，那么值为 x 。
-如果 x &lt; 0 ，那么值为 -x 。</p>
+<p>给你一个 下标从 0 开始 的整数数组 $nums$ ，其中 $nums[i]$ 表示第 $i$ 名学生的分数。另给你一个整数 $k$ 。</p>
+<p>从数组中选出任意 $k$ 名学生的分数，使这 $k$ 个分数间 最高分 和 最低分 的 差值 达到 最小化 。</p>
+<p>返回可能的 最小差值 。</p>
 <h2 id=解析>解析</h2>
-<p>题目非常白给，照着题目意思顺下去分析即可</p>
-<p>对于
-$$
-|nums[i] - nums[j]| = k
-$$
-拆解后有两种可能
-$$
-nums[i] = k + nums[j]
-$$
-与
-$$
-nums[i] = nums[j] - k
-$$
-既对于任意 $ j $ 只需要统计到 $ i&lt;j $ 的数目即可</p>
-<h2 id=解法一>解法一</h2>
-<p>时间复杂度 $ O(n^2)$</p>
-<p>空间复杂度 $ O(1) $</p>
-<p>暴力枚举每一个j与i，检查是否正确</p>
-<h2 id=解法二>解法二</h2>
-<p>时间复杂度 $ O(n) $</p>
-<p>空间复杂度 $ O(n) $</p>
-<p>对于每一个 j ，其都会成为下一个 j 枚举中的 i，只需要使用哈希表记录下当前 j 位置的值出现的次数，就能在 $ O(1) $ 的时间复杂度代价下求得 j 位置上构成数对的数目。</p>
+<p>若使$k$名学生的分数差值达到最小化，从$nums$取$k$个数，如果这$k$个数正好是最大最小数差值最小化，则$nums$必无其它数在这$k$个数之间。显然若使从$nums$取出任意$i$都满足从$i$后取$k$个数差值最小化，则数组必然有序。</p>
+<h2 id=解法>解法</h2>
+<p>将数组排序然后枚举$i$滑动窗口即可</p>
+<p>时间复杂度: $O( n \log n)$</p>
 <div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
 <pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
@@ -99,18 +86,16 @@ $$
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
 <pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
 <span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-    <span style=color:#66d9ef>int</span> countKDifference(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> nums, <span style=color:#66d9ef>int</span> k) {
-        unordered_map<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> mp;
-        <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;&amp;</span> j : nums){
-            ans <span style=color:#f92672>+=</span> mp[k<span style=color:#f92672>+</span>j];
-            ans <span style=color:#f92672>+=</span> mp[j<span style=color:#f92672>-</span>k];
-            mp[j]<span style=color:#f92672>++</span>;
+    <span style=color:#66d9ef>int</span> minimumDifference(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> nums, <span style=color:#66d9ef>int</span> k) {
+        <span style=color:#66d9ef>int</span> i,n <span style=color:#f92672>=</span> nums.size(),ans;
+        sort(nums.begin(),nums.end());
+        ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>100010</span>;
+        <span style=color:#66d9ef>for</span>(i <span style=color:#f92672>=</span> k <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;i<span style=color:#f92672>&lt;</span>n;i<span style=color:#f92672>++</span>){
+            ans <span style=color:#f92672>=</span> min(ans,nums[i] <span style=color:#f92672>-</span> nums[i <span style=color:#f92672>-</span> k <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]);
         }
         <span style=color:#66d9ef>return</span> ans;
     }
@@ -131,16 +116,16 @@ $$
 <div class=related-contents>
 <div class="flex article-list--tile">
 <article>
-<a href=/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/>
+<a href=/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/>
 <div class=article-details>
-<h2 class=article-title>20220211 每日一题 Leetcode1984 学生分数的最小差值</h2>
+<h2 class=article-title>20220210 每日一题 Leetcode1447 最简分数</h2>
 </div>
 </a>
 </article>
 <article>
-<a href=/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/>
+<a href=/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/>
 <div class=article-details>
-<h2 class=article-title>20220210 每日一题 Leetcode1447 最简分数</h2>
+<h2 class=article-title>20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目</h2>
 </div>
 </a>
 </article>
@@ -209,8 +194,7 @@ Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=
 <ol>
 <li><a href=#题面>题面</a></li>
 <li><a href=#解析>解析</a></li>
-<li><a href=#解法一>解法一</a></li>
-<li><a href=#解法二>解法二</a></li>
+<li><a href=#解法>解法</a></li>
 </ol>
 </nav>
 </div>

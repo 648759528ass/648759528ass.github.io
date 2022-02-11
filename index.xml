@@ -1,11 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 10 Feb 2022 08:40:23 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220210 每日一题 Leetcode1447 最简分数</title><link>https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</link><pubDate>Thu, 10 Feb 2022 08:40:23 +0800</pubDate><guid>https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</guid><description>&lt;h1 id="1447-最简分数httpsleetcode-cncomproblemssimplified-fractions">&lt;a class="link" href="https://leetcode-cn.com/problems/simplified-fractions/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 11 Feb 2022 12:56:58 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220211 每日一题 Leetcode1984 学生分数的最小差值</title><link>https://blog.jhas.site/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/</link><pubDate>Fri, 11 Feb 2022 12:56:58 +0800</pubDate><guid>https://blog.jhas.site/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/</guid><description>&lt;h1 id="1984-学生分数的最小差值httpsleetcode-cncomproblemsminimum-difference-between-highest-and-lowest-of-k-scores">&lt;a class="link" href="https://leetcode-cn.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/" target="_blank" rel="noopener"
+>1984. 学生分数的最小差值&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给你一个 下标从 0 开始 的整数数组 $nums$ ，其中 $nums[i]$ 表示第 $i$ 名学生的分数。另给你一个整数 $k$ 。&lt;/p>
+&lt;p>从数组中选出任意 $k$ 名学生的分数，使这 $k$ 个分数间 最高分 和 最低分 的 差值 达到 最小化 。&lt;/p>
+&lt;p>返回可能的 最小差值 。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>若使$k$名学生的分数差值达到最小化，从$nums$取$k$个数，如果这$k$个数正好是最大最小数差值最小化，则$nums$必无其它数在这$k$个数之间。显然若使从$nums$取出任意$i$都满足从$i$后取$k$个数差值最小化，则数组必然有序。&lt;/p>
+&lt;h2 id="解法">解法&lt;/h2>
+&lt;p>将数组排序然后枚举$i$滑动窗口即可&lt;/p>
+&lt;p>时间复杂度: $O( n \log n)$&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">int&lt;/span> minimumDifference(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums, &lt;span style="color:#66d9ef">int&lt;/span> k) {
+&lt;span style="color:#66d9ef">int&lt;/span> i,n &lt;span style="color:#f92672">=&lt;/span> nums.size(),ans;
+sort(nums.begin(),nums.end());
+ans &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">100010&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(i &lt;span style="color:#f92672">=&lt;/span> k &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>n;i&lt;span style="color:#f92672">++&lt;/span>){
+ans &lt;span style="color:#f92672">=&lt;/span> min(ans,nums[i] &lt;span style="color:#f92672">-&lt;/span> nums[i &lt;span style="color:#f92672">-&lt;/span> k &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>]);
+}
+&lt;span style="color:#66d9ef">return&lt;/span> ans;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220210 每日一题 Leetcode1447 最简分数</title><link>https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</link><pubDate>Thu, 10 Feb 2022 08:40:23 +0800</pubDate><guid>https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</guid><description>&lt;h1 id="1447-最简分数httpsleetcode-cncomproblemssimplified-fractions">&lt;a class="link" href="https://leetcode-cn.com/problems/simplified-fractions/" target="_blank" rel="noopener"
 >1447. 最简分数&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数 &lt;code>n&lt;/code> ，请你返回所有 0 到 1 之间（不包括 0 和 1）满足分母小于等于 &lt;code>n&lt;/code> 的 &lt;strong>最简&lt;/strong> 分数 。分数可以以 &lt;strong>任意&lt;/strong> 顺序返回。&lt;/p>
 &lt;h2 id="解析">解析&lt;/h2>
 &lt;p>非常简单的暴力数论题，对于任意 $ i$ $j $ 来说，满足 $ 0&amp;lt; j/i &amp;lt;1 $ 即满足 $ j &amp;lt; i $ ,考虑到 $ 1\leq n \leq 100 $ 则只需暴力枚举每一个 $i$,$j$ 即可得出答案，对于任意$i$,$j$ ，满足$ j/i $为最简分数，即两数不可同时除以任意数且结果为整数，即两数互质，等价于 $ gcd(i,j) = 1 $&lt;/p>
 &lt;h2 id="解法">解法&lt;/h2>
-&lt;p>时间复杂度:$ O(N^2logN) $&lt;/p>
+&lt;p>时间复杂度:$ O(n^2\log n) $&lt;/p>
 &lt;p>代码如下:&lt;/p>
 &lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 &lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
