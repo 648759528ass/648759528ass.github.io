@@ -1,4 +1,136 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 12 Feb 2022 23:06:52 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220213 每日一题 Leetcode1189 气球的最大数量</title><link>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</link><pubDate>Sat, 12 Feb 2022 23:06:52 +0800</pubDate><guid>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</guid><description>&lt;h1 id="1189-气球-的最大数量httpsleetcode-cncomproblemsmaximum-number-of-balloons">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-number-of-balloons/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 14 Feb 2022 07:48:38 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220214 每日一题 Leetcode540 有序数组中的单一元素</title><link>https://blog.jhas.site/p/20220214-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/</link><pubDate>Mon, 14 Feb 2022 07:48:38 +0800</pubDate><guid>https://blog.jhas.site/p/20220214-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/</guid><description>&lt;h1 id="540-有序数组中的单一元素httpsleetcode-cncomproblemssingle-element-in-a-sorted-array">&lt;a class="link" href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/" target="_blank" rel="noopener"
+>540. 有序数组中的单一元素&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。&lt;/p>
+&lt;p>请你找出并返回只出现一次的那个数。&lt;/p>
+&lt;p>你设计的解决方案必须满足 $O(\log n)$ 时间复杂度和 $O(1)$ 空间复杂度。&lt;/p>
+&lt;p>呜呜呜，破防了。我就是这个单一元素吧QAQ&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>如果不在意题的$ O(\log n) $特殊要求的话，其实可以直接对整个数组异或和即可得到这单一元素(成双成对的元素都各自领走自己的另一半出去约会去了，就剩这单一元素QAQ)&lt;/p>
+&lt;p>回到题面上，按着题面的$O(\log n)$要求的话则是需要用到二分。属于是一道非常经典的二段性分析的题。&lt;/p>
+&lt;p>假设单一元素的下标为 $ k $ , 则有下列条件&lt;/p>
+&lt;p>设$ \forall i \in N, 2i &amp;lt; k $&lt;/p>
+&lt;p>那么有 $ nums[2i] == nums[2i+1] $&lt;/p>
+&lt;p>且对于$ \forall i \in N, 2i &amp;gt; k $&lt;/p>
+&lt;p>有$ nums[2i] == nums[2i-1] $&lt;/p>
+&lt;p>可以说$nums[k]$干扰了成对数组的序列，使其的规律改变，使数组的性质变成了二段。&lt;/p>
+&lt;p>至此其实已经分析完毕了一种做法:对偶数下标进行二分。&lt;/p>
+&lt;p>为了减少代码量，我们将偶数做法扩展到自然数做法。&lt;/p>
+&lt;p>设$ \forall i \in N , i &amp;lt; k$&lt;/p>
+&lt;p>若$i$为奇数则$nums[i] == nums[i-1]$&lt;/p>
+&lt;p>若$i$为偶数则$ nums[i] == nums[i+1] $&lt;/p>
+&lt;p>对于$i&amp;gt;k$ 上述情况相反&lt;/p>
+&lt;p>我们再考虑 $i \oplus 1$ 的情况，若$i$为奇数 $i \oplus 1 = i - 1$,偶数则$ i \oplus 1 = i + 1 $&lt;/p>
+&lt;p>即将上述情况合并为&lt;/p>
+&lt;p>$ nums[i] == nums[i \oplus 1] $&lt;/p>
+&lt;h2 id="解法一">解法一&lt;/h2>
+&lt;p>时间复杂度:$ O(n) $&lt;/p>
+&lt;p>非常暴力&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">int&lt;/span> singleNonDuplicate(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;span style="color:#66d9ef">int&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+for_each(nums.begin(),nums.end(),[&lt;span style="color:#f92672">&amp;amp;&lt;/span>](&lt;span style="color:#66d9ef">auto&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span> n){
+ans&lt;span style="color:#f92672">^=&lt;/span>n;
+});
+&lt;span style="color:#66d9ef">return&lt;/span> ans;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="解法二">解法二&lt;/h2>
+&lt;p>时间复杂度:$ O(\log n) $&lt;/p>
+&lt;p>对于任意数&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">int&lt;/span> singleNonDuplicate(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>,r &lt;span style="color:#f92672">=&lt;/span> nums.size()&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;span style="color:#66d9ef">while&lt;/span>(l&lt;span style="color:#f92672">&amp;lt;&lt;/span>r){
+&lt;span style="color:#66d9ef">int&lt;/span> mid &lt;span style="color:#f92672">=&lt;/span> (r&lt;span style="color:#f92672">+&lt;/span>l)&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;span style="color:#66d9ef">if&lt;/span>(nums[mid] &lt;span style="color:#f92672">!=&lt;/span> nums[mid &lt;span style="color:#f92672">^&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>]){
+r &lt;span style="color:#f92672">=&lt;/span> mid;
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+l &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> nums[l];
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>对于偶数&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">int&lt;/span> singleNonDuplicate(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+nums.push_back(nums.back()&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>,r &lt;span style="color:#f92672">=&lt;/span> nums.size()&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;span style="color:#66d9ef">while&lt;/span>(l&lt;span style="color:#f92672">&amp;lt;&lt;/span>r){
+&lt;span style="color:#66d9ef">int&lt;/span> mid &lt;span style="color:#f92672">=&lt;/span> (r&lt;span style="color:#f92672">+&lt;/span>l)&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;span style="color:#66d9ef">if&lt;/span>(nums[mid&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>] &lt;span style="color:#f92672">!=&lt;/span> nums[mid&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>]){
+r &lt;span style="color:#f92672">=&lt;/span> mid;
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+l &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> nums[l&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>];
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220213 每日一题 Leetcode1189 气球的最大数量</title><link>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</link><pubDate>Sat, 12 Feb 2022 23:06:52 +0800</pubDate><guid>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</guid><description>&lt;h1 id="1189-气球-的最大数量httpsleetcode-cncomproblemsmaximum-number-of-balloons">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-number-of-balloons/" target="_blank" rel="noopener"
 >1189. “气球” 的最大数量&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个字符串 text，你需要使用 text 中的字母来拼凑尽可能多的单词 &amp;ldquo;balloon&amp;rdquo;（气球）。&lt;/p>
