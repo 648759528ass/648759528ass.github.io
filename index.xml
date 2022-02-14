@@ -131,7 +131,7 @@ l &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div></description></item><item><title>20220213 Leetcode280周赛</title><link>https://blog.jhas.site/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/</link><pubDate>Sun, 13 Feb 2022 12:14:10 +0800</pubDate><guid>https://blog.jhas.site/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/</guid><description>&lt;h1 id="leetcode第280场周赛">Leetcode第280场周赛&lt;/h1>
-&lt;h2 id="题一-6004-得到-0-的操作数httpsleetcode-cncomproblemscount-operations-to-obtain-zero">题一-&lt;a class="link" href="https://leetcode-cn.com/problems/count-operations-to-obtain-zero/" target="_blank" rel="noopener"
+&lt;h2 id="6004-得到-0-的操作数httpsleetcode-cncomproblemscount-operations-to-obtain-zero">&lt;a class="link" href="https://leetcode-cn.com/problems/count-operations-to-obtain-zero/" target="_blank" rel="noopener"
 >6004. 得到 0 的操作数&lt;/a>&lt;/h2>
 &lt;h3 id="题面">题面&lt;/h3>
 &lt;p>给你两个 非负 整数 num1 和 num2 。&lt;/p>
@@ -161,7 +161,7 @@ l &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="题二-6005-使数组变成交替数组的最少操作数httpsleetcode-cncomproblemsminimum-operations-to-make-the-array-alternating">题二-&lt;a class="link" href="https://leetcode-cn.com/problems/minimum-operations-to-make-the-array-alternating/" target="_blank" rel="noopener"
+&lt;/div>&lt;h2 id="6005-使数组变成交替数组的最少操作数httpsleetcode-cncomproblemsminimum-operations-to-make-the-array-alternating">&lt;a class="link" href="https://leetcode-cn.com/problems/minimum-operations-to-make-the-array-alternating/" target="_blank" rel="noopener"
 >6005. 使数组变成交替数组的最少操作数&lt;/a>&lt;/h2>
 &lt;h3 id="题面-1">题面&lt;/h3>
 &lt;p>给你一个下标从 0 开始的数组 nums ，该数组由 n 个正整数组成。&lt;/p>
@@ -250,7 +250,7 @@ t2 &lt;span style="color:#f92672">+=&lt;/span> q1.empty()&lt;span style="color:#
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="题三-6006-拿出最少数目的魔法豆httpsleetcode-cncomproblemsremoving-minimum-number-of-magic-beans">题三-&lt;a class="link" href="https://leetcode-cn.com/problems/removing-minimum-number-of-magic-beans/" target="_blank" rel="noopener"
+&lt;/div>&lt;h2 id="6006-拿出最少数目的魔法豆httpsleetcode-cncomproblemsremoving-minimum-number-of-magic-beans">&lt;a class="link" href="https://leetcode-cn.com/problems/removing-minimum-number-of-magic-beans/" target="_blank" rel="noopener"
 >6006. 拿出最少数目的魔法豆&lt;/a>&lt;/h2>
 &lt;h3 id="题面-2">题面&lt;/h3>
 &lt;p>给你一个 正 整数数组 beans ，其中每个整数表示一个袋子里装的魔法豆的数目。&lt;/p>
@@ -300,7 +300,7 @@ ans &lt;span style="color:#f92672">=&lt;/span> min(ans,mans);
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="题四-6007-数组的最大与和httpsleetcode-cncomproblemsmaximum-and-sum-of-array">题四-&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-and-sum-of-array/" target="_blank" rel="noopener"
+&lt;/div>&lt;h2 id="6007-数组的最大与和httpsleetcode-cncomproblemsmaximum-and-sum-of-array">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-and-sum-of-array/" target="_blank" rel="noopener"
 >6007. 数组的最大与和&lt;/a>&lt;/h2>
 &lt;h3 id="题面-3">题面&lt;/h3>
 &lt;p>给你一个长度为 n 的整数数组 nums 和一个整数 numSlots ，满足2 * numSlots &amp;gt;= n 。总共有 numSlots 个篮子，编号为 1 到 numSlots 。&lt;/p>
