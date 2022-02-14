@@ -130,7 +130,187 @@ l &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220213 每日一题 Leetcode1189 气球的最大数量</title><link>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</link><pubDate>Sat, 12 Feb 2022 23:06:52 +0800</pubDate><guid>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</guid><description>&lt;h1 id="1189-气球-的最大数量httpsleetcode-cncomproblemsmaximum-number-of-balloons">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-number-of-balloons/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220213 Leetcode280周赛</title><link>https://blog.jhas.site/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/</link><pubDate>Sun, 13 Feb 2022 12:14:10 +0800</pubDate><guid>https://blog.jhas.site/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/</guid><description>&lt;h1 id="leetcode第280场周赛">Leetcode第280场周赛&lt;/h1>
+&lt;h2 id="题一-6004-得到-0-的操作数httpsleetcode-cncomproblemscount-operations-to-obtain-zero">题一 &lt;a class="link" href="https://leetcode-cn.com/problems/count-operations-to-obtain-zero/" target="_blank" rel="noopener"
+>6004. 得到 0 的操作数&lt;/a>&lt;/h2>
+&lt;h3 id="题面">题面&lt;/h3>
+&lt;p>给你两个 非负 整数 num1 和 num2 。&lt;/p>
+&lt;p>每一步 操作 中，如果 num1 &amp;gt;= num2 ，你必须用 num1 减 num2 ；否则，你必须用 num2 减 num1 。&lt;/p>
+&lt;h3 id="解析">解析&lt;/h3>
+&lt;p>没啥好说的，模拟就完事了。更相减损术&lt;/p>
+&lt;h3 id="解法">解法&lt;/h3>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">int&lt;/span> countOperations(&lt;span style="color:#66d9ef">int&lt;/span> num1, &lt;span style="color:#66d9ef">int&lt;/span> num2) {
+&lt;span style="color:#66d9ef">if&lt;/span>(num1 &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">||&lt;/span> num2 &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>) &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">if&lt;/span>(num1&lt;span style="color:#f92672">&amp;gt;=&lt;/span>num2) &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">+&lt;/span> countOperations(num2,num1&lt;span style="color:#f92672">-&lt;/span>num2);
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">+&lt;/span> countOperations(num1,num2&lt;span style="color:#f92672">-&lt;/span>num1);
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="题二-6005-使数组变成交替数组的最少操作数httpsleetcode-cncomproblemsminimum-operations-to-make-the-array-alternating">题二 &lt;a class="link" href="https://leetcode-cn.com/problems/minimum-operations-to-make-the-array-alternating/" target="_blank" rel="noopener"
+>6005. 使数组变成交替数组的最少操作数&lt;/a>&lt;/h2>
+&lt;h3 id="题面-1">题面&lt;/h3>
+&lt;p>给你一个下标从 0 开始的数组 nums ，该数组由 n 个正整数组成。&lt;/p>
+&lt;p>如果满足下述条件，则数组 nums 是一个 交替数组 ：&lt;/p>
+&lt;p>nums[i - 2] == nums[i] ，其中 2 &amp;lt;= i &amp;lt;= n - 1 。
+nums[i - 1] != nums[i] ，其中 1 &amp;lt;= i &amp;lt;= n - 1 。
+在一步 操作 中，你可以选择下标 i 并将 nums[i] 更改 为 任一 正整数。&lt;/p>
+&lt;p>返回使数组变成交替数组的 最少操作数 。&lt;/p>
+&lt;h3 id="解析-1">解析&lt;/h3>
+&lt;p>贪心的思想，只需要把数组拆分成奇数数组和偶数数组，然后统计两个数组各个数字出现次数，选取最大的出现即可，主要是注意最大的数字相等的情况，当最大数字相等时，只需要把最大数字和另一次大数字相加，比较不相等的数量。&lt;/p>
+&lt;h3 id="解法-1">解法&lt;/h3>
+&lt;p>时间复杂度:$O(n\log n)$ 偷懒用了优先队列，可以是$ O(n) $的时间复杂度&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">int&lt;/span> minimumOperations(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+unordered_map&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>,&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> m1,m2;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>nums.size();i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(i&lt;span style="color:#f92672">%&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>){
+&lt;span style="color:#f92672">++&lt;/span>m1[nums[i]];
+}
+&lt;span style="color:#66d9ef">else&lt;/span>{
+&lt;span style="color:#f92672">++&lt;/span>m2[nums[i]];
+}
+}
+priority_queue &lt;span style="color:#f92672">&amp;lt;&lt;/span>pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>,&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>,vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>,&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span>,less&lt;span style="color:#f92672">&amp;lt;&lt;/span>pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>,&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;gt;&lt;/span>q1,q2;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">auto&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>[k,v] &lt;span style="color:#f92672">:&lt;/span> m1){
+q1.push({v,k});
+}
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">auto&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>[k,v] &lt;span style="color:#f92672">:&lt;/span> m2){
+q2.push({v,k});
+}
+&lt;span style="color:#66d9ef">if&lt;/span>(q1.empty()&lt;span style="color:#f92672">||&lt;/span>q2.empty()) &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">if&lt;/span>(q1.top().second &lt;span style="color:#f92672">==&lt;/span> q2.top().second){
+&lt;span style="color:#66d9ef">int&lt;/span> t1 &lt;span style="color:#f92672">=&lt;/span> q1.top().first;
+&lt;span style="color:#66d9ef">int&lt;/span> t2 &lt;span style="color:#f92672">=&lt;/span> q2.top().first;
+q1.pop();
+q2.pop();
+t1 &lt;span style="color:#f92672">+=&lt;/span> q2.empty()&lt;span style="color:#f92672">?&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">:&lt;/span>q2.top().first;
+t2 &lt;span style="color:#f92672">+=&lt;/span> q1.empty()&lt;span style="color:#f92672">?&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">:&lt;/span>q1.top().first;
+&lt;span style="color:#66d9ef">return&lt;/span> nums.size() &lt;span style="color:#f92672">-&lt;/span> max(t1,t2);
+}
+&lt;span style="color:#66d9ef">int&lt;/span> a &lt;span style="color:#f92672">=&lt;/span> q1.empty()&lt;span style="color:#f92672">?&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">:&lt;/span>q1.top().first;
+&lt;span style="color:#66d9ef">int&lt;/span> b &lt;span style="color:#f92672">=&lt;/span> q2.empty()&lt;span style="color:#f92672">?&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">:&lt;/span>q2.top().first;
+&lt;span style="color:#66d9ef">int&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> nums.size() &lt;span style="color:#f92672">-&lt;/span> a &lt;span style="color:#f92672">-&lt;/span> b;
+&lt;span style="color:#66d9ef">return&lt;/span> ans ;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="题三-6006-拿出最少数目的魔法豆httpsleetcode-cncomproblemsremoving-minimum-number-of-magic-beans">题三 &lt;a class="link" href="https://leetcode-cn.com/problems/removing-minimum-number-of-magic-beans/" target="_blank" rel="noopener"
+>6006. 拿出最少数目的魔法豆&lt;/a>&lt;/h2>
+&lt;h3 id="题面-2">题面&lt;/h3>
+&lt;p>给你一个 正 整数数组 beans ，其中每个整数表示一个袋子里装的魔法豆的数目。&lt;/p>
+&lt;p>请你从每个袋子中 拿出 一些豆子（也可以 不拿出），使得剩下的 非空 袋子中（即 至少 还有 一颗 魔法豆的袋子）魔法豆的数目 相等 。一旦魔法豆从袋子中取出，你不能将它放到任何其他的袋子中。&lt;/p>
+&lt;p>请你返回你需要拿出魔法豆的 最少数目。&lt;/p>
+&lt;h3 id="解析-2">解析&lt;/h3>
+&lt;p>简简单单排序然后比较,排完序后对于每一个位置$i$，都有若取这个位置$i$的数作为基准,应该减少的豆子为$ total - beans[i]*(size - i) $ 其中$ total $为豆子的总量，$size$为袋子的数目&lt;/p>
+&lt;h3 id="解法-2">解法&lt;/h3>
+&lt;p>时间复杂度:$O(n)$&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> minimumRemoval(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> beans) {
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> LLONG_MAX;
+sort(beans.begin(),beans.end());
+&lt;span style="color:#66d9ef">int&lt;/span> n &lt;span style="color:#f92672">=&lt;/span> beans.size();
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> cnt &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+for_each(beans.begin(),beans.end(),[&lt;span style="color:#f92672">&amp;amp;&lt;/span>](&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>a){
+cnt&lt;span style="color:#f92672">+=&lt;/span>a;
+});
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>beans.size();i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> mans &lt;span style="color:#f92672">=&lt;/span> cnt &lt;span style="color:#f92672">-&lt;/span> beans[i]&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(n&lt;span style="color:#f92672">-&lt;/span>i);
+ans &lt;span style="color:#f92672">=&lt;/span> min(ans,mans);
+}
+&lt;span style="color:#66d9ef">return&lt;/span> ans;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="题四-6007-数组的最大与和httpsleetcode-cncomproblemsmaximum-and-sum-of-array">题四 &lt;a class="link" href="https://leetcode-cn.com/problems/maximum-and-sum-of-array/" target="_blank" rel="noopener"
+>6007. 数组的最大与和&lt;/a>&lt;/h2>
+&lt;h3 id="题面-3">题面&lt;/h3>
+&lt;p>给你一个长度为 n 的整数数组 nums 和一个整数 numSlots ，满足2 * numSlots &amp;gt;= n 。总共有 numSlots 个篮子，编号为 1 到 numSlots 。&lt;/p>
+&lt;p>你需要把所有 n 个整数分到这些篮子中，且每个篮子 至多 有 2 个整数。一种分配方案的 与和 定义为每个数与它所在篮子编号的 按位与运算 结果之和。&lt;/p>
+&lt;p>比方说，将数字 [1, 3] 放入篮子 1 中，[4, 6] 放入篮子 2 中，这个方案的与和为 (1 AND 1) + (3 AND 1) + (4 AND 2) + (6 AND 2) = 1 + 1 + 0 + 2 = 4 。
+请你返回将 nums 中所有数放入 numSlots 个篮子中的最大与和。&lt;/p>
+&lt;h3 id="解析-3">解析&lt;/h3>
+&lt;p>待补题&lt;/p>
+&lt;h3 id="解法-3">解法&lt;/h3>
+&lt;p>待补题&lt;/p></description></item><item><title>20220213 每日一题 Leetcode1189 气球的最大数量</title><link>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</link><pubDate>Sat, 12 Feb 2022 23:06:52 +0800</pubDate><guid>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</guid><description>&lt;h1 id="1189-气球-的最大数量httpsleetcode-cncomproblemsmaximum-number-of-balloons">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-number-of-balloons/" target="_blank" rel="noopener"
 >1189. “气球” 的最大数量&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个字符串 text，你需要使用 text 中的字母来拼凑尽可能多的单词 &amp;ldquo;balloon&amp;rdquo;（气球）。&lt;/p>

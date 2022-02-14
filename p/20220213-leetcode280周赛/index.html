@@ -1,0 +1,380 @@
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Leetcode第280场周赛 题一 6004. 得到 0 的操作数 题面 给你两个 非负 整数 num1 和 num2 。
+每一步 操作 中，如果 num1 &amp;gt;= num2 ，你必须用 num1 减 num2 ；否则，你必须用 num2 减 num1 。
+解析 没啥好说的，模拟就完事了。更相减损术
+解法 1 2 3 4 5 6 7 8  class Solution { public: int countOperations(int num1, int num2) { if(num1 == 0 || num2 == 0) return 0; if(num1&amp;gt;=num2) return 1 + countOperations(num2,num1-num2); return 1 + countOperations(num1,num2-num1); } };   题二 6005."><title>20220213 Leetcode280周赛</title>
+<link rel=canonical href=https://blog.jhas.site/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/>
+<link rel=stylesheet href=/scss/style.min.bbcfef3c56489f1f37b552146da519e6b6a74a4c92792bcc512c78e2f55f25e1.css><meta property="og:title" content="20220213 Leetcode280周赛">
+<meta property="og:description" content="Leetcode第280场周赛 题一 6004. 得到 0 的操作数 题面 给你两个 非负 整数 num1 和 num2 。
+每一步 操作 中，如果 num1 &amp;gt;= num2 ，你必须用 num1 减 num2 ；否则，你必须用 num2 减 num1 。
+解析 没啥好说的，模拟就完事了。更相减损术
+解法 1 2 3 4 5 6 7 8  class Solution { public: int countOperations(int num1, int num2) { if(num1 == 0 || num2 == 0) return 0; if(num1&amp;gt;=num2) return 1 + countOperations(num2,num1-num2); return 1 + countOperations(num1,num2-num1); } };   题二 6005.">
+<meta property="og:url" content="https://blog.jhas.site/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/">
+<meta property="og:site_name" content="Jhas's Blog">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2022-02-13T12:14:10+08:00"><meta property="article:modified_time" content="2022-02-13T12:14:10+08:00">
+<meta name=twitter:title content="20220213 Leetcode280周赛">
+<meta name=twitter:description content="Leetcode第280场周赛 题一 6004. 得到 0 的操作数 题面 给你两个 非负 整数 num1 和 num2 。
+每一步 操作 中，如果 num1 &amp;gt;= num2 ，你必须用 num1 减 num2 ；否则，你必须用 num2 减 num1 。
+解析 没啥好说的，模拟就完事了。更相减损术
+解法 1 2 3 4 5 6 7 8  class Solution { public: int countOperations(int num1, int num2) { if(num1 == 0 || num2 == 0) return 0; if(num1&amp;gt;=num2) return 1 + countOperations(num2,num1-num2); return 1 + countOperations(num1,num2-num1); } };   题二 6005."><link rel="shortcut icon" href=/images/favicon.ico>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/leetcode/>
+Leetcode
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/>20220213 Leetcode280周赛</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Feb 13, 2022</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 3 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h1 id=leetcode第280场周赛>Leetcode第280场周赛</h1>
+<h2 id=题一-6004-得到-0-的操作数httpsleetcode-cncomproblemscount-operations-to-obtain-zero>题一 <a class=link href=https://leetcode-cn.com/problems/count-operations-to-obtain-zero/ target=_blank rel=noopener>6004. 得到 0 的操作数</a></h2>
+<h3 id=题面>题面</h3>
+<p>给你两个 非负 整数 num1 和 num2 。</p>
+<p>每一步 操作 中，如果 num1 >= num2 ，你必须用 num1 减 num2 ；否则，你必须用 num2 减 num1 。</p>
+<h3 id=解析>解析</h3>
+<p>没啥好说的，模拟就完事了。更相减损术</p>
+<h3 id=解法>解法</h3>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+<span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+    <span style=color:#66d9ef>int</span> countOperations(<span style=color:#66d9ef>int</span> num1, <span style=color:#66d9ef>int</span> num2) {
+        <span style=color:#66d9ef>if</span>(num1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> num2 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>if</span>(num1<span style=color:#f92672>&gt;=</span>num2) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>+</span> countOperations(num2,num1<span style=color:#f92672>-</span>num2);
+        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>+</span> countOperations(num1,num2<span style=color:#f92672>-</span>num1);
+    }
+};
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=题二-6005-使数组变成交替数组的最少操作数httpsleetcode-cncomproblemsminimum-operations-to-make-the-array-alternating>题二 <a class=link href=https://leetcode-cn.com/problems/minimum-operations-to-make-the-array-alternating/ target=_blank rel=noopener>6005. 使数组变成交替数组的最少操作数</a></h2>
+<h3 id=题面-1>题面</h3>
+<p>给你一个下标从 0 开始的数组 nums ，该数组由 n 个正整数组成。</p>
+<p>如果满足下述条件，则数组 nums 是一个 交替数组 ：</p>
+<p>nums[i - 2] == nums[i] ，其中 2 &lt;= i &lt;= n - 1 。
+nums[i - 1] != nums[i] ，其中 1 &lt;= i &lt;= n - 1 。
+在一步 操作 中，你可以选择下标 i 并将 nums[i] 更改 为 任一 正整数。</p>
+<p>返回使数组变成交替数组的 最少操作数 。</p>
+<h3 id=解析-1>解析</h3>
+<p>贪心的思想，只需要把数组拆分成奇数数组和偶数数组，然后统计两个数组各个数字出现次数，选取最大的出现即可，主要是注意最大的数字相等的情况，当最大数字相等时，只需要把最大数字和另一次大数字相加，比较不相等的数量。</p>
+<h3 id=解法-1>解法</h3>
+<p>时间复杂度:$O(n\log n)$ 偷懒用了优先队列，可以是$ O(n) $的时间复杂度</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+<span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+    <span style=color:#66d9ef>int</span> minimumOperations(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> nums) {
+        unordered_map<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> m1,m2;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>nums.size();i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>if</span>(i<span style=color:#f92672>%</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>){
+                <span style=color:#f92672>++</span>m1[nums[i]];
+            }
+            <span style=color:#66d9ef>else</span>{
+                <span style=color:#f92672>++</span>m2[nums[i]];
+            }
+        }
+        priority_queue <span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>,vector<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span>,less<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;&gt;</span>q1,q2;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;</span>[k,v] <span style=color:#f92672>:</span> m1){
+            q1.push({v,k});
+        }
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>auto</span> <span style=color:#f92672>&amp;</span>[k,v] <span style=color:#f92672>:</span> m2){
+            q2.push({v,k});
+        }
+        <span style=color:#66d9ef>if</span>(q1.empty()<span style=color:#f92672>||</span>q2.empty()) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>if</span>(q1.top().second <span style=color:#f92672>==</span> q2.top().second){
+            <span style=color:#66d9ef>int</span> t1 <span style=color:#f92672>=</span> q1.top().first;
+            <span style=color:#66d9ef>int</span> t2 <span style=color:#f92672>=</span> q2.top().first;
+            q1.pop();
+            q2.pop();
+            t1 <span style=color:#f92672>+=</span> q2.empty()<span style=color:#f92672>?</span><span style=color:#ae81ff>0</span><span style=color:#f92672>:</span>q2.top().first;
+            t2 <span style=color:#f92672>+=</span> q1.empty()<span style=color:#f92672>?</span><span style=color:#ae81ff>0</span><span style=color:#f92672>:</span>q1.top().first;
+            <span style=color:#66d9ef>return</span> nums.size() <span style=color:#f92672>-</span> max(t1,t2);
+        }
+        <span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> q1.empty()<span style=color:#f92672>?</span><span style=color:#ae81ff>0</span><span style=color:#f92672>:</span>q1.top().first;
+        <span style=color:#66d9ef>int</span> b <span style=color:#f92672>=</span> q2.empty()<span style=color:#f92672>?</span><span style=color:#ae81ff>0</span><span style=color:#f92672>:</span>q2.top().first;
+        <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> nums.size() <span style=color:#f92672>-</span> a <span style=color:#f92672>-</span> b;
+        <span style=color:#66d9ef>return</span>  ans ;
+    }
+};
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=题三-6006-拿出最少数目的魔法豆httpsleetcode-cncomproblemsremoving-minimum-number-of-magic-beans>题三 <a class=link href=https://leetcode-cn.com/problems/removing-minimum-number-of-magic-beans/ target=_blank rel=noopener>6006. 拿出最少数目的魔法豆</a></h2>
+<h3 id=题面-2>题面</h3>
+<p>给你一个 正 整数数组 beans ，其中每个整数表示一个袋子里装的魔法豆的数目。</p>
+<p>请你从每个袋子中 拿出 一些豆子（也可以 不拿出），使得剩下的 非空 袋子中（即 至少 还有 一颗 魔法豆的袋子）魔法豆的数目 相等 。一旦魔法豆从袋子中取出，你不能将它放到任何其他的袋子中。</p>
+<p>请你返回你需要拿出魔法豆的 最少数目。</p>
+<h3 id=解析-2>解析</h3>
+<p>简简单单排序然后比较,排完序后对于每一个位置$i$，都有若取这个位置$i$的数作为基准,应该减少的豆子为$ total - beans[i]*(size - i) $ 其中$ total $为豆子的总量，$size$为袋子的数目</p>
+<h3 id=解法-2>解法</h3>
+<p>时间复杂度:$O(n)$</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+<span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+    <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> minimumRemoval(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> beans) {
+        <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ans <span style=color:#f92672>=</span> LLONG_MAX;
+        sort(beans.begin(),beans.end());
+        <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> beans.size();
+        <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        for_each(beans.begin(),beans.end(),[<span style=color:#f92672>&amp;</span>](<span style=color:#66d9ef>int</span> <span style=color:#f92672>&amp;</span>a){
+            cnt<span style=color:#f92672>+=</span>a;
+        });
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>beans.size();i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> mans <span style=color:#f92672>=</span> cnt <span style=color:#f92672>-</span> beans[i]<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(n<span style=color:#f92672>-</span>i);
+            ans <span style=color:#f92672>=</span> min(ans,mans);
+        }
+        <span style=color:#66d9ef>return</span> ans;
+    }
+};
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=题四-6007-数组的最大与和httpsleetcode-cncomproblemsmaximum-and-sum-of-array>题四 <a class=link href=https://leetcode-cn.com/problems/maximum-and-sum-of-array/ target=_blank rel=noopener>6007. 数组的最大与和</a></h2>
+<h3 id=题面-3>题面</h3>
+<p>给你一个长度为 n 的整数数组 nums 和一个整数 numSlots ，满足2 * numSlots >= n 。总共有 numSlots 个篮子，编号为 1 到 numSlots 。</p>
+<p>你需要把所有 n 个整数分到这些篮子中，且每个篮子 至多 有 2 个整数。一种分配方案的 与和 定义为每个数与它所在篮子编号的 按位与运算 结果之和。</p>
+<p>比方说，将数字 [1, 3] 放入篮子 1 中，[4, 6] 放入篮子 2 中，这个方案的与和为 (1 AND 1) + (3 AND 1) + (4 AND 2) + (6 AND 2) = 1 + 1 + 0 + 2 = 4 。
+请你返回将 nums 中所有数放入 numSlots 个篮子中的最大与和。</p>
+<h3 id=解析-3>解析</h3>
+<p>待补题</p>
+<h3 id=解法-3>解法</h3>
+<p>待补题</p>
+</section>
+<footer class=article-footer>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css integrity=sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js integrity=sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/20220214-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/>
+<div class=article-details>
+<h2 class=article-title>20220214 每日一题 Leetcode540 有序数组中的单一元素</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/>
+<div class=article-details>
+<h2 class=article-title>20220213 每日一题 Leetcode1189 气球的最大数量</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/20220212-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1020-%E9%A3%9E%E5%9C%B0%E7%9A%84%E6%95%B0%E9%87%8F/>
+<div class=article-details>
+<h2 class=article-title>20220212 每日一题 Leetcode1020 飞地的数量</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/>
+<div class=article-details>
+<h2 class=article-title>20220211 每日一题 Leetcode1984 学生分数的最小差值</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/>
+<div class=article-details>
+<h2 class=article-title>20220210 每日一题 Leetcode1447 最简分数</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<div id=gitalk-container></div>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script>
+<script>const gitalk=new Gitalk({clientID:"d439650e6c430aa38020",clientSecret:"49c9d30ea12f8a3caa33c3f77ecdba4aa1a87422",repo:"648759528ass.github.io",owner:"648759528ass",admin:["648759528ass"],distractionFreeMode:!1,id:md5(location.pathname)});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return}gitalk.render("gitalk-container")})()</script>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2022 Jhas's Blog
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#题一-6004-得到-0-的操作数httpsleetcode-cncomproblemscount-operations-to-obtain-zero>题一 <a href=https://leetcode-cn.com/problems/count-operations-to-obtain-zero/>6004. 得到 0 的操作数</a></a>
+<ol>
+<li><a href=#题面>题面</a></li>
+<li><a href=#解析>解析</a></li>
+<li><a href=#解法>解法</a></li>
+</ol>
+</li>
+<li><a href=#题二-6005-使数组变成交替数组的最少操作数httpsleetcode-cncomproblemsminimum-operations-to-make-the-array-alternating>题二 <a href=https://leetcode-cn.com/problems/minimum-operations-to-make-the-array-alternating/>6005. 使数组变成交替数组的最少操作数</a></a>
+<ol>
+<li><a href=#题面-1>题面</a></li>
+<li><a href=#解析-1>解析</a></li>
+<li><a href=#解法-1>解法</a></li>
+</ol>
+</li>
+<li><a href=#题三-6006-拿出最少数目的魔法豆httpsleetcode-cncomproblemsremoving-minimum-number-of-magic-beans>题三 <a href=https://leetcode-cn.com/problems/removing-minimum-number-of-magic-beans/>6006. 拿出最少数目的魔法豆</a></a>
+<ol>
+<li><a href=#题面-2>题面</a></li>
+<li><a href=#解析-2>解析</a></li>
+<li><a href=#解法-2>解法</a></li>
+</ol>
+</li>
+<li><a href=#题四-6007-数组的最大与和httpsleetcode-cncomproblemsmaximum-and-sum-of-array>题四 <a href=https://leetcode-cn.com/problems/maximum-and-sum-of-array/>6007. 数组的最大与和</a></a>
+<ol>
+<li><a href=#题面-3>题面</a></li>
+<li><a href=#解析-3>解析</a></li>
+<li><a href=#解法-3>解法</a></li>
+</ol>
+</li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>
