@@ -4,16 +4,22 @@
 题面 给你一个数组 $pairs$ ，其中 $pairs[i] = [x_i, y_i]$ ，并且满足：
  $pairs$ 中没有重复元素 $xi &amp;lt; yi$  令 $ways$ 为满足下面条件的有根树的方案数：
  树所包含的所有节点值都在 $pairs$ 中。 一个数对 $[xi, yi]$ 出现在 $pairs$ 中 当且仅当 $x_i$ 是 $y_i$ 的祖先或者 $y_i$ 是 $x_i$ 的祖先。 注意：构造出来的树不一定是二叉树。 两棵树被视为不同的方案当存在至少一个节点在两棵树中有不同的父节点。  请你返回：
-如果 $$ways == 0$$ ，返回 0 。 如果 $$ways == 1$$ ，返回 1 。 如果 $$ways &amp;gt; 1$$ ，返回 2 。 一棵 有根树 指的是只有一个根节点的树，所有边都是从根往外的方向。
-我们称从根到一个节点路径上的任意一个节点（除去节点本身）都是该节点的 祖先 。根节点没有祖先。"><title>20220216 每日一题 Leetcode1719 重构一颗树的方案数</title>
+如果 $ways == 0$，返回0。 如果 $ways == 1$，返回1。 如果 $ways &amp;gt; 1 $ ，返回 2 。
+一棵 有根树 指的是只有一个根节点的树，所有边都是从根往外的方向。
+我们称从根到一个节点路径上的任意一个节点（除去节点本身）都是该节点的 祖先 。根节点没有祖先。
+解析 注意题面的当且仅当，故有以下结论
+ 每一个能够成为根节点的值，必然与其它节点的值构成一个$pair$ 对于该树以及其子树，每一个节点的父节点的度都 大于或等于其子节点的度 每一个子节点的邻接节点集都为父节点的子集  则对于重构一颗树，我们可以先确定其根节点的值，然后枚举剩下的节点，确定其父节点的值，然后检查父节点值成立"><title>20220216 每日一题 Leetcode1719 重构一颗树的方案数</title>
 <link rel=canonical href=https://blog.jhas.site/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/>
 <link rel=stylesheet href=/scss/style.min.bbcfef3c56489f1f37b552146da519e6b6a74a4c92792bcc512c78e2f55f25e1.css><meta property="og:title" content="20220216 每日一题 Leetcode1719 重构一颗树的方案数">
 <meta property="og:description" content="1719. 重构一棵树的方案数 今天这道题前前后后看了两小时，最后忍不住看答案了
 题面 给你一个数组 $pairs$ ，其中 $pairs[i] = [x_i, y_i]$ ，并且满足：
  $pairs$ 中没有重复元素 $xi &amp;lt; yi$  令 $ways$ 为满足下面条件的有根树的方案数：
  树所包含的所有节点值都在 $pairs$ 中。 一个数对 $[xi, yi]$ 出现在 $pairs$ 中 当且仅当 $x_i$ 是 $y_i$ 的祖先或者 $y_i$ 是 $x_i$ 的祖先。 注意：构造出来的树不一定是二叉树。 两棵树被视为不同的方案当存在至少一个节点在两棵树中有不同的父节点。  请你返回：
-如果 $$ways == 0$$ ，返回 0 。 如果 $$ways == 1$$ ，返回 1 。 如果 $$ways &amp;gt; 1$$ ，返回 2 。 一棵 有根树 指的是只有一个根节点的树，所有边都是从根往外的方向。
-我们称从根到一个节点路径上的任意一个节点（除去节点本身）都是该节点的 祖先 。根节点没有祖先。">
+如果 $ways == 0$，返回0。 如果 $ways == 1$，返回1。 如果 $ways &amp;gt; 1 $ ，返回 2 。
+一棵 有根树 指的是只有一个根节点的树，所有边都是从根往外的方向。
+我们称从根到一个节点路径上的任意一个节点（除去节点本身）都是该节点的 祖先 。根节点没有祖先。
+解析 注意题面的当且仅当，故有以下结论
+ 每一个能够成为根节点的值，必然与其它节点的值构成一个$pair$ 对于该树以及其子树，每一个节点的父节点的度都 大于或等于其子节点的度 每一个子节点的邻接节点集都为父节点的子集  则对于重构一颗树，我们可以先确定其根节点的值，然后枚举剩下的节点，确定其父节点的值，然后检查父节点值成立">
 <meta property="og:url" content="https://blog.jhas.site/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/">
 <meta property="og:site_name" content="Jhas's Blog">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="hard"><meta property="article:published_time" content="2022-02-16T10:18:20+08:00"><meta property="article:modified_time" content="2022-02-16T10:18:20+08:00">
@@ -22,8 +28,11 @@
 题面 给你一个数组 $pairs$ ，其中 $pairs[i] = [x_i, y_i]$ ，并且满足：
  $pairs$ 中没有重复元素 $xi &amp;lt; yi$  令 $ways$ 为满足下面条件的有根树的方案数：
  树所包含的所有节点值都在 $pairs$ 中。 一个数对 $[xi, yi]$ 出现在 $pairs$ 中 当且仅当 $x_i$ 是 $y_i$ 的祖先或者 $y_i$ 是 $x_i$ 的祖先。 注意：构造出来的树不一定是二叉树。 两棵树被视为不同的方案当存在至少一个节点在两棵树中有不同的父节点。  请你返回：
-如果 $$ways == 0$$ ，返回 0 。 如果 $$ways == 1$$ ，返回 1 。 如果 $$ways &amp;gt; 1$$ ，返回 2 。 一棵 有根树 指的是只有一个根节点的树，所有边都是从根往外的方向。
-我们称从根到一个节点路径上的任意一个节点（除去节点本身）都是该节点的 祖先 。根节点没有祖先。"><link rel="shortcut icon" href=/images/favicon.ico>
+如果 $ways == 0$，返回0。 如果 $ways == 1$，返回1。 如果 $ways &amp;gt; 1 $ ，返回 2 。
+一棵 有根树 指的是只有一个根节点的树，所有边都是从根往外的方向。
+我们称从根到一个节点路径上的任意一个节点（除去节点本身）都是该节点的 祖先 。根节点没有祖先。
+解析 注意题面的当且仅当，故有以下结论
+ 每一个能够成为根节点的值，必然与其它节点的值构成一个$pair$ 对于该树以及其子树，每一个节点的父节点的度都 大于或等于其子节点的度 每一个子节点的邻接节点集都为父节点的子集  则对于重构一颗树，我们可以先确定其根节点的值，然后枚举剩下的节点，确定其父节点的值，然后检查父节点值成立"><link rel="shortcut icon" href=/images/favicon.ico>
 </head>
 <body class="article-page has-toc">
 <script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
@@ -75,13 +84,13 @@ Leetcode
 两棵树被视为不同的方案当存在至少一个节点在两棵树中有不同的父节点。</li>
 </ul>
 <p>请你返回：</p>
-<p>如果 $$ways == 0$$ ，返回 0 。
-如果 $$ways == 1$$ ，返回 1 。
-如果 $$ways > 1$$ ，返回 2 。
-一棵 有根树 指的是只有一个根节点的树，所有边都是从根往外的方向。</p>
+<p>如果 $ways == 0$，返回0。
+如果 $ways == 1$，返回1。
+如果 $ways > 1 $ ，返回 2 。</p>
+<p>一棵 有根树 指的是只有一个根节点的树，所有边都是从根往外的方向。</p>
 <p>我们称从根到一个节点路径上的任意一个节点（除去节点本身）都是该节点的 祖先 。根节点没有祖先。</p>
 <h2 id=解析>解析</h2>
-<p>首先解释一下原题第三样例的错误之处：注意题面的<strong>当且仅当</strong>，故有以下结论</p>
+<p>注意题面的<strong>当且仅当</strong>，故有以下结论</p>
 <ul>
 <li>每一个能够成为根节点的值，必然与其它节点的值构成一个$pair$</li>
 <li>对于该树以及其子树，每一个节点的父节点的度都 <strong>大于或等于其子节点的度</strong></li>
