@@ -52,7 +52,7 @@ Leetcode
 </div>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
-阅读时长: 2 分钟
+阅读时长: 3 分钟
 </time>
 </div>
 </footer>
@@ -184,6 +184,124 @@ Leetcode
         <span style=color:#66d9ef>return</span> ans;
     }
 };
+</code></pre></td></tr></table>
+</div>
+</div><p>另附一份非常漂亮的解法,用时仅237ms,是leetcode最好的用时样例了</p>
+<p>首先它直接将节点按度排序，然后根据以上性质，度比较大的节点总是度比较小节点的父节点，故对每个节点，只需要逆序遍历即可确定父节点及祖先节点。然后再次对每个节点，确定比它后的节点的联通性以及其是否在节点链上。</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+<span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>   
+<span style=color:#75715e>// 思路有
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> checkWays(vector<span style=color:#f92672>&lt;</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;&amp;</span> pairs) {
+        <span style=color:#66d9ef>int</span> maxn <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>auto</span><span style=color:#f92672>&amp;</span> p : pairs) maxn <span style=color:#f92672>=</span> max(maxn, max(p[<span style=color:#ae81ff>0</span>], p[<span style=color:#ae81ff>1</span>]));
+
+        <span style=color:#75715e>// 求出关系数,初始化关系矩阵(conn)
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>int</span> deg[maxn <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>], conn[maxn <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>][maxn <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>];
+        memset(deg, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(deg));
+        memset(conn, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(conn));
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>auto</span><span style=color:#f92672>&amp;</span> p : pairs) {
+            conn[p[<span style=color:#ae81ff>0</span>]][p[<span style=color:#ae81ff>1</span>]] <span style=color:#f92672>=</span> conn[p[<span style=color:#ae81ff>1</span>]][p[<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+            deg[p[<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>++</span>, deg[p[<span style=color:#ae81ff>1</span>]]<span style=color:#f92672>++</span>;
+        }
+
+        <span style=color:#75715e>// 求出实际点数 n
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>int</span> nodes[maxn <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>], n <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> maxn; <span style=color:#f92672>++</span>i) <span style=color:#66d9ef>if</span>(deg[i]) nodes[n<span style=color:#f92672>++</span>] <span style=color:#f92672>=</span> i;
+
+        <span style=color:#75715e>// 按照 &#34;关系数&#34; 从大到小排序
+</span><span style=color:#75715e></span>        sort(nodes, nodes <span style=color:#f92672>+</span> n, [<span style=color:#f92672>&amp;</span>](<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
+            <span style=color:#66d9ef>return</span> deg[a] <span style=color:#f92672>&gt;</span> deg[b];
+        });
+
+        <span style=color:#75715e>// 根节点必须是其它节点的祖先
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span>(deg[nodes[<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>!=</span> n<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+
+        <span style=color:#75715e>// 寻找父节点 (fa) 和祖先节点 (all_fa)
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>int</span> fa[maxn <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>], all_fa[maxn <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>][maxn <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>];
+        memset(fa, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(fa));
+        memset(all_fa, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(all_fa));
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; <span style=color:#f92672>++</span>i) {
+            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>; j <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span>; <span style=color:#f92672>--</span>j) {
+                <span style=color:#66d9ef>if</span>(conn[nodes[i]][nodes[j]]) {
+                    fa[nodes[i]] <span style=color:#f92672>=</span> nodes[j];
+                    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> f <span style=color:#f92672>=</span> fa[nodes[i]]; f; f <span style=color:#f92672>=</span> fa[f]) all_fa[nodes[i]][f] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+                    <span style=color:#66d9ef>break</span>;
+                }
+            }
+        }
+
+        <span style=color:#75715e>// 根据题目定义判断即可
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>int</span> res <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> maxn; <span style=color:#f92672>++</span>i) {
+            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>; j <span style=color:#f92672>&lt;=</span> maxn; <span style=color:#f92672>++</span>j) {
+                <span style=color:#66d9ef>if</span>(conn[i][j] <span style=color:#f92672>&amp;&amp;</span> deg[i] <span style=color:#f92672>==</span> deg[j]) res <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>; <span style=color:#75715e>// 判断是否有多个解
+</span><span style=color:#75715e></span>                <span style=color:#66d9ef>if</span>(conn[i][j] <span style=color:#f92672>!=</span> (all_fa[i][j] <span style=color:#f92672>||</span> all_fa[j][i])) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>; <span style=color:#75715e>// 判断是否违反题目要求
+</span><span style=color:#75715e></span>            }
+        }
+
+        <span style=color:#66d9ef>return</span> res;
+    }
+};
+
 </code></pre></td></tr></table>
 </div>
 </div>
