@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 16 Feb 2022 10:18:20 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220216 每日一题 Leetcode1719 重构一颗树的方案数</title><link>https://blog.jhas.site/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</link><pubDate>Wed, 16 Feb 2022 10:18:20 +0800</pubDate><guid>https://blog.jhas.site/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</guid><description>&lt;h1 id="1719-重构一棵树的方案数httpsleetcode-cncomproblemsnumber-of-ways-to-reconstruct-a-tree">&lt;a class="link" href="https://leetcode-cn.com/problems/number-of-ways-to-reconstruct-a-tree/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 17 Feb 2022 00:05:45 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220217 每日一题 Leetcode688 骑士在棋盘上的概率</title><link>https://blog.jhas.site/p/20220217-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/</link><pubDate>Thu, 17 Feb 2022 00:05:45 +0800</pubDate><guid>https://blog.jhas.site/p/20220217-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/</guid><description>&lt;h1 id="688-骑士在棋盘上的概率httpsleetcode-cncomproblemsknight-probability-in-chessboard">&lt;a class="link" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/" target="_blank" rel="noopener"
+>688. 骑士在棋盘上的概率&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>在一个 $n * n$ 的国际象棋棋盘上，一个骑士从单元格 (row, column) 开始，并尝试进行 $k$ 次移动。行和列是 从 $0$ 开始 的，所以左上单元格是 $(0,0)$ ，右下单元格是 $(n - 1, n - 1)$ 。&lt;/p>
+&lt;p>象棋骑士有$8$种可能的走法，如下图所示。每次移动在基本方向上是两个单元格，然后在正交方向上是一个单元格。&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/knight.png"
+loading="lazy"
+alt="走法解释"
+>&lt;/p>
+&lt;p>每次骑士要移动时，它都会随机从$8$种可能的移动中选择一种(即使棋子会离开棋盘)，然后移动到那里。&lt;/p>
+&lt;p>骑士继续移动，直到它走了 $k$ 步或离开了棋盘。&lt;/p>
+&lt;p>返回 骑士在棋盘停止移动后仍留在棋盘上的概率 。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>由于对于每一次的移动，其到某格的概率为该格其八个方向到该格的概率，则设dp方程为
+$$
+dp[0][row][column] = 1\
+dp[k][i][j] = \sum_{n=0}^7 dp[k-1][i+x_n][j+y_n] * \frac{1}{8}\
+$$
+其中
+$$
+x[8] = {-2,-2,-1,-1,1,1,2,2};\
+y[8] = {-1,1,2,-2,2,-2,-1,1};\
+$$
+最后统计$dp[k]$中所有值的和，即为最后留在棋盘上的概率&lt;/p>
+&lt;p>同时由于每一层的dp仅依赖于上一层的dp，故可以用奇偶性来压缩数组大小&lt;/p>
+&lt;h3 id="代码">代码&lt;/h3>
+&lt;p>时间复杂度:$ O(k*n^2) $&lt;/p>
+&lt;p>空间复杂度:$ O(n^2) $&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">double&lt;/span> dp[&lt;span style="color:#ae81ff">2&lt;/span>][&lt;span style="color:#ae81ff">25&lt;/span>][&lt;span style="color:#ae81ff">25&lt;/span>];
+&lt;span style="color:#66d9ef">int&lt;/span> tx[&lt;span style="color:#ae81ff">8&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#ae81ff">2&lt;/span>};
+&lt;span style="color:#66d9ef">int&lt;/span> ty[&lt;span style="color:#ae81ff">8&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#ae81ff">1&lt;/span>};
+&lt;span style="color:#66d9ef">double&lt;/span> &lt;span style="color:#a6e22e">knightProbability&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> n, &lt;span style="color:#66d9ef">int&lt;/span> k, &lt;span style="color:#66d9ef">int&lt;/span> row, &lt;span style="color:#66d9ef">int&lt;/span> column) {
+dp[&lt;span style="color:#ae81ff">0&lt;/span>][row][column] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1.0&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> t &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;t&lt;span style="color:#f92672">&amp;lt;=&lt;/span>k;t&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>n;i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> j &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;j&lt;span style="color:#f92672">&amp;lt;&lt;/span>n;j&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">double&lt;/span> cnt &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;l&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#ae81ff">8&lt;/span>;l&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">int&lt;/span> dx &lt;span style="color:#f92672">=&lt;/span> i&lt;span style="color:#f92672">+&lt;/span>tx[l];
+&lt;span style="color:#66d9ef">int&lt;/span> dy &lt;span style="color:#f92672">=&lt;/span> j&lt;span style="color:#f92672">+&lt;/span>ty[l];
+&lt;span style="color:#66d9ef">if&lt;/span>(dx&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">||&lt;/span>dx&lt;span style="color:#f92672">&amp;gt;=&lt;/span>n&lt;span style="color:#f92672">||&lt;/span>dy&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">||&lt;/span>dy&lt;span style="color:#f92672">&amp;gt;=&lt;/span>n) &lt;span style="color:#66d9ef">continue&lt;/span>;
+cnt &lt;span style="color:#f92672">+=&lt;/span> dp[(t&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)&lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>][dx][dy] &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">1.0&lt;/span>&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">8.0&lt;/span>;
+}
+dp[t&lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>][i][j] &lt;span style="color:#f92672">=&lt;/span> cnt;
+}
+}
+}
+&lt;span style="color:#66d9ef">double&lt;/span> cnt &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>n;i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> j &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;j&lt;span style="color:#f92672">&amp;lt;&lt;/span>n;j&lt;span style="color:#f92672">++&lt;/span>){
+cnt &lt;span style="color:#f92672">+=&lt;/span> dp[k&lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>][i][j];
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> cnt;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220216 每日一题 Leetcode1719 重构一颗树的方案数</title><link>https://blog.jhas.site/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</link><pubDate>Wed, 16 Feb 2022 10:18:20 +0800</pubDate><guid>https://blog.jhas.site/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</guid><description>&lt;h1 id="1719-重构一棵树的方案数httpsleetcode-cncomproblemsnumber-of-ways-to-reconstruct-a-tree">&lt;a class="link" href="https://leetcode-cn.com/problems/number-of-ways-to-reconstruct-a-tree/" target="_blank" rel="noopener"
 >1719. 重构一棵树的方案数&lt;/a>&lt;/h1>
 &lt;p>今天这道题前前后后看了两小时，最后忍不住看答案了&lt;/p>
 &lt;h2 id="题面">题面&lt;/h2>
