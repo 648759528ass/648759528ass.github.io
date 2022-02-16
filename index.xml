@@ -23,7 +23,7 @@ y[8] = {-1,1,2,-2,2,-2,-1,1};\
 $$
 最后统计$dp[k]$中所有值的和，即为最后留在棋盘上的概率&lt;/p>
 &lt;p>同时由于每一层的dp仅依赖于上一层的dp，故可以用奇偶性来压缩数组大小&lt;/p>
-&lt;h3 id="代码">代码&lt;/h3>
+&lt;h2 id="代码">代码&lt;/h2>
 &lt;p>时间复杂度:$ O(k*n^2) $&lt;/p>
 &lt;p>空间复杂度:$ O(n^2) $&lt;/p>
 &lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
