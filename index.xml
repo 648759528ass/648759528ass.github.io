@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 18 Feb 2022 08:37:24 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220218 每日一题 Leetcode1791 找出星型图的中心节点</title><link>https://blog.jhas.site/p/20220218-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1791-%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9/</link><pubDate>Fri, 18 Feb 2022 08:37:24 +0800</pubDate><guid>https://blog.jhas.site/p/20220218-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1791-%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9/</guid><description>&lt;h1 id="1791-找出星型图的中心节点httpsleetcode-cncomproblemsfind-center-of-star-graph">&lt;a class="link" href="https://leetcode-cn.com/problems/find-center-of-star-graph/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 19 Feb 2022 09:21:44 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220219 每日一题 Leetcode969 煎饼排序</title><link>https://blog.jhas.site/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</link><pubDate>Sat, 19 Feb 2022 09:21:44 +0800</pubDate><guid>https://blog.jhas.site/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</guid><description>&lt;h1 id="969-煎饼排序httpsleetcode-cncomproblemspancake-sorting">&lt;a class="link" href="https://leetcode-cn.com/problems/pancake-sorting/" target="_blank" rel="noopener"
+>969. 煎饼排序&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给你一个整数数组 $arr$ ，请使用 煎饼翻转 完成对数组的排序。&lt;/p>
+&lt;p>一次煎饼翻转的执行过程如下：&lt;/p>
+&lt;ul>
+&lt;li>选择一个整数 $k$ ，$1 \le k \le arr.length$&lt;/li>
+&lt;li>反转子数组 $arr[0&amp;hellip;k-1]$（下标从 0 开始）&lt;/li>
+&lt;/ul>
+&lt;p>例如，$arr = [3,2,1,4]$ ，选择 $k = 3$ 进行一次煎饼翻转，反转子数组 $[3,2,1]$ ，得到 $arr = [1,2,3,4]$ 。&lt;/p>
+&lt;p>以数组形式返回能使 $arr$ 有序的煎饼翻转操作所对应的 $k$ 值序列。任何将数组排序且翻转次数在 $10 * arr.length$ 范围内的有效答案都将被判断为正确。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>考虑一下每次都将某个下标翻到第一位，然后将它再翻到它对应的位置，操作次数只需 $2 * arr.length$即可&lt;/p>
+&lt;p>又有如果我们要让每一次翻面不会搞乱前面的翻面，则我们应该从右往左翻。枚举每一个值即可。&lt;/p>
+&lt;h2 id="代码">代码&lt;/h2>
+&lt;p>时间复杂度:$ O(n^2) $&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> pancakeSort(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> arr) {
+&lt;span style="color:#66d9ef">int&lt;/span> n &lt;span style="color:#f92672">=&lt;/span> arr.size();
+vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> ret;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> n;i&lt;span style="color:#f92672">&amp;gt;=&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;i&lt;span style="color:#f92672">--&lt;/span>){
+&lt;span style="color:#66d9ef">auto&lt;/span> t &lt;span style="color:#f92672">=&lt;/span> arr.begin();
+&lt;span style="color:#66d9ef">for&lt;/span>(;t&lt;span style="color:#f92672">!=&lt;/span>arr.end();t&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(&lt;span style="color:#f92672">*&lt;/span>t &lt;span style="color:#f92672">==&lt;/span> i){
+ret.push_back(t&lt;span style="color:#f92672">-&lt;/span>arr.begin() &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>);
+ret.push_back(i);
+reverse(arr.begin(),t&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>);
+reverse(arr.begin(),arr.begin()&lt;span style="color:#f92672">+&lt;/span>i);
+&lt;span style="color:#66d9ef">break&lt;/span>;
+}
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> ret;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220218 每日一题 Leetcode1791 找出星型图的中心节点</title><link>https://blog.jhas.site/p/20220218-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1791-%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9/</link><pubDate>Fri, 18 Feb 2022 08:37:24 +0800</pubDate><guid>https://blog.jhas.site/p/20220218-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1791-%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9/</guid><description>&lt;h1 id="1791-找出星型图的中心节点httpsleetcode-cncomproblemsfind-center-of-star-graph">&lt;a class="link" href="https://leetcode-cn.com/problems/find-center-of-star-graph/" target="_blank" rel="noopener"
 >1791. 找出星型图的中心节点&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>有一个无向的 星型 图，由 n 个编号从 1 到 n 的节点组成。星型图有一个 中心 节点，并且恰有 n - 1 条边将中心节点与其他每个节点连接起来。&lt;/p>
