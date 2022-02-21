@@ -1,4 +1,160 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 19 Feb 2022 09:21:44 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220219 每日一题 Leetcode969 煎饼排序</title><link>https://blog.jhas.site/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</link><pubDate>Sat, 19 Feb 2022 09:21:44 +0800</pubDate><guid>https://blog.jhas.site/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</guid><description>&lt;h1 id="969-煎饼排序httpsleetcode-cncomproblemspancake-sorting">&lt;a class="link" href="https://leetcode-cn.com/problems/pancake-sorting/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 21 Feb 2022 11:12:29 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220221 每日一题 Leetcode838 推多米诺</title><link>https://blog.jhas.site/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</link><pubDate>Mon, 21 Feb 2022 11:12:29 +0800</pubDate><guid>https://blog.jhas.site/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</guid><description>&lt;h1 id="838-推多米诺httpsleetcode-cncomproblemspush-dominoes">&lt;a class="link" href="https://leetcode-cn.com/problems/push-dominoes/" target="_blank" rel="noopener"
+>838. 推多米诺&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>$n$ 张多米诺骨牌排成一行，将每张多米诺骨牌垂直竖立。在开始时，同时把一些多米诺骨牌向左或向右推。&lt;/p>
+&lt;p>每过一秒，倒向左边的多米诺骨牌会推动其左侧相邻的多米诺骨牌。同样地，倒向右边的多米诺骨牌也会推动竖立在其右侧的相邻多米诺骨牌。&lt;/p>
+&lt;p>如果一张垂直竖立的多米诺骨牌的两侧同时有多米诺骨牌倒下时，由于受力平衡， 该骨牌仍然保持不变。&lt;/p>
+&lt;p>就这个问题而言，我们会认为一张正在倒下的多米诺骨牌不会对其它正在倒下或已经倒下的多米诺骨牌施加额外的力。&lt;/p>
+&lt;p>给你一个字符串 $dominoes$ 表示这一行多米诺骨牌的初始状态，其中：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>$dominoes[i]$ = &amp;lsquo;L&amp;rsquo;，表示第 $i$ 张多米诺骨牌被推向左侧，&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$dominoes[i]$ = &amp;lsquo;R&amp;rsquo;，表示第 $i$ 张多米诺骨牌被推向右侧，&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$dominoes[i]$ = &amp;lsquo;.'，表示没有推动第 $i$ 张多米诺骨牌。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>返回表示最终状态的字符串。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>本题有两种思路：&lt;/p>
+&lt;ul>
+&lt;li>bfs搜索&lt;/li>
+&lt;li>双指针模拟&lt;/li>
+&lt;/ul>
+&lt;h3 id="bfs搜索">bfs搜索&lt;/h3>
+&lt;p>简单说一下bfs搜索的思路，对于每一个推倒的多米诺，必然会引起连锁反应引起其它多米诺倒下。维护一个队列。队列里元素为$(i)$ 再开一个数组记录当前多米诺的状态:访问?未访问。&lt;/p>
+&lt;p>对于每个倒下的多米诺，其一定不会对已访问的多米诺产生影响，对于一开始已经倒下的多米诺记为已访问。同时对于每次访问的多米诺，仅仅只在其被取出为队头时才记录为访问。&lt;/p>
+&lt;p>再次对于每个倒下的多米诺，其影响一定是左边或右边，修改其对应影响的未访问的多米诺的状态，当一个多米诺同时被两边访问(未被访问但已经为L或R)时，该多米诺为直立。&lt;/p>
+&lt;p>以上情况直到队列空为止&lt;/p>
+&lt;h3 id="双指针模拟">双指针模拟&lt;/h3>
+&lt;p>对于每一个倒下的多米诺都会影响一个一个区间。只要用双指针模拟这个区间即可&lt;/p>
+&lt;h2 id="解法">解法&lt;/h2>
+&lt;p>双指针模拟&lt;/p>
+&lt;p>&lt;strong>时间复杂度&lt;/strong>: $O(n)$&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+string pushDominoes(string dominoes) {
+&lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>dominoes.size();i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(dominoes[i] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;L&amp;#39;&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(dominoes[l] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;R&amp;#39;&lt;/span>){
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> j &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;j&lt;span style="color:#f92672">&amp;lt;=&lt;/span>(i&lt;span style="color:#f92672">-&lt;/span>l)&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>;j&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(l&lt;span style="color:#f92672">+&lt;/span>j &lt;span style="color:#f92672">==&lt;/span> i&lt;span style="color:#f92672">-&lt;/span>j){
+&lt;span style="color:#66d9ef">continue&lt;/span>;
+}
+dominoes[l&lt;span style="color:#f92672">+&lt;/span>j] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;R&amp;#39;&lt;/span>;
+dominoes[i&lt;span style="color:#f92672">-&lt;/span>j] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;L&amp;#39;&lt;/span>;
+}
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+&lt;span style="color:#66d9ef">while&lt;/span>(l&lt;span style="color:#f92672">&amp;lt;=&lt;/span>i){
+dominoes[l&lt;span style="color:#f92672">++&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;L&amp;#39;&lt;/span>;
+}
+}
+l &lt;span style="color:#f92672">=&lt;/span> i&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+}&lt;span style="color:#66d9ef">else&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span>(dominoes[i] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;R&amp;#39;&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(dominoes[l] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;R&amp;#39;&lt;/span>){
+&lt;span style="color:#66d9ef">while&lt;/span>(l&lt;span style="color:#f92672">&amp;lt;&lt;/span>i){
+dominoes[l&lt;span style="color:#f92672">++&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;R&amp;#39;&lt;/span>;
+}
+}
+l &lt;span style="color:#f92672">=&lt;/span> i;
+}
+}
+&lt;span style="color:#66d9ef">if&lt;/span>(dominoes[l] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;R&amp;#39;&lt;/span>){
+&lt;span style="color:#66d9ef">while&lt;/span>(l&lt;span style="color:#f92672">&amp;lt;&lt;/span>dominoes.size()) dominoes[l&lt;span style="color:#f92672">++&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;R&amp;#39;&lt;/span>;
+}
+&lt;span style="color:#66d9ef">return&lt;/span> dominoes;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220220 每日一题 Leetcode717 1比特与2比特字符</title><link>https://blog.jhas.site/p/20220220-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode717-1%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/</link><pubDate>Sun, 20 Feb 2022 10:55:44 +0800</pubDate><guid>https://blog.jhas.site/p/20220220-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode717-1%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/</guid><description>&lt;h1 id="717-1比特与2比特字符httpsleetcode-cncomproblems1-bit-and-2-bit-characters">&lt;a class="link" href="https://leetcode-cn.com/problems/1-bit-and-2-bit-characters/" target="_blank" rel="noopener"
+>717. 1比特与2比特字符&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>有两种特殊字符：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>第一种字符可以用一个比特 0 来表示&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>第二种字符可以用两个比特(10 或 11)来表示&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>给定一个以 0 结尾的二进制数组 bits ，如果最后一个字符必须是一位字符，则返回 true 。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>简简单单模拟即可&lt;/p>
+&lt;h2 id="解法">解法&lt;/h2>
+&lt;p>时间复杂度: $ O(n) $&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">bool&lt;/span> isOneBitCharacter(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> bits) {
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>bits.size();i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(i &lt;span style="color:#f92672">==&lt;/span> bits.size() &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#66d9ef">return&lt;/span> true;
+&lt;span style="color:#66d9ef">if&lt;/span>(bits[i] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>) i&lt;span style="color:#f92672">++&lt;/span>;
+}
+&lt;span style="color:#66d9ef">return&lt;/span> false;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220219 每日一题 Leetcode969 煎饼排序</title><link>https://blog.jhas.site/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</link><pubDate>Sat, 19 Feb 2022 09:21:44 +0800</pubDate><guid>https://blog.jhas.site/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</guid><description>&lt;h1 id="969-煎饼排序httpsleetcode-cncomproblemspancake-sorting">&lt;a class="link" href="https://leetcode-cn.com/problems/pancake-sorting/" target="_blank" rel="noopener"
 >969. 煎饼排序&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数数组 $arr$ ，请使用 煎饼翻转 完成对数组的排序。&lt;/p>
