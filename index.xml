@@ -1,4 +1,131 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 21 Feb 2022 11:12:29 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220221 每日一题 Leetcode838 推多米诺</title><link>https://blog.jhas.site/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</link><pubDate>Mon, 21 Feb 2022 11:12:29 +0800</pubDate><guid>https://blog.jhas.site/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</guid><description>&lt;h1 id="838-推多米诺httpsleetcode-cncomproblemspush-dominoes">&lt;a class="link" href="https://leetcode-cn.com/problems/push-dominoes/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 22 Feb 2022 14:47:07 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220222 每日一题 Leetcode1994 好子集的数目</title><link>https://blog.jhas.site/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</link><pubDate>Tue, 22 Feb 2022 14:47:07 +0800</pubDate><guid>https://blog.jhas.site/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="1994-好子集的数目httpsleetcode-cncomproblemsthe-number-of-good-subsets">&lt;a class="link" href="https://leetcode-cn.com/problems/the-number-of-good-subsets/" target="_blank" rel="noopener"
+>1994. 好子集的数目&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给你一个整数数组 $nums$ 。如果 $nums$ 的一个子集中，所有元素的乘积可以表示为一个或多个 互不相同的质数 的乘积，那么我们称它为 好子集 。&lt;/p>
+&lt;p>比方说，如果 $nums$ = $[1, 2, 3, 4]$ ：
+$[2, 3]$ ，$[1, 2, 3]$ 和 $[1, 3]$ 是 好 子集，乘积分别为 $6 = 2&lt;em>3$ ，$6 = 2&lt;/em>3$ 和 $3 = 3$ 。
+$[1, 4]$ 和 $[4]$ 不是 好 子集，因为乘积分别为 $4 = 2&lt;em>2$ 和 $4 = 2&lt;/em>2$ 。
+请你返回 $nums$ 中不同的 好 子集的数目对 $10^9 + 7$ 取余 的结果。&lt;/p>
+&lt;p>$nums$ 中的 子集 是通过删除 $nums$ 中一些（可能一个都不删除，也可能全部都删除）元素后剩余元素组成的数组。如果两个子集删除的下标不同，那么它们被视为不同的子集。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>今天这道hard题又看答案了，果然hard做得还是比较勉强。&lt;/p>
+&lt;p>首先这道题解法是状压dp，没有学过的(包括我)可能挺难想到的&lt;/p>
+&lt;p>针对1-30中每一个数，都可以在下面这三类中分出来:&lt;/p>
+&lt;ul>
+&lt;li>1&lt;/li>
+&lt;li>{4,8,9,12,16,18,20,24,25,27,28} 这些是完全平方数或者因子中有完全平方的数&lt;/li>
+&lt;li>剩下的数&lt;/li>
+&lt;/ul>
+&lt;p>然后看30中的质数{2,3,5,7,11,13,17,19,23,29}。共有10个&lt;/p>
+&lt;p>我们枚举2-30中的每一个数，每个数设为i&lt;/p>
+&lt;p>我们可以拿一个十位的二进制数j，当其某一位为1时，即代表已存在对应的质数&lt;/p>
+&lt;p>$dp[i][j]$的含义为在$[2,i]$的这个区间内，乘积为$j$中质数的乘积的数量&lt;/p>
+&lt;p>设subset为 i 的质数分解后对应的十位二进制, cnt[i]为nums中i的数量.&lt;/p>
+&lt;p>则有以下dp方程
+$$
+dp[i][j] = dp[i-1][j] ,i \in {4,8,9,12,16,18,20,24,25,27,28} | subset\notin j\
+dp[i][j] = dp[i-1][j] + dp[i-1][j-subset] * cnt[i], i \notin {1,4,8,9,12,16,18,20,24,25,27,28}\
+dp[1][0] = 2^{cnt[1]}
+$$
+需要注意的是 subset 必须为j的子集，可以用按位与来处理&lt;/p>
+&lt;p>虽然i最大为30，但我们也可以用01背包把它压缩成一维&lt;/p>
+&lt;h2 id="解法">解法&lt;/h2>
+&lt;p>时间复杂度:$O(30*1024 + n)$&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> mod &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1000000007&lt;/span>;
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> odd[] &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#ae81ff">3&lt;/span>,&lt;span style="color:#ae81ff">5&lt;/span>,&lt;span style="color:#ae81ff">7&lt;/span>,&lt;span style="color:#ae81ff">11&lt;/span>,&lt;span style="color:#ae81ff">13&lt;/span>,&lt;span style="color:#ae81ff">17&lt;/span>,&lt;span style="color:#ae81ff">19&lt;/span>,&lt;span style="color:#ae81ff">23&lt;/span>,&lt;span style="color:#ae81ff">29&lt;/span>};
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> db[] &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#ae81ff">4&lt;/span>,&lt;span style="color:#ae81ff">8&lt;/span>,&lt;span style="color:#ae81ff">9&lt;/span>,&lt;span style="color:#ae81ff">12&lt;/span>,&lt;span style="color:#ae81ff">16&lt;/span>,&lt;span style="color:#ae81ff">18&lt;/span>,&lt;span style="color:#ae81ff">20&lt;/span>,&lt;span style="color:#ae81ff">24&lt;/span>,&lt;span style="color:#ae81ff">25&lt;/span>,&lt;span style="color:#ae81ff">27&lt;/span>,&lt;span style="color:#ae81ff">28&lt;/span>};
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> N &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span>&lt;span style="color:#ae81ff">10&lt;/span>;
+&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">inline&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> judge(&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;amp;&lt;/span> a){
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#ae81ff">11&lt;/span>;i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(db[i] &lt;span style="color:#f92672">==&lt;/span> a) &lt;span style="color:#66d9ef">return&lt;/span> true;
+}
+&lt;span style="color:#66d9ef">return&lt;/span> false;
+}
+&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">numberOfGoodSubsets&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;span style="color:#66d9ef">int&lt;/span> mp[&lt;span style="color:#ae81ff">31&lt;/span>];
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> dp[N];
+memset(dp,&lt;span style="color:#ae81ff">0&lt;/span>,&lt;span style="color:#66d9ef">sizeof&lt;/span>(dp));
+memset(mp,&lt;span style="color:#ae81ff">0&lt;/span>,&lt;span style="color:#66d9ef">sizeof&lt;/span>(mp));
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">auto&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>a : nums){
+mp[a]&lt;span style="color:#f92672">++&lt;/span>;
+}
+dp[&lt;span style="color:#ae81ff">0&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>mp[&lt;span style="color:#ae81ff">1&lt;/span>];i&lt;span style="color:#f92672">++&lt;/span>){
+dp[&lt;span style="color:#ae81ff">0&lt;/span>]&lt;span style="color:#f92672">*=&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>;
+dp[&lt;span style="color:#ae81ff">0&lt;/span>]&lt;span style="color:#f92672">%=&lt;/span>mod;
+}
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;=&lt;/span>&lt;span style="color:#ae81ff">30&lt;/span>;i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(judge(i)) &lt;span style="color:#66d9ef">continue&lt;/span>;
+&lt;span style="color:#66d9ef">int&lt;/span> subset &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> j &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;j&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#ae81ff">10&lt;/span>;j&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(i&lt;span style="color:#f92672">%&lt;/span>odd[j] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>) subset &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span>j;
+}
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> j &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;j&lt;span style="color:#f92672">&amp;lt;&lt;/span>N;j&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>((subset &lt;span style="color:#f92672">&amp;amp;&lt;/span> j) &lt;span style="color:#f92672">!=&lt;/span> subset) &lt;span style="color:#66d9ef">continue&lt;/span>;
+dp[j] &lt;span style="color:#f92672">=&lt;/span> (dp[j]&lt;span style="color:#f92672">+&lt;/span>dp[j&lt;span style="color:#f92672">-&lt;/span>subset]&lt;span style="color:#f92672">*&lt;/span>mp[i])&lt;span style="color:#f92672">%&lt;/span>mod;
+}
+}
+&lt;span style="color:#66d9ef">int&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>N;i&lt;span style="color:#f92672">++&lt;/span>){
+ans &lt;span style="color:#f92672">=&lt;/span> (ans &lt;span style="color:#f92672">+&lt;/span>dp[i])&lt;span style="color:#f92672">%&lt;/span>mod;
+}
+&lt;span style="color:#66d9ef">return&lt;/span> ans;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220221 每日一题 Leetcode838 推多米诺</title><link>https://blog.jhas.site/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</link><pubDate>Mon, 21 Feb 2022 11:12:29 +0800</pubDate><guid>https://blog.jhas.site/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</guid><description>&lt;h1 id="838-推多米诺httpsleetcode-cncomproblemspush-dominoes">&lt;a class="link" href="https://leetcode-cn.com/problems/push-dominoes/" target="_blank" rel="noopener"
 >838. 推多米诺&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>$n$ 张多米诺骨牌排成一行，将每张多米诺骨牌垂直竖立。在开始时，同时把一些多米诺骨牌向左或向右推。&lt;/p>
