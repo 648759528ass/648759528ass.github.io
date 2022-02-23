@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 23 Feb 2022 09:30:22 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220223 每日一题 Leetcode917 仅仅反转字母</title><link>https://blog.jhas.site/p/20220223-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/</link><pubDate>Wed, 23 Feb 2022 09:30:22 +0800</pubDate><guid>https://blog.jhas.site/p/20220223-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/</guid><description/></item><item><title>20220222 每日一题 Leetcode1994 好子集的数目</title><link>https://blog.jhas.site/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</link><pubDate>Tue, 22 Feb 2022 14:47:07 +0800</pubDate><guid>https://blog.jhas.site/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="1994-好子集的数目httpsleetcode-cncomproblemsthe-number-of-good-subsets">&lt;a class="link" href="https://leetcode-cn.com/problems/the-number-of-good-subsets/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 23 Feb 2022 09:30:22 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220223 每日一题 Leetcode917 仅仅反转字母</title><link>https://blog.jhas.site/p/20220223-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/</link><pubDate>Wed, 23 Feb 2022 09:30:22 +0800</pubDate><guid>https://blog.jhas.site/p/20220223-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/</guid><description>&lt;h1 id="917-仅仅反转字母httpsleetcode-cncomproblemsreverse-only-letters">&lt;a class="link" href="https://leetcode-cn.com/problems/reverse-only-letters/" target="_blank" rel="noopener"
+>917. 仅仅反转字母&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给你一个字符串 &lt;code>s&lt;/code> ，根据下述规则反转字符串：&lt;/p>
+&lt;ul>
+&lt;li>所有非英文字母保留在原有位置。&lt;/li>
+&lt;li>所有英文字母（小写或大写）位置反转。&lt;/li>
+&lt;/ul>
+&lt;p>返回反转后的 &lt;code>s&lt;/code> 。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>按题面双指针模拟即可。&lt;/p>
+&lt;p>有点像快排里的交换(部分像)。&lt;/p>
+&lt;p>每个用了的指针向前/向后一位,碰到不是字母的指针也移动.&lt;/p>
+&lt;h2 id="解法">解法&lt;/h2>
+&lt;p>时间复杂度:$ O(n) $&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+string reverseOnlyLetters(string s) {
+&lt;span style="color:#66d9ef">int&lt;/span> l&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>,r &lt;span style="color:#f92672">=&lt;/span> s.size();
+&lt;span style="color:#66d9ef">while&lt;/span>(l&lt;span style="color:#f92672">&amp;lt;&lt;/span>r){
+&lt;span style="color:#66d9ef">if&lt;/span>((s[l]&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;A&amp;#39;&lt;/span>&lt;span style="color:#f92672">||&lt;/span>s[l]&lt;span style="color:#f92672">&amp;gt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;Z&amp;#39;&lt;/span>)&lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>(s[l]&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;a&amp;#39;&lt;/span>&lt;span style="color:#f92672">||&lt;/span>s[l]&lt;span style="color:#f92672">&amp;gt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;z&amp;#39;&lt;/span>)){
+l&lt;span style="color:#f92672">++&lt;/span>;
+}
+&lt;span style="color:#66d9ef">else&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span>((s[r]&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;A&amp;#39;&lt;/span>&lt;span style="color:#f92672">||&lt;/span>s[r]&lt;span style="color:#f92672">&amp;gt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;Z&amp;#39;&lt;/span>)&lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>(s[r]&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;a&amp;#39;&lt;/span>&lt;span style="color:#f92672">||&lt;/span>s[r]&lt;span style="color:#f92672">&amp;gt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;z&amp;#39;&lt;/span>)){
+r&lt;span style="color:#f92672">--&lt;/span>;
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+swap(s[l&lt;span style="color:#f92672">++&lt;/span>], s[r&lt;span style="color:#f92672">--&lt;/span>]);
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> s;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220222 每日一题 Leetcode1994 好子集的数目</title><link>https://blog.jhas.site/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</link><pubDate>Tue, 22 Feb 2022 14:47:07 +0800</pubDate><guid>https://blog.jhas.site/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="1994-好子集的数目httpsleetcode-cncomproblemsthe-number-of-good-subsets">&lt;a class="link" href="https://leetcode-cn.com/problems/the-number-of-good-subsets/" target="_blank" rel="noopener"
 >1994. 好子集的数目&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数数组 $nums$ 。如果 $nums$ 的一个子集中，所有元素的乘积可以表示为一个或多个 互不相同的质数 的乘积，那么我们称它为 好子集 。&lt;/p>
