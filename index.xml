@@ -1,4 +1,171 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 03 Mar 2022 08:12:34 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220303 每日一题 Leetcode258 各位相加</title><link>https://blog.jhas.site/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/</link><pubDate>Thu, 03 Mar 2022 08:12:34 +0800</pubDate><guid>https://blog.jhas.site/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/</guid><description>&lt;h1 id="258-各位相加httpsleetcode-cncomproblemsadd-digits">&lt;a class="link" href="https://leetcode-cn.com/problems/add-digits/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 04 Mar 2022 09:03:38 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220304 每日一题 Leetcode2104 子数组范围和</title><link>https://blog.jhas.site/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/</link><pubDate>Fri, 04 Mar 2022 09:03:38 +0800</pubDate><guid>https://blog.jhas.site/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/</guid><description>&lt;h1 id="2104-子数组范围和httpsleetcode-cncomproblemssum-of-subarray-ranges">&lt;a class="link" href="https://leetcode-cn.com/problems/sum-of-subarray-ranges/" target="_blank" rel="noopener"
+>2104. 子数组范围和&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给你一个整数数组 nums 。nums 中，子数组的 范围 是子数组中最大元素和最小元素的差值。&lt;/p>
+&lt;p>返回 nums 中所有子数组范围的和 。&lt;/p>
+&lt;p>子数组是数组中一个连续 非空 的元素序列。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>首先直接的一个想法：暴力枚举&lt;/p>
+&lt;p>直接枚举l 左边界，然后枚举r右边界，维护最大与最小值。最后可以得出答案&lt;/p>
+&lt;p>显然以上时间复杂度为$O(n^2)$,让我们来对其加以改进。&lt;/p>
+&lt;p>首先我们分离范围内的最大值与最小值，即不必在每一个元素都计算出其范围，在最后的时候我们只需要把所有子数组的最大值和与最小值和相减，则可得出所有子数组范围的和，&lt;/p>
+&lt;p>那么我们的问题就退化为如何求所有子数组的最大值和与最小值和。&lt;/p>
+&lt;p>我们首先来考虑最大值。我们来枚举右边界$r$ ,然后针对每一个$r$再来枚举$l$(暴力解法反了一反)，我们可以发现对于每一个 $r$ 其枚举的$l$都是之前已经出现过的$r$。再看我们需要求的是最大值。我们设$ nums[l]&amp;hellip;nums[r]$子数组最大值点为$i$,我们可以发现任意左边界处于$[l,i)$，右边界为$r$的子数组，其最大值都为$nums[i]$。$nums[i]$就如同一个挡板一样，挡住了前面更小的数。直到我们找到前面比$nums[i]$更大的数，那么这个时候我们就可以使用单调栈来处理这个过程。&lt;/p>
+&lt;p>我们来考虑一个单调递减栈,里面维护一个数对 ${idx,cnt}$.我们枚举$nums$, 对于每一个$i$ ,我们首先考虑$nums[i] &amp;gt;=nums[top.idx]$ 的情况，在该种情况下对于任意$j&amp;gt;i$, 在尝试求$nums[top.idx]&amp;hellip;nums[j]$的过程中,$nums[top.idx]$ 都会被$nums[i]$挡住,在入栈$i$时我们可以把top出栈,而对于top这个数对，我们需要找到前面挡住top.idx的更前一个数对,也即top出栈后的栈顶，我们称为l_top,那么对于$nums[l_top.idx]&amp;hellip; nums[top.idx]$中的任意子数组，其最大值都为$num[top.idx]$,再考虑$k&amp;lt;l_top.idx$，这里对于任意$nums[k]&amp;hellip; nums[top.idx]$的子数组，其最大值都为$nums[l_top.idx]$。如果在这个时候清算右边界为i的子数组最大值的话，我们的时间复杂度会回退到$O(n^2)$,所以我们不应该在此时向前清算最大值，这时$cnt$的作用就来了,cnt的含义为：当前位置到前一个小值之间的被移除的位置的数量, 也即一个懒标志，先不计算这些被移除的位置的子数组，待当前数出栈时一起计算。我们出栈top的时候令$l_top.cnt = l_top.cnt + top.cnt$，答案加上$(top.idx-l_top.idx)*nums[cnt.idx]*top.cnt$&lt;/p>
+&lt;p>求最小值的时候思路相似，使用单调递增栈.&lt;/p>
+&lt;h2 id="解法一暴力枚举">解法一(暴力枚举)&lt;/h2>
+&lt;p>时间复杂度:$O(n^2)$&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> subArrayRanges(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;l&lt;span style="color:#f92672">&amp;lt;&lt;/span>nums.size();l&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">int&lt;/span> maxn &lt;span style="color:#f92672">=&lt;/span> nums[l];
+&lt;span style="color:#66d9ef">int&lt;/span> minn &lt;span style="color:#f92672">=&lt;/span> nums[l];
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> r &lt;span style="color:#f92672">=&lt;/span> l&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;r&lt;span style="color:#f92672">&amp;lt;&lt;/span>nums.size();r&lt;span style="color:#f92672">++&lt;/span>){
+maxn &lt;span style="color:#f92672">=&lt;/span> max(maxn,nums[r]);
+minn &lt;span style="color:#f92672">=&lt;/span> min(minn,nums[r]);
+ans &lt;span style="color:#f92672">+=&lt;/span> maxn &lt;span style="color:#f92672">-&lt;/span> minn;
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> ans;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="解法二单调栈">解法二(单调栈)&lt;/h2>
+&lt;p>时间复杂度:$O(n)$&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> subArrayRanges(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+stack&lt;span style="color:#f92672">&amp;lt;&lt;/span>pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>,&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> increasing_st,decreasing_st;
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>nums.size();i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">while&lt;/span>(&lt;span style="color:#f92672">!&lt;/span>increasing_st.empty()&lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>nums[increasing_st.top().first]&lt;span style="color:#f92672">&amp;lt;=&lt;/span>nums[i]){
+&lt;span style="color:#66d9ef">auto&lt;/span> top &lt;span style="color:#f92672">=&lt;/span> increasing_st.top();
+increasing_st.pop();
+&lt;span style="color:#66d9ef">if&lt;/span>(increasing_st.empty()){
+ans &lt;span style="color:#f92672">+=&lt;/span> (&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(top.first&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)top.second&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)nums[top.first];
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+increasing_st.top().second &lt;span style="color:#f92672">+=&lt;/span> top.second;
+ans &lt;span style="color:#f92672">+=&lt;/span> (&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(top.first&lt;span style="color:#f92672">-&lt;/span>increasing_st.top().first)&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)top.second&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)nums[top.first];
+}
+}
+&lt;span style="color:#66d9ef">while&lt;/span>(&lt;span style="color:#f92672">!&lt;/span>decreasing_st.empty()&lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>nums[decreasing_st.top().first]&lt;span style="color:#f92672">&amp;gt;=&lt;/span>nums[i]){
+&lt;span style="color:#66d9ef">auto&lt;/span> top &lt;span style="color:#f92672">=&lt;/span> decreasing_st.top();
+decreasing_st.pop();
+&lt;span style="color:#66d9ef">if&lt;/span>(decreasing_st.empty()){
+ans &lt;span style="color:#f92672">-=&lt;/span> (&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(top.first&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)top.second&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)nums[top.first];
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+decreasing_st.top().second &lt;span style="color:#f92672">+=&lt;/span> top.second;
+ans &lt;span style="color:#f92672">-=&lt;/span> (&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(top.first&lt;span style="color:#f92672">-&lt;/span>decreasing_st.top().first)&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)top.second&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)nums[top.first];
+}
+}
+increasing_st.emplace(i,&lt;span style="color:#ae81ff">1&lt;/span>);
+decreasing_st.emplace(i,&lt;span style="color:#ae81ff">1&lt;/span>);
+}
+&lt;span style="color:#66d9ef">while&lt;/span>(&lt;span style="color:#f92672">!&lt;/span>increasing_st.empty()){
+&lt;span style="color:#66d9ef">auto&lt;/span> top &lt;span style="color:#f92672">=&lt;/span> increasing_st.top();
+increasing_st.pop();
+&lt;span style="color:#66d9ef">if&lt;/span>(increasing_st.empty()){
+ans &lt;span style="color:#f92672">+=&lt;/span> (&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(top.first&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)top.second&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)nums[top.first];
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+increasing_st.top().second &lt;span style="color:#f92672">+=&lt;/span> top.second;
+ans &lt;span style="color:#f92672">+=&lt;/span> (&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(top.first&lt;span style="color:#f92672">-&lt;/span>increasing_st.top().first)&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)top.second&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)nums[top.first];
+}
+}
+&lt;span style="color:#66d9ef">while&lt;/span>(&lt;span style="color:#f92672">!&lt;/span>decreasing_st.empty()){
+&lt;span style="color:#66d9ef">auto&lt;/span> top &lt;span style="color:#f92672">=&lt;/span> decreasing_st.top();
+decreasing_st.pop();
+&lt;span style="color:#66d9ef">if&lt;/span>(decreasing_st.empty()){
+ans &lt;span style="color:#f92672">-=&lt;/span> (&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(top.first&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)top.second&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)nums[top.first];
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+decreasing_st.top().second &lt;span style="color:#f92672">+=&lt;/span> top.second;
+ans &lt;span style="color:#f92672">-=&lt;/span> (&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(top.first&lt;span style="color:#f92672">-&lt;/span>decreasing_st.top().first)&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)top.second&lt;span style="color:#f92672">*&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)nums[top.first];
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> ans;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220303 每日一题 Leetcode258 各位相加</title><link>https://blog.jhas.site/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/</link><pubDate>Thu, 03 Mar 2022 08:12:34 +0800</pubDate><guid>https://blog.jhas.site/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/</guid><description>&lt;h1 id="258-各位相加httpsleetcode-cncomproblemsadd-digits">&lt;a class="link" href="https://leetcode-cn.com/problems/add-digits/" target="_blank" rel="noopener"
 >258. 各位相加&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给定一个非负整数 &lt;code>num&lt;/code>，反复将各个位上的数字相加，直到结果为一位数。返回这个结果。&lt;/p>

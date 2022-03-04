@@ -1,0 +1,376 @@
+<!doctype html><html lang=en-us>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="2104. 子数组范围和 题面 给你一个整数数组 nums 。nums 中，子数组的 范围 是子数组中最大元素和最小元素的差值。
+返回 nums 中所有子数组范围的和 。
+子数组是数组中一个连续 非空 的元素序列。
+解析 首先直接的一个想法：暴力枚举
+直接枚举l 左边界，然后枚举r右边界，维护最大与最小值。最后可以得出答案
+显然以上时间复杂度为$O(n^2)$,让我们来对其加以改进。
+首先我们分离范围内的最大值与最小值，即不必在每一个元素都计算出其范围，在最后的时候我们只需要把所有子数组的最大值和与最小值和相减，则可得出所有子数组范围的和，
+那么我们的问题就退化为如何求所有子数组的最大值和与最小值和。
+我们首先来考虑最大值。我们来枚举右边界$r$ ,然后针对每一个$r$再来枚举$l$(暴力解法反了一反)，我们可以发现对于每一个 $r$ 其枚举的$l$都是之前已经出现过的$r$。再看我们需要求的是最大值。我们设$ nums[l]&amp;hellip;nums[r]$子数组最大值点为$i$,我们可以发现任意左边界处于$[l,i)$，右边界为$r$的子数组，其最大值都为$nums[i]$。$nums[i]$就如同一个挡板一样，挡住了前面更小的数。直到我们找到前面比$nums[i]$更大的数，那么这个时候我们就可以使用单调栈来处理这个过程。
+我们来考虑一个单调递减栈,里面维护一个数对 ${idx,cnt}$.我们枚举$nums$, 对于每一个$i$ ,我们首先考虑$nums[i] &amp;gt;=nums[top.idx]$ 的情况，在该种情况下对于任意$j&amp;gt;i$, 在尝试求$nums[top.idx]&amp;hellip;nums[j]$的过程中,$nums[top.idx]$ 都会被$nums[i]$挡住,在入栈$i$时我们可以把top出栈,而对于top这个数对，我们需要找到前面挡住top.idx的更前一个数对,也即top出栈后的栈顶，我们称为l_top,那么对于$nums[l_top.idx]&amp;hellip; nums[top.idx]$中的任意子数组，其最大值都为$num[top.idx]$,再考虑$k&amp;lt;l_top.idx$，这里对于任意$nums[k]&amp;hellip; nums[top.idx]$的子数组，其最大值都为$nums[l_top.idx]$。如果在这个时候清算右边界为i的子数组最大值的话，我们的时间复杂度会回退到$O(n^2)$,所以我们不应该在此时向前清算最大值，这时$cnt$的作用就来了,cnt的含义为：当前位置到前一个小值之间的被移除的位置的数量, 也即一个懒标志，先不计算这些被移除的位置的子数组，待当前数出栈时一起计算。我们出栈top的时候令$l_top.cnt = l_top.cnt + top.cnt$，答案加上$(top.idx-l_top.idx)*nums[cnt.idx]*top.cnt$
+求最小值的时候思路相似，使用单调递增栈.
+解法一(暴力枚举) 时间复杂度:$O(n^2)$
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  class Solution { public: long long subArrayRanges(vector&amp;lt;int&amp;gt;&amp;amp; nums) { long long ans = 0; for(int l = 0;l&amp;lt;nums."><title>20220304 每日一题 Leetcode2104 子数组范围和</title>
+<link rel=canonical href=https://blog.jhas.site/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/>
+<link rel=stylesheet href=/scss/style.min.bbcfef3c56489f1f37b552146da519e6b6a74a4c92792bcc512c78e2f55f25e1.css><meta property="og:title" content="20220304 每日一题 Leetcode2104 子数组范围和">
+<meta property="og:description" content="2104. 子数组范围和 题面 给你一个整数数组 nums 。nums 中，子数组的 范围 是子数组中最大元素和最小元素的差值。
+返回 nums 中所有子数组范围的和 。
+子数组是数组中一个连续 非空 的元素序列。
+解析 首先直接的一个想法：暴力枚举
+直接枚举l 左边界，然后枚举r右边界，维护最大与最小值。最后可以得出答案
+显然以上时间复杂度为$O(n^2)$,让我们来对其加以改进。
+首先我们分离范围内的最大值与最小值，即不必在每一个元素都计算出其范围，在最后的时候我们只需要把所有子数组的最大值和与最小值和相减，则可得出所有子数组范围的和，
+那么我们的问题就退化为如何求所有子数组的最大值和与最小值和。
+我们首先来考虑最大值。我们来枚举右边界$r$ ,然后针对每一个$r$再来枚举$l$(暴力解法反了一反)，我们可以发现对于每一个 $r$ 其枚举的$l$都是之前已经出现过的$r$。再看我们需要求的是最大值。我们设$ nums[l]&amp;hellip;nums[r]$子数组最大值点为$i$,我们可以发现任意左边界处于$[l,i)$，右边界为$r$的子数组，其最大值都为$nums[i]$。$nums[i]$就如同一个挡板一样，挡住了前面更小的数。直到我们找到前面比$nums[i]$更大的数，那么这个时候我们就可以使用单调栈来处理这个过程。
+我们来考虑一个单调递减栈,里面维护一个数对 ${idx,cnt}$.我们枚举$nums$, 对于每一个$i$ ,我们首先考虑$nums[i] &amp;gt;=nums[top.idx]$ 的情况，在该种情况下对于任意$j&amp;gt;i$, 在尝试求$nums[top.idx]&amp;hellip;nums[j]$的过程中,$nums[top.idx]$ 都会被$nums[i]$挡住,在入栈$i$时我们可以把top出栈,而对于top这个数对，我们需要找到前面挡住top.idx的更前一个数对,也即top出栈后的栈顶，我们称为l_top,那么对于$nums[l_top.idx]&amp;hellip; nums[top.idx]$中的任意子数组，其最大值都为$num[top.idx]$,再考虑$k&amp;lt;l_top.idx$，这里对于任意$nums[k]&amp;hellip; nums[top.idx]$的子数组，其最大值都为$nums[l_top.idx]$。如果在这个时候清算右边界为i的子数组最大值的话，我们的时间复杂度会回退到$O(n^2)$,所以我们不应该在此时向前清算最大值，这时$cnt$的作用就来了,cnt的含义为：当前位置到前一个小值之间的被移除的位置的数量, 也即一个懒标志，先不计算这些被移除的位置的子数组，待当前数出栈时一起计算。我们出栈top的时候令$l_top.cnt = l_top.cnt + top.cnt$，答案加上$(top.idx-l_top.idx)*nums[cnt.idx]*top.cnt$
+求最小值的时候思路相似，使用单调递增栈.
+解法一(暴力枚举) 时间复杂度:$O(n^2)$
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  class Solution { public: long long subArrayRanges(vector&amp;lt;int&amp;gt;&amp;amp; nums) { long long ans = 0; for(int l = 0;l&amp;lt;nums.">
+<meta property="og:url" content="https://blog.jhas.site/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/">
+<meta property="og:site_name" content="Jhas's Blog">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="median"><meta property="article:published_time" content="2022-03-04T09:03:38+08:00"><meta property="article:modified_time" content="2022-03-04T09:03:38+08:00">
+<meta name=twitter:title content="20220304 每日一题 Leetcode2104 子数组范围和">
+<meta name=twitter:description content="2104. 子数组范围和 题面 给你一个整数数组 nums 。nums 中，子数组的 范围 是子数组中最大元素和最小元素的差值。
+返回 nums 中所有子数组范围的和 。
+子数组是数组中一个连续 非空 的元素序列。
+解析 首先直接的一个想法：暴力枚举
+直接枚举l 左边界，然后枚举r右边界，维护最大与最小值。最后可以得出答案
+显然以上时间复杂度为$O(n^2)$,让我们来对其加以改进。
+首先我们分离范围内的最大值与最小值，即不必在每一个元素都计算出其范围，在最后的时候我们只需要把所有子数组的最大值和与最小值和相减，则可得出所有子数组范围的和，
+那么我们的问题就退化为如何求所有子数组的最大值和与最小值和。
+我们首先来考虑最大值。我们来枚举右边界$r$ ,然后针对每一个$r$再来枚举$l$(暴力解法反了一反)，我们可以发现对于每一个 $r$ 其枚举的$l$都是之前已经出现过的$r$。再看我们需要求的是最大值。我们设$ nums[l]&amp;hellip;nums[r]$子数组最大值点为$i$,我们可以发现任意左边界处于$[l,i)$，右边界为$r$的子数组，其最大值都为$nums[i]$。$nums[i]$就如同一个挡板一样，挡住了前面更小的数。直到我们找到前面比$nums[i]$更大的数，那么这个时候我们就可以使用单调栈来处理这个过程。
+我们来考虑一个单调递减栈,里面维护一个数对 ${idx,cnt}$.我们枚举$nums$, 对于每一个$i$ ,我们首先考虑$nums[i] &amp;gt;=nums[top.idx]$ 的情况，在该种情况下对于任意$j&amp;gt;i$, 在尝试求$nums[top.idx]&amp;hellip;nums[j]$的过程中,$nums[top.idx]$ 都会被$nums[i]$挡住,在入栈$i$时我们可以把top出栈,而对于top这个数对，我们需要找到前面挡住top.idx的更前一个数对,也即top出栈后的栈顶，我们称为l_top,那么对于$nums[l_top.idx]&amp;hellip; nums[top.idx]$中的任意子数组，其最大值都为$num[top.idx]$,再考虑$k&amp;lt;l_top.idx$，这里对于任意$nums[k]&amp;hellip; nums[top.idx]$的子数组，其最大值都为$nums[l_top.idx]$。如果在这个时候清算右边界为i的子数组最大值的话，我们的时间复杂度会回退到$O(n^2)$,所以我们不应该在此时向前清算最大值，这时$cnt$的作用就来了,cnt的含义为：当前位置到前一个小值之间的被移除的位置的数量, 也即一个懒标志，先不计算这些被移除的位置的子数组，待当前数出栈时一起计算。我们出栈top的时候令$l_top.cnt = l_top.cnt + top.cnt$，答案加上$(top.idx-l_top.idx)*nums[cnt.idx]*top.cnt$
+求最小值的时候思路相似，使用单调递增栈.
+解法一(暴力枚举) 时间复杂度:$O(n^2)$
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  class Solution { public: long long subArrayRanges(vector&amp;lt;int&amp;gt;&amp;amp; nums) { long long ans = 0; for(int l = 0;l&amp;lt;nums."><link rel="shortcut icon" href=/images/favicon.ico>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/leetcode/>
+Leetcode
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/>20220304 每日一题 Leetcode2104 子数组范围和</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 04, 2022</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 2 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<h1 id=2104-子数组范围和httpsleetcode-cncomproblemssum-of-subarray-ranges><a class=link href=https://leetcode-cn.com/problems/sum-of-subarray-ranges/ target=_blank rel=noopener>2104. 子数组范围和</a></h1>
+<h2 id=题面>题面</h2>
+<p>给你一个整数数组 nums 。nums 中，子数组的 范围 是子数组中最大元素和最小元素的差值。</p>
+<p>返回 nums 中所有子数组范围的和 。</p>
+<p>子数组是数组中一个连续 非空 的元素序列。</p>
+<h2 id=解析>解析</h2>
+<p>首先直接的一个想法：暴力枚举</p>
+<p>直接枚举l 左边界，然后枚举r右边界，维护最大与最小值。最后可以得出答案</p>
+<p>显然以上时间复杂度为$O(n^2)$,让我们来对其加以改进。</p>
+<p>首先我们分离范围内的最大值与最小值，即不必在每一个元素都计算出其范围，在最后的时候我们只需要把所有子数组的最大值和与最小值和相减，则可得出所有子数组范围的和，</p>
+<p>那么我们的问题就退化为如何求所有子数组的最大值和与最小值和。</p>
+<p>我们首先来考虑最大值。我们来枚举右边界$r$ ,然后针对每一个$r$再来枚举$l$(暴力解法反了一反)，我们可以发现对于每一个 $r$ 其枚举的$l$都是之前已经出现过的$r$。再看我们需要求的是最大值。我们设$ nums[l]&mldr;nums[r]$子数组最大值点为$i$,我们可以发现任意左边界处于$[l,i)$，右边界为$r$的子数组，其最大值都为$nums[i]$。$nums[i]$就如同一个挡板一样，挡住了前面更小的数。直到我们找到前面比$nums[i]$更大的数，那么这个时候我们就可以使用单调栈来处理这个过程。</p>
+<p>我们来考虑一个单调递减栈,里面维护一个数对 ${idx,cnt}$.我们枚举$nums$, 对于每一个$i$ ,我们首先考虑$nums[i] >=nums[top.idx]$ 的情况，在该种情况下对于任意$j>i$, 在尝试求$nums[top.idx]&mldr;nums[j]$的过程中,$nums[top.idx]$ 都会被$nums[i]$挡住,在入栈$i$时我们可以把top出栈,而对于top这个数对，我们需要找到前面挡住top.idx的更前一个数对,也即top出栈后的栈顶，我们称为l_top,那么对于$nums[l_top.idx]&mldr; nums[top.idx]$中的任意子数组，其最大值都为$num[top.idx]$,再考虑$k&lt;l_top.idx$，这里对于任意$nums[k]&mldr; nums[top.idx]$的子数组，其最大值都为$nums[l_top.idx]$。如果在这个时候清算右边界为i的子数组最大值的话，我们的时间复杂度会回退到$O(n^2)$,所以我们不应该在此时向前清算最大值，这时$cnt$的作用就来了,cnt的含义为：当前位置到前一个小值之间的被移除的位置的数量, 也即一个懒标志，先不计算这些被移除的位置的子数组，待当前数出栈时一起计算。我们出栈top的时候令$l_top.cnt = l_top.cnt + top.cnt$，答案加上$(top.idx-l_top.idx)*nums[cnt.idx]*top.cnt$</p>
+<p>求最小值的时候思路相似，使用单调递增栈.</p>
+<h2 id=解法一暴力枚举>解法一(暴力枚举)</h2>
+<p>时间复杂度:$O(n^2)$</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+<span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+    <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> subArrayRanges(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> nums) {
+        <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> l <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;l<span style=color:#f92672>&lt;</span>nums.size();l<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>int</span> maxn <span style=color:#f92672>=</span> nums[l];
+            <span style=color:#66d9ef>int</span> minn <span style=color:#f92672>=</span> nums[l];
+            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> r <span style=color:#f92672>=</span> l<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>;r<span style=color:#f92672>&lt;</span>nums.size();r<span style=color:#f92672>++</span>){
+                maxn <span style=color:#f92672>=</span> max(maxn,nums[r]);
+                minn <span style=color:#f92672>=</span> min(minn,nums[r]);
+                ans <span style=color:#f92672>+=</span> maxn <span style=color:#f92672>-</span> minn;
+            }
+        }
+        <span style=color:#66d9ef>return</span> ans;
+    }
+};
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=解法二单调栈>解法二(单调栈)</h2>
+<p>时间复杂度:$O(n)$</p>
+<div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> {
+<span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+    <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> subArrayRanges(vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> nums) {
+        <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        stack<span style=color:#f92672>&lt;</span>pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&gt;</span> increasing_st,decreasing_st;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>nums.size();i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>while</span>(<span style=color:#f92672>!</span>increasing_st.empty()<span style=color:#f92672>&amp;&amp;</span>nums[increasing_st.top().first]<span style=color:#f92672>&lt;=</span>nums[i]){
+                <span style=color:#66d9ef>auto</span> top <span style=color:#f92672>=</span> increasing_st.top();
+                increasing_st.pop();
+                <span style=color:#66d9ef>if</span>(increasing_st.empty()){
+                    ans <span style=color:#f92672>+=</span> (<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(top.first<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)top.second<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)nums[top.first];
+                }<span style=color:#66d9ef>else</span>{
+                    increasing_st.top().second <span style=color:#f92672>+=</span> top.second;
+                    ans <span style=color:#f92672>+=</span> (<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(top.first<span style=color:#f92672>-</span>increasing_st.top().first)<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)top.second<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)nums[top.first];
+                }
+            }
+            <span style=color:#66d9ef>while</span>(<span style=color:#f92672>!</span>decreasing_st.empty()<span style=color:#f92672>&amp;&amp;</span>nums[decreasing_st.top().first]<span style=color:#f92672>&gt;=</span>nums[i]){
+                <span style=color:#66d9ef>auto</span> top <span style=color:#f92672>=</span> decreasing_st.top();
+                decreasing_st.pop();
+                <span style=color:#66d9ef>if</span>(decreasing_st.empty()){
+                    ans <span style=color:#f92672>-=</span> (<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(top.first<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)top.second<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)nums[top.first];
+                }<span style=color:#66d9ef>else</span>{
+                    decreasing_st.top().second <span style=color:#f92672>+=</span> top.second;
+                    ans <span style=color:#f92672>-=</span> (<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(top.first<span style=color:#f92672>-</span>decreasing_st.top().first)<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)top.second<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)nums[top.first];
+                }
+            }
+            increasing_st.emplace(i,<span style=color:#ae81ff>1</span>);
+            decreasing_st.emplace(i,<span style=color:#ae81ff>1</span>);
+        }
+        <span style=color:#66d9ef>while</span>(<span style=color:#f92672>!</span>increasing_st.empty()){
+            <span style=color:#66d9ef>auto</span> top <span style=color:#f92672>=</span> increasing_st.top();
+            increasing_st.pop();
+            <span style=color:#66d9ef>if</span>(increasing_st.empty()){
+                    ans <span style=color:#f92672>+=</span> (<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(top.first<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)top.second<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)nums[top.first];
+                }<span style=color:#66d9ef>else</span>{
+                    increasing_st.top().second <span style=color:#f92672>+=</span> top.second;
+                    ans <span style=color:#f92672>+=</span> (<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(top.first<span style=color:#f92672>-</span>increasing_st.top().first)<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)top.second<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)nums[top.first];
+                }
+        }
+        <span style=color:#66d9ef>while</span>(<span style=color:#f92672>!</span>decreasing_st.empty()){
+            <span style=color:#66d9ef>auto</span> top <span style=color:#f92672>=</span> decreasing_st.top();
+            decreasing_st.pop();
+            <span style=color:#66d9ef>if</span>(decreasing_st.empty()){
+                    ans <span style=color:#f92672>-=</span> (<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(top.first<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)top.second<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)nums[top.first];
+                }<span style=color:#66d9ef>else</span>{
+                    decreasing_st.top().second <span style=color:#f92672>+=</span> top.second;
+                    ans <span style=color:#f92672>-=</span> (<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)(top.first<span style=color:#f92672>-</span>decreasing_st.top().first)<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)top.second<span style=color:#f92672>*</span>(<span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span>)nums[top.first];
+                }
+        }
+        <span style=color:#66d9ef>return</span> ans;
+    }
+};
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/median/>median</a>
+</section>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css integrity=sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js integrity=sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js integrity=sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/>
+<div class=article-details>
+<h2 class=article-title>20220303 每日一题 Leetcode258 各位相加</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/20220302-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode564-%E5%AF%BB%E6%89%BE%E6%9C%80%E8%BF%91%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0/>
+<div class=article-details>
+<h2 class=article-title>20220302 每日一题 Leetcode564 寻找最近的回文数</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/20220301-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode6-z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/>
+<div class=article-details>
+<h2 class=article-title>20220301 每日一题 Leetcode6 Z字形变换</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/20220228-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1601-%E6%9C%80%E5%A4%9A%E5%8F%AF%E8%BE%BE%E6%88%90%E7%9A%84%E6%8D%A2%E6%A5%BC%E8%AF%B7%E6%B1%82%E6%95%B0%E7%9B%AE/>
+<div class=article-details>
+<h2 class=article-title>20220228 每日一题 Leetcode1601 最多可达成的换楼请求数目</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/20220227-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode553-%E6%9C%80%E4%BC%98%E9%99%A4%E6%B3%95/>
+<div class=article-details>
+<h2 class=article-title>20220227 每日一题 Leetcode553 最优除法</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<div id=gitalk-container></div>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script>
+<script>const gitalk=new Gitalk({clientID:"d439650e6c430aa38020",clientSecret:"49c9d30ea12f8a3caa33c3f77ecdba4aa1a87422",repo:"648759528ass.github.io",owner:"648759528ass",admin:["648759528ass"],distractionFreeMode:!1,id:md5(location.pathname)});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return}gitalk.render("gitalk-container")})()</script>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2022 Jhas's Blog
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.8.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#题面>题面</a></li>
+<li><a href=#解析>解析</a></li>
+<li><a href=#解法一暴力枚举>解法一(暴力枚举)</a></li>
+<li><a href=#解法二单调栈>解法二(单调栈)</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>
