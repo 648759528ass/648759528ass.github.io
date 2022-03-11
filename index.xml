@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 09 Mar 2022 07:17:37 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220309 每日一题 Leetcode798 得分最高的最小轮调</title><link>https://blog.jhas.site/p/20220309-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83/</link><pubDate>Wed, 09 Mar 2022 07:17:37 +0800</pubDate><guid>https://blog.jhas.site/p/20220309-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83/</guid><description>&lt;h1 id="798-得分最高的最小轮调httpsleetcode-cncomproblemssmallest-rotation-with-highest-score">&lt;a class="link" href="https://leetcode-cn.com/problems/smallest-rotation-with-highest-score/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 11 Mar 2022 08:18:06 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220311 每日一题 Leetcode2049 统计最高分的节点数目</title><link>https://blog.jhas.site/p/20220311-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2049-%E7%BB%9F%E8%AE%A1%E6%9C%80%E9%AB%98%E5%88%86%E7%9A%84%E8%8A%82%E7%82%B9%E6%95%B0%E7%9B%AE/</link><pubDate>Fri, 11 Mar 2022 08:18:06 +0800</pubDate><guid>https://blog.jhas.site/p/20220311-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2049-%E7%BB%9F%E8%AE%A1%E6%9C%80%E9%AB%98%E5%88%86%E7%9A%84%E8%8A%82%E7%82%B9%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="2049-统计最高分的节点数目httpsleetcode-cncomproblemscount-nodes-with-the-highest-score">&lt;a class="link" href="https://leetcode-cn.com/problems/count-nodes-with-the-highest-score/" target="_blank" rel="noopener"
+>2049. 统计最高分的节点数目&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给你一棵根节点为 0 的 二叉树 ，它总共有 n 个节点，节点编号为 0 到 n - 1 。同时给你一个下标从 0 开始的整数数组 parents 表示这棵树，其中 parents[i] 是节点 i 的父节点。由于节点 0 是根，所以 parents[0] == -1 。&lt;/p>
+&lt;p>一个子树的 大小 为这个子树内节点的数目。每个节点都有一个与之关联的 分数 。求出某个节点分数的方法是，将这个节点和与它相连的边全部 删除 ，剩余部分是若干个 非空 子树，这个节点的 分数 为所有这些子树 大小的乘积 。&lt;/p>
+&lt;p>请你返回有 最高得分 节点的 数目 。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>有点像 &lt;a class="link" href="https://www.acwing.com/problem/content/848/" target="_blank" rel="noopener"
+>树的重心&lt;/a> 这道题，用dfs做即可。每个节点可递归计算其两个子树节点数，父节点之前的数可以用整体数量减去即可&lt;/p>
+&lt;h2 id="解法">解法&lt;/h2>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">int&lt;/span> num &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">int&lt;/span> cnt &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>,&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> V;
+&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">countHighestScoreNodes&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> parents) {
+num &lt;span style="color:#f92672">=&lt;/span> parents.size();
+V.resize(num, {&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>});
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;i&lt;span style="color:#f92672">&amp;lt;&lt;/span>num;i&lt;span style="color:#f92672">++&lt;/span>){
+&lt;span style="color:#66d9ef">if&lt;/span>(V[parents[i]].first &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>){
+V[parents[i]].second &lt;span style="color:#f92672">=&lt;/span> i;
+}&lt;span style="color:#66d9ef">else&lt;/span>{
+V[parents[i]].first &lt;span style="color:#f92672">=&lt;/span> i;
+}
+}
+dfs(&lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;span style="color:#66d9ef">return&lt;/span> cnt;
+}
+&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">dfs&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> n){
+&lt;span style="color:#66d9ef">if&lt;/span>(n &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> dfs(V[n].first);
+&lt;span style="color:#66d9ef">int&lt;/span> r &lt;span style="color:#f92672">=&lt;/span> dfs(V[n].second);
+&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> t &lt;span style="color:#f92672">=&lt;/span> max((&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)(num &lt;span style="color:#f92672">-&lt;/span> l &lt;span style="color:#f92672">-&lt;/span> r &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>),(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)&lt;span style="color:#ae81ff">1&lt;/span>)&lt;span style="color:#f92672">*&lt;/span>max((&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)&lt;span style="color:#ae81ff">1&lt;/span>,(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)l)&lt;span style="color:#f92672">*&lt;/span>max((&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)&lt;span style="color:#ae81ff">1&lt;/span>,(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>)r);
+&lt;span style="color:#66d9ef">if&lt;/span>(t&lt;span style="color:#f92672">&amp;gt;&lt;/span>ans){
+ans &lt;span style="color:#f92672">=&lt;/span> t;
+cnt &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+}
+&lt;span style="color:#66d9ef">if&lt;/span>(ans &lt;span style="color:#f92672">==&lt;/span> t) cnt&lt;span style="color:#f92672">++&lt;/span>;
+&lt;span style="color:#66d9ef">return&lt;/span> l &lt;span style="color:#f92672">+&lt;/span> r &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220310 每日一题 Leetcode589 N叉树的前序遍历</title><link>https://blog.jhas.site/p/20220310-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode589-n%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</link><pubDate>Fri, 11 Mar 2022 08:17:39 +0800</pubDate><guid>https://blog.jhas.site/p/20220310-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode589-n%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</guid><description>&lt;h1 id="589-n-叉树的前序遍历httpsleetcode-cncomproblemsn-ary-tree-preorder-traversal">&lt;a class="link" href="https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/" target="_blank" rel="noopener"
+>589. N 叉树的前序遍历&lt;/a>&lt;/h1>
+&lt;h2 id="题面">题面&lt;/h2>
+&lt;p>给定一个 n 叉树的根节点 root ，返回 其节点值的 前序遍历 。&lt;/p>
+&lt;h2 id="解析">解析&lt;/h2>
+&lt;p>没啥好说的，dfs遍历&lt;/p>
+&lt;h2 id="解法">解法&lt;/h2>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> preorder(Node&lt;span style="color:#f92672">*&lt;/span> root) {
+vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> ans;
+dfs(root,ans);
+&lt;span style="color:#66d9ef">return&lt;/span> ans;
+}
+&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">dfs&lt;/span>(Node&lt;span style="color:#f92672">*&lt;/span> root,vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> ans){
+&lt;span style="color:#66d9ef">if&lt;/span>(root &lt;span style="color:#f92672">==&lt;/span> NULL) &lt;span style="color:#66d9ef">return&lt;/span>;
+ans.push_back(root&lt;span style="color:#f92672">-&amp;gt;&lt;/span>val);
+&lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">auto&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span> node:root&lt;span style="color:#f92672">-&amp;gt;&lt;/span>children)
+dfs(node,ans);
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>20220309 每日一题 Leetcode798 得分最高的最小轮调</title><link>https://blog.jhas.site/p/20220309-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83/</link><pubDate>Wed, 09 Mar 2022 07:17:37 +0800</pubDate><guid>https://blog.jhas.site/p/20220309-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83/</guid><description>&lt;h1 id="798-得分最高的最小轮调httpsleetcode-cncomproblemssmallest-rotation-with-highest-score">&lt;a class="link" href="https://leetcode-cn.com/problems/smallest-rotation-with-highest-score/" target="_blank" rel="noopener"
 >798. 得分最高的最小轮调&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给定一个数组 $A$，我们可以将它按一个非负整数 $K$ 进行轮调，这样可以使数组变为 $ A[K], A[K+1], A[K+2], &amp;hellip; A[A.length - 1], A[0], A[1], &amp;hellip;, A[K-1] $ 的形式。此后，任何值小于或等于其索引的项都可以记作一分。
