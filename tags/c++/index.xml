@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C++ on Jhas's Blog</title><link>https://blog.jhas.site/tags/c++/</link><description>Recent content in C++ on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 04 Aug 2022 16:34:28 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/tags/c++/index.xml" rel="self" type="application/rss+xml"/><item><title>20220804 八股笔记</title><link>https://blog.jhas.site/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 04 Aug 2022 16:34:28 +0800</pubDate><guid>https://blog.jhas.site/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</guid><description>Cpp部分 c++内存分配 cpp共有四种内存分配
-malloc(unsigned int size) 申请一个长度为size的连续空间 calloc(unsigned int num, unsigned int size) 申请一个num * size 的连续内存空间 realloc(void *ptr, unsigned int size) 调整ptr所指向的空间的大小，若p之后的空间有足够的大小则在p后空间追加，否则申请新空间并将原空间数据拷贝至新空间. new 其中 malloc 都不会初始化内存空间，new会自动计算需要需要分配的空间，调用类构造函数初始化类
+malloc(unsigned int size) 申请一个长度为size的连续空间 calloc(unsigned int num, unsigned int size) 申请一个num * size 的连续内存空间且自动初始化内存空间为 0 realloc(void *ptr, unsigned int size) 调整ptr所指向的空间的大小，若p之后的空间有足够的大小则在p后空间追加，否则申请新空间并将原空间数据拷贝至新空间. new 其中 malloc 都不会初始化内存空间，new会自动计算需要需要分配的空间，调用类构造函数初始化类
 c++中，vector的push-back与emplace-back的区别 push_back 在push对象时，需要提供一个已构造好的对象。
 emplace_back 在push时只需要提供对象构造的参数，使用in-place construction 直接在指定位置生成对象 ，可以比起push_back减少一次构造和析构.
 c++，什么是左值，右值，左值引用，右值引用 左值：指一个指向特定内存的具名值，有一个相对稳定的内存地址
 右值：通常是指向不指向稳定对象的匿名值，它的生命周期很短，通常是暂时性的
 可以通过&amp;amp;符号来判断左值和右值
-左值引用：一种CPP语法，可以让一个左值具有一个别名，减少指针的使用
+左值引用：一种CPP语法糖，可以让一个左值具有一个别名，减少指针的使用
 右值引用：右值引用是一种捕获右值的方法且只能捕获右值的方法，可以延长右值的生命周期
 数据库部分 mysql物理存储索引是按什么分类的，有哪些。按数据结构来分类索引有哪些 mysql物理存储索引按照伴随索引存放的数据的类型来分析，有聚簇索引(主键索引)和二级索引两种，区别在于聚簇索引的叶子节点存放的是完整的数据，二级索引的叶子节点存放的是数据的主键。
 当我们在查询时使用了二级索引，如果查询的数据能在二级索引里查询的到，则不需要到聚簇索引中进行再次查找(回表)
@@ -14,5 +14,4 @@ c++，什么是左值，右值，左值引用，右值引用 左值：指一个�
 B 树是一个多叉树，B 树的每一个节点最多可以包括 M 个子节点，M 称为 B 树的阶。
 在M为2是则B树退化为二叉树，我们可知，在树节点数量一定时，每一层可存储节点数越大，则树高越小。
 首先考虑到数据是存放在硬盘中的，而硬盘的特性是一次会读取一块数据，在树的高度较大时，我们需要读取的次数就会更多。所以B树在硬盘中的读取较平衡二叉树要高效
-但是 B 树的每个节点都包含数据（索引+记录），而用户的记录数据的大小很有可能远远超过了索引数据，这就需要花费更多的磁盘 I/O 操作次数来读到有用的索引数据。
-而且，在我们查询位于底层的某个节点比如 A 记录过程中，非 A 记录节点里的记录数据会从磁盘加载到内存，但是这些记录数据是没用的，我们只是想读取这些节点的索引数据来做比较查询，而非 A 记录节点里的记录数据对我们是没用的，这样不仅增多磁盘 I/O 操作次数，也占用内存资源。</description></item></channel></rss>
+但是 B 树的每个节点都包含数据（索引+记录），而用户的记录数据的大小很有可能远远超过了索引数据，这就需要花费更多的磁盘 I/O 操作次数来读到有用的索引数据。</description></item></channel></rss>
