@@ -1,4 +1,573 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 04 Aug 2022 16:34:28 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>20220804 八股笔记</title><link>https://blog.jhas.site/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 04 Aug 2022 16:34:28 +0800</pubDate><guid>https://blog.jhas.site/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="cpp部分">Cpp部分&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 01 Jan 2023 09:49:20 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>A new year gift - 如何使用Quartus启动schoolMIPS</title><link>https://blog.jhas.site/p/a-new-year-gift-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8quartus%E5%90%AF%E5%8A%A8schoolmips/</link><pubDate>Sun, 01 Jan 2023 09:49:20 +0800</pubDate><guid>https://blog.jhas.site/p/a-new-year-gift-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8quartus%E5%90%AF%E5%8A%A8schoolmips/</guid><description>&lt;p>前提条件：&lt;/p>
+&lt;p>准备好Quartus与&lt;a class="link" href="https://github.com/MIPSfpga/schoolMIPS" target="_blank" rel="noopener"
+>SchoolMIPS&lt;/a>的文件，并且安装好mipssdk , 保证codescape for Eclipse 可以运行&lt;/p>
+&lt;h2 id="迁移schoolmips至quartus中">迁移schoolMIPS至Quartus中&lt;/h2>
+&lt;h3 id="创建新项目">创建新项目&lt;/h3>
+&lt;p>在Quartus中选择 File -&amp;gt; New Project Wizard，然后一路向下,&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101074756076.png"
+loading="lazy"
+alt="image-20230101074756076"
+>&lt;/p>
+&lt;p>如图所示文件名可以随便，此处表示我的工作目录为guide, 以后如果表示工作目录将使用 guide/* 来表示，如果表示schoolMIPS(github上克隆的仓库)将用schoolMIPS/*表示。&lt;/p>
+&lt;p>然后接着向下，可以不用管选择的是什么实体机，反正不会用到。如果担心的话可以和我选一样的&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101075344143.png"
+loading="lazy"
+alt="image-20230101075344143"
+>&lt;/p>
+&lt;p>如图所示创建成功&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101075447827.png"
+loading="lazy"
+alt="image-20230101075447827"
+>&lt;/p>
+&lt;h3 id="创建顶层文件">创建顶层文件&lt;/h3>
+&lt;p>File -&amp;gt; New -&amp;gt; Verilog HDL File 创建一个 verilog新文件&lt;/p>
+&lt;p>然后打开schoolMIPS/src/sm_cpu.v 将&lt;code>module sm_cpu&lt;/code> 复制到新创建的verilog文件中，一个module指的是从module sm_cpu 到 endmodule 下面一行(注意一定要下面一行)&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">81
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">82
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">83
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">84
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-verilog" data-lang="verilog">&lt;span style="color:#66d9ef">module&lt;/span> sm_cpu
+(
+&lt;span style="color:#66d9ef">input&lt;/span> clk, &lt;span style="color:#75715e">// clock
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">input&lt;/span> rst_n, &lt;span style="color:#75715e">// reset
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">input&lt;/span> [ &lt;span style="color:#ae81ff">4&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] regAddr, &lt;span style="color:#75715e">// debug access reg address
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">output&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] regData, &lt;span style="color:#75715e">// debug access reg data
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">output&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] imAddr, &lt;span style="color:#75715e">// instruction memory address
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">input&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] imData &lt;span style="color:#75715e">// instruction memory data
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>);
+&lt;span style="color:#75715e">//control wires
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">wire&lt;/span> pcSrc;
+&lt;span style="color:#66d9ef">wire&lt;/span> regDst;
+&lt;span style="color:#66d9ef">wire&lt;/span> regWrite;
+&lt;span style="color:#66d9ef">wire&lt;/span> aluSrc;
+&lt;span style="color:#66d9ef">wire&lt;/span> aluZero;
+&lt;span style="color:#66d9ef">wire&lt;/span> [ &lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] aluControl;
+&lt;span style="color:#75715e">//program counter
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] pc;
+&lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] pcBranch;
+&lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] pcNext &lt;span style="color:#f92672">=&lt;/span> pc &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] pc_new &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">~&lt;/span>pcSrc &lt;span style="color:#f92672">?&lt;/span> pcNext &lt;span style="color:#f92672">:&lt;/span> pcBranch;
+sm_register r_pc(clk ,rst_n, pc_new, pc);
+&lt;span style="color:#75715e">//program memory access
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">assign&lt;/span> imAddr &lt;span style="color:#f92672">=&lt;/span> pc;
+&lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] instr &lt;span style="color:#f92672">=&lt;/span> imData;
+&lt;span style="color:#75715e">//debug register access
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] rd0;
+&lt;span style="color:#66d9ef">assign&lt;/span> regData &lt;span style="color:#f92672">=&lt;/span> (regAddr &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>) &lt;span style="color:#f92672">?&lt;/span> rd0 &lt;span style="color:#f92672">:&lt;/span> pc;
+&lt;span style="color:#75715e">//register file
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">wire&lt;/span> [ &lt;span style="color:#ae81ff">4&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] a3 &lt;span style="color:#f92672">=&lt;/span> regDst &lt;span style="color:#f92672">?&lt;/span> instr[&lt;span style="color:#ae81ff">15&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">11&lt;/span>] &lt;span style="color:#f92672">:&lt;/span> instr[&lt;span style="color:#ae81ff">20&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">16&lt;/span>];
+&lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] rd1;
+&lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] rd2;
+&lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] wd3;
+sm_register_file rf
+(
+.clk ( clk ),
+.a0 ( regAddr ),
+.a1 ( instr[&lt;span style="color:#ae81ff">25&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">21&lt;/span>] ),
+.a2 ( instr[&lt;span style="color:#ae81ff">20&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">16&lt;/span>] ),
+.a3 ( a3 ),
+.rd0 ( rd0 ),
+.rd1 ( rd1 ),
+.rd2 ( rd2 ),
+.wd3 ( wd3 ),
+.we3 ( regWrite )
+);
+&lt;span style="color:#75715e">//sign extension
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] signImm &lt;span style="color:#f92672">=&lt;/span> { {&lt;span style="color:#ae81ff">16&lt;/span> { instr[&lt;span style="color:#ae81ff">15&lt;/span>] }}, instr[&lt;span style="color:#ae81ff">15&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] };
+&lt;span style="color:#66d9ef">assign&lt;/span> pcBranch &lt;span style="color:#f92672">=&lt;/span> pcNext &lt;span style="color:#f92672">+&lt;/span> signImm;
+&lt;span style="color:#75715e">//alu
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] srcB &lt;span style="color:#f92672">=&lt;/span> aluSrc &lt;span style="color:#f92672">?&lt;/span> signImm &lt;span style="color:#f92672">:&lt;/span> rd2;
+sm_alu alu
+(
+.srcA ( rd1 ),
+.srcB ( srcB ),
+.oper ( aluControl ),
+.shift ( instr[&lt;span style="color:#ae81ff">10&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">6&lt;/span> ] ),
+.zero ( aluZero ),
+.result ( wd3 )
+);
+&lt;span style="color:#75715e">//control
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> sm_control sm_control
+(
+.cmdOper ( instr[&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">26&lt;/span>] ),
+.cmdFunk ( instr[ &lt;span style="color:#ae81ff">5&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span> ] ),
+.aluZero ( aluZero ),
+.pcSrc ( pcSrc ),
+.regDst ( regDst ),
+.regWrite ( regWrite ),
+.aluSrc ( aluSrc ),
+.aluControl ( aluControl )
+);
+&lt;span style="color:#66d9ef">endmodule&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>大概是这么多&lt;/p>
+&lt;p>接下来我们进行一些小改造,把输入输出的imAddr和imData删掉,同时修改模块名,模块头变为&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-verilog" data-lang="verilog">&lt;span style="color:#66d9ef">module&lt;/span> top
+(
+&lt;span style="color:#66d9ef">input&lt;/span> clk, &lt;span style="color:#75715e">// clock
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">input&lt;/span> rst_n, &lt;span style="color:#75715e">// reset
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">input&lt;/span> [ &lt;span style="color:#ae81ff">4&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] regAddr, &lt;span style="color:#75715e">// debug access reg address
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">output&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] regData &lt;span style="color:#75715e">// debug access reg data
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>);
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后把program memory access 部分修改为&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-verilog" data-lang="verilog">&lt;span style="color:#66d9ef">wire&lt;/span> [&lt;span style="color:#ae81ff">31&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>] instr;
+sm_rom reset_rom(pc,instr);
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后保存为 top.v ,在左边选择它，右键 set as top-level entity，此步完成&lt;/p>
+&lt;h3 id="一点小知识">一点小知识&lt;/h3>
+&lt;p>我们需要补充一些verilog的小知识&lt;/p>
+&lt;ol>
+&lt;li>module我们可以类比为一个类&lt;/li>
+&lt;li>wire指的是一条实际的电路连线&lt;/li>
+&lt;li>input 与 output指的是输入输出，它们都需要提供一个外部连线&lt;/li>
+&lt;li>模块名 名字(wire wire) 指的是实例化一个模块，比如&lt;code>sm_register r_pc(clk ,rst_n, pc_new, pc);&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>基于上述四点，我们可以发现我们如果想启动sm_cpu,还需要sm_register ,rom,sm_register_file,sm_alu,sm_control五个模块&lt;/p>
+&lt;h3 id="sm_register模块">sm_register模块&lt;/h3>
+&lt;p>File -&amp;gt; New -&amp;gt; Verilog HDL File 创建一个 verilog新文件&lt;/p>
+&lt;p>然后打开schoolMIPS/src/sm_register.v ，复制&lt;code>module sm_register&lt;/code> 的内容进去&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101083051309.png"
+loading="lazy"
+alt="image-20230101083051309"
+>&lt;/p>
+&lt;p>保存为register.v&lt;/p>
+&lt;h3 id="rom模块">rom模块&lt;/h3>
+&lt;p>File -&amp;gt; New -&amp;gt; Verilog HDL File 创建一个 verilog新文件&lt;/p>
+&lt;p>然后打开schoolMIPS/src/sm_rom.v ，复制&lt;code>module sm_rom&lt;/code> 的内容进去&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101083325552.png"
+loading="lazy"
+alt="image-20230101083325552"
+>&lt;/p>
+&lt;p>保存为rom.v&lt;/p>
+&lt;p>在guide/ 下创建一个 program.hex的空白新文件&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101083819572.png"
+loading="lazy"
+alt="image-20230101083819572"
+>&lt;/p>
+&lt;h3 id="sm_register_file模块">sm_register_file模块&lt;/h3>
+&lt;p>File -&amp;gt; New -&amp;gt; Verilog HDL File 创建一个 verilog 新文件&lt;/p>
+&lt;p>然后打开schoolMIPS/src/sm_cpu.v ，复制&lt;code>sm_register_file&lt;/code> 的内容进去&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101083619222.png"
+loading="lazy"
+alt="image-20230101083619222"
+>&lt;/p>
+&lt;p>保存为 register_file.v&lt;/p>
+&lt;h3 id="sm_cpuvh">sm_cpu.vh&lt;/h3>
+&lt;p>直接把 schoolMIPS/src/sm_cpu.vh 复制到 guide/ 下&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101084209476.png"
+loading="lazy"
+alt="image-20230101084209476"
+>&lt;/p>
+&lt;p>点到左边的files右键
+&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101084306644.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>增加文件&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101084441116.png"
+loading="lazy"
+alt="image-20230101084441116"
+>&lt;/p>
+&lt;p>调整到other sources file 选择 sm_cpu.vh&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101084538989.png"
+loading="lazy"
+alt="image-20230101084538989"
+>&lt;/p>
+&lt;p>然后apply把它添加进去&lt;/p>
+&lt;h3 id="sm_alu-模块">sm_alu 模块&lt;/h3>
+&lt;p>File -&amp;gt; New -&amp;gt; Verilog HDL File 创建一个 verilog 新文件&lt;/p>
+&lt;p>然后打开schoolMIPS/src/sm_cpu.v ，复制&lt;code>module sm_alu&lt;/code> 的内容进去&lt;/p>
+&lt;p>注意在首行加入 ```include &amp;ldquo;sm_cpu.vh&amp;rdquo;``&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101085213642.png"
+loading="lazy"
+alt="image-20230101085213642"
+>&lt;/p>
+&lt;p>保存为alu.v&lt;/p>
+&lt;h3 id="sm_control模块">sm_control模块&lt;/h3>
+&lt;p>File -&amp;gt; New -&amp;gt; Verilog HDL File 创建一个 verilog 新文件&lt;/p>
+&lt;p>然后打开schoolMIPS/src/sm_cpu.v ，复制&lt;code>module sm_alu&lt;/code> 的内容进去&lt;/p>
+&lt;p>同样注意在首行加入 ```include &amp;ldquo;sm_cpu.vh&amp;rdquo;``&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101084937750.png"
+loading="lazy"
+alt="image-20230101084937750"
+>&lt;/p>
+&lt;p>保存为control.v&lt;/p>
+&lt;p>至此，五模块完成&lt;/p>
+&lt;h3 id="验证迁移是否完成">验证迁移是否完成&lt;/h3>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101085334387.png"
+loading="lazy"
+alt="image-20230101085334387"
+>&lt;/p>
+&lt;p>跑完后是这样的则为成功&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101085753694.png"
+loading="lazy"
+alt="image-20230101085753694"
+>&lt;/p>
+&lt;h2 id="程序验证">程序验证&lt;/h2>
+&lt;h3 id="编写程序">编写程序&lt;/h3>
+&lt;p>启动codescape for Eclipse&lt;/p>
+&lt;p>File -&amp;gt; new -&amp;gt; C Project&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101085942725.png"
+loading="lazy"
+alt="image-20230101085942725"
+>&lt;/p>
+&lt;p>随便写个项目名&lt;/p>
+&lt;p>下面的配置如图&lt;/p>
+&lt;p>注意一定要选择MTI GNU GCC&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101090212345.png"
+loading="lazy"
+alt="image-20230101090212345"
+>&lt;/p>
+&lt;p>然后创建一个makefile文件&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101094536693.png"
+loading="lazy"
+alt="image-20230101094536693"
+>&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101094611136.png"
+loading="lazy"
+alt="image-20230101094611136"
+>&lt;/p>
+&lt;p>把下面的内容贴进去&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-makefile" data-lang="makefile">CC&lt;span style="color:#f92672">=&lt;/span>mips-mti-elf-gcc
+LD&lt;span style="color:#f92672">=&lt;/span>mips-mti-elf-gcc
+OD&lt;span style="color:#f92672">=&lt;/span>mips-mti-elf-objdump
+OC&lt;span style="color:#f92672">=&lt;/span>mips-mti-elf-objcopy
+SZ&lt;span style="color:#f92672">=&lt;/span>mips-mti-elf-size
+CFLAGS&lt;span style="color:#f92672">=&lt;/span> -nostdlib -EL -march&lt;span style="color:#f92672">=&lt;/span>mips32
+LDFLAGS &lt;span style="color:#f92672">=&lt;/span> -nostdlib -EL -march&lt;span style="color:#f92672">=&lt;/span>mips32 -T program.ld
+ASOURCES&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">main.S&lt;/span>
+AOBJECTS&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">$(&lt;/span>ASOURCES:.S&lt;span style="color:#f92672">=&lt;/span>.o&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;span style="color:#a6e22e">.S.o&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;span style="color:#66d9ef">$(&lt;/span>CC&lt;span style="color:#66d9ef">)&lt;/span> -c &lt;span style="color:#66d9ef">$(&lt;/span>CFLAGS&lt;span style="color:#66d9ef">)&lt;/span> $&amp;lt; -o $@
+&lt;span style="color:#a6e22e">.PHONY&lt;/span>&lt;span style="color:#f92672">:&lt;/span> clean sim
+&lt;span style="color:#a6e22e">all&lt;/span>&lt;span style="color:#f92672">:&lt;/span> build size disasm
+&lt;span style="color:#a6e22e">build&lt;/span>&lt;span style="color:#f92672">:&lt;/span> program.elf
+&lt;span style="color:#a6e22e">disasm&lt;/span>&lt;span style="color:#f92672">:&lt;/span> program.dis
+&lt;span style="color:#a6e22e">program.elf&lt;/span>&lt;span style="color:#f92672">:&lt;/span>&lt;span style="color:#66d9ef">$(&lt;/span>AOBJECTS&lt;span style="color:#66d9ef">)&lt;/span>
+&lt;span style="color:#66d9ef">$(&lt;/span>LD&lt;span style="color:#66d9ef">)&lt;/span> &lt;span style="color:#66d9ef">$(&lt;/span>LDFLAGS&lt;span style="color:#66d9ef">)&lt;/span> &lt;span style="color:#66d9ef">$(&lt;/span>AOBJECTS&lt;span style="color:#66d9ef">)&lt;/span> -o program.elf
+&lt;span style="color:#a6e22e">program.dis&lt;/span>&lt;span style="color:#f92672">:&lt;/span>program.elf
+&lt;span style="color:#66d9ef">$(&lt;/span>OD&lt;span style="color:#66d9ef">)&lt;/span> -M no-aliases -Dz program.elf &amp;gt; program.dis
+&lt;span style="color:#a6e22e">size&lt;/span>&lt;span style="color:#f92672">:&lt;/span>program.elf
+&lt;span style="color:#66d9ef">$(&lt;/span>SZ&lt;span style="color:#66d9ef">)&lt;/span> program.elf
+&lt;span style="color:#a6e22e">board&lt;/span>&lt;span style="color:#f92672">:&lt;/span> program.hex
+rm -f ../../board/program/program.hex
+cp ./program.hex ../../board/program
+&lt;span style="color:#a6e22e">clean&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+rm -rf sim
+rm -f *.o
+rm -f program.elf
+rm -f program.map
+rm -f program.dis
+rm -f program.hex
+rm -f program.rec
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后创建一个program.ld文件,把下面的内容丢进去&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-fallback" data-lang="fallback">OUTPUT_ARCH(mips)
+hwreset = 0x0;
+ENTRY(hwreset)
+SECTIONS
+{
+.text = .;
+/DISCARD/ :
+{
+*(.MIPS.abiflags)
+*(.reginfo)
+*(.gnu.attributes)
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后创建一个main.S,开始编写代码&lt;/p>
+&lt;p>未经我们扩展的schoolMIPS提供了 addiu, beq, lui ,bne, addu ,or, srl ,sltu ,subu 九个指令使用，&lt;/p>
+&lt;p>我们写一个简易计数器&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-fallback" data-lang="fallback">.text
+counter:
+addiu $v0,$v0,1
+beq $0,$0,counter
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>选择project -&amp;gt; build all&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101094642289.png"
+loading="lazy"
+alt="image-20230101094642289"
+>&lt;/p>
+&lt;p>完成后能看到 program.dis 文件，这是我们需要的东西&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101091026229.png"
+loading="lazy"
+alt="image-20230101091026229"
+>&lt;/p>
+&lt;p>至此，程序编写完毕&lt;/p>
+&lt;h3 id="系统验证">系统验证&lt;/h3>
+&lt;p>打开 program.hex，把刚刚编译出来的机器指令复制进去&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101091632582.png"
+loading="lazy"
+alt="image-20230101091632582"
+>&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101091646083.png"
+loading="lazy"
+alt="image-20230101091646083"
+>&lt;/p>
+&lt;p>保存，启动编译&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101091725726.png"
+loading="lazy"
+alt="image-20230101091725726"
+>&lt;/p>
+&lt;p>如果刚刚的验证成功，编译也不会出什么问题&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101091902281.png"
+loading="lazy"
+alt="image-20230101091902281"
+>&lt;/p>
+&lt;p>编译成功后，选择File -&amp;gt; new -&amp;gt; University Program VWF 创建波形文件&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101092129342.png"
+loading="lazy"
+alt="image-20230101092129342"
+>&lt;/p>
+&lt;p>双击该区域选择输入输出&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101092201896.png"
+loading="lazy"
+alt="image-20230101092201896"
+>&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101092229310.png"
+loading="lazy"
+alt="image-20230101092229310"
+>&lt;/p>
+&lt;p>选成我这样的&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101092325519.png"
+loading="lazy"
+alt="image-20230101092325519"
+>&lt;/p>
+&lt;p>把中间两个调整成16进制会好看点&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101092338710.png"
+loading="lazy"
+alt="image-20230101092338710"
+>&lt;/p>
+&lt;p>点击clk选择时钟信号&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101092612531.png"
+loading="lazy"
+alt="image-20230101092612531"
+>&lt;/p>
+&lt;p>个人比较喜欢50ns 和 25ns offset&lt;/p>
+&lt;p>点击rst_n ，调整成1&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101092752479.png"
+loading="lazy"
+alt="image-20230101092752479"
+>&lt;/p>
+&lt;p>接下来调整regAddr的数值，这步比较关键,该数值影响regData的显示，regAddr如果是00则为PC的数值，其它则为寄存器编号，此处参考&lt;a class="link" href="https://blog.csdn.net/u011057409/article/details/122151867" target="_blank" rel="noopener"
+>mips寄存器&lt;/a>&lt;/p>
+&lt;p>我们先调整为02，点击regAddr ，选择红圈内容,然后调整为02&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101093127160.png"
+loading="lazy"
+alt="image-20230101093127160"
+>&lt;/p>
+&lt;p>都调完后开始模拟&lt;/p>
+&lt;p>simulation -&amp;gt; Run Functional Simulation&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101093225481.png"
+loading="lazy"
+alt="image-20230101093225481"
+>&lt;/p>
+&lt;p>一般需要保存，不要修改默认位置!!!!!!(如果是计组课上留下的Quartus,这点非常重要)&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101093254968.png"
+loading="lazy"
+alt="image-20230101093254968"
+>&lt;/p>
+&lt;p>出结果，可以看到regAddr递增，程序正常运行&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101093526773.png"
+loading="lazy"
+alt="image-20230101093526773"
+>&lt;/p>
+&lt;p>把regAddr调成00，看一下结果&lt;/p>
+&lt;p>分析可知，在上升沿时，程序执行，然后在PC为1时执行跳转命令PC = 0，无限重复该过程。&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101093710326.png"
+loading="lazy"
+alt="image-20230101093710326"
+>&lt;/p>
+&lt;p>至此，Quartus启动SchoolMIPS完成&lt;/p>
+&lt;h2 id="后记">后记&lt;/h2>
+&lt;p>本实验非常感谢我可爱的女朋友的陪伴&lt;/p>
+&lt;p>看到各位哀声叹气我十分难过，仅以此贡献自己微薄之力。&lt;/p>
+&lt;p>看完全文你会发现这篇教程只讲如何Quartus启动schoolMIPS，因为指令扩充还在做(要陪女朋友的)。&lt;/p>
+&lt;p>这篇东西应该会首先发在朋友圈，如果各位对指令扩充有需求的话，欢迎朋友圈点赞催更，点越多做越快吧.&lt;/p></description></item><item><title>20220804 八股笔记</title><link>https://blog.jhas.site/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 04 Aug 2022 16:34:28 +0800</pubDate><guid>https://blog.jhas.site/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="cpp部分">Cpp部分&lt;/h2>
 &lt;h3 id="c内存分配">c++内存分配&lt;/h3>
 &lt;p>cpp共有四种内存分配&lt;/p>
 &lt;ol>
