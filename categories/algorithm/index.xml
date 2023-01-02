@@ -1,10 +1,379 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithm on Jhas's Blog</title><link>https://blog.jhas.cafe/categories/algorithm/</link><description>Recent content in Algorithm on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 10 Feb 2022 12:07:04 +0800</lastBuildDate><atom:link href="https://blog.jhas.cafe/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>二分范围查找笔记</title><link>https://blog.jhas.cafe/p/%E4%BA%8C%E5%88%86%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 10 Feb 2022 12:07:04 +0800</pubDate><guid>https://blog.jhas.cafe/p/%E4%BA%8C%E5%88%86%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E7%AC%94%E8%AE%B0/</guid><description>二分搜索 简述 二分搜索是一种效率较高的查找方法，用于在有序(二段)数组内查找一个特定数。得益于有序(二段)数组的性质，每一次查找可以筛除一段数量大于一的数段(常见为$\frac{n}{2} $),故能在$ O(\log n) $的时间复杂度内找到对应答案。
-二分的本质是二段性而不是单调性
-应用 二分通常被用于一个有序数组查找一个数或一个位置，这个数通常是一个最小或最大值/位置(边界位置)。
-常见二分通常有两种：
-整数二分 浮点二分 整数二分 整数二分通常查找一个范围的上界或下界
-比如说不超过/不低于某个数最大/最小的数的位置与其值。
-总的来说，查找的区间可以被分为两个部分，一个部分满足条件，另一部分不满足条件，答案则在两部分的交点。
-浮点二分 通常是函数求根、开方等问题，比较简单，while循环终止条件是精度e，更新时l和r都更新为mid即可。
-基本代码 整数二分有两种，一种是寻找上界(即寻找不符合性质的最后一个点)，一种是下界(即寻找符合性质的第一个点)
-整数二分上界 1 2 3 4 5 6 7 8 9 10 int bsearch(int l, int r) { while (l &amp;lt; r) { int mid = l + r + 1 &amp;gt;&amp;gt; 1; if (check(mid)) l = mid; else r = mid - 1; } return l; } 整数二分下界 1 2 3 4 5 6 7 8 9 10 int bsearch(int l, int r) { while (l &amp;lt; r) { int mid = l + r &amp;gt;&amp;gt; 1; if (check(mid)) r = mid; else l = mid + 1; } return l; } 浮点二分则比较单调，通常是函数求根、开方等问题</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithm on Jhas's Blog</title><link>https://blog.jhas.cafe/categories/algorithm/</link><description>Recent content in Algorithm on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 10 Feb 2022 12:07:04 +0800</lastBuildDate><atom:link href="https://blog.jhas.cafe/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>二分范围查找笔记</title><link>https://blog.jhas.cafe/p/%E4%BA%8C%E5%88%86%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 10 Feb 2022 12:07:04 +0800</pubDate><guid>https://blog.jhas.cafe/p/%E4%BA%8C%E5%88%86%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E7%AC%94%E8%AE%B0/</guid><description>&lt;h1 id="二分搜索">二分搜索&lt;/h1>
+&lt;h2 id="简述">简述&lt;/h2>
+&lt;p>二分搜索是一种效率较高的查找方法，用于在有序(二段)数组内查找一个特定数。得益于有序(二段)数组的性质，每一次查找可以筛除一段&lt;strong>数量大于一&lt;/strong>的数段(常见为$\frac{n}{2} $),故能在$ O(\log n) $的时间复杂度内找到对应答案。&lt;/p>
+&lt;p>二分的本质是二段性而不是单调性&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/1580979705_20200206160241434_9286.png"
+loading="lazy"
+alt="二分的本质是二段性"
+>&lt;/p>
+&lt;h2 id="应用">应用&lt;/h2>
+&lt;p>二分通常被用于一个有序数组查找一个数或一个位置，这个数通常是一个&lt;strong>最小或最大值/位置(边界位置)&lt;/strong>。&lt;/p>
+&lt;p>常见二分通常有两种：&lt;/p>
+&lt;ul>
+&lt;li>整数二分&lt;/li>
+&lt;li>浮点二分&lt;/li>
+&lt;/ul>
+&lt;h3 id="整数二分">整数二分&lt;/h3>
+&lt;p>整数二分通常查找一个范围的上界或下界&lt;/p>
+&lt;p>比如说不超过/不低于某个数最大/最小的数的位置与其值。&lt;/p>
+&lt;p>总的来说，查找的区间可以被分为两个部分，一个部分满足条件，另一部分不满足条件，答案则在两部分的交点。&lt;/p>
+&lt;h3 id="浮点二分">浮点二分&lt;/h3>
+&lt;p>通常是函数求根、开方等问题，比较简单，while循环终止条件是精度e，更新时l和r都更新为mid即可。&lt;/p>
+&lt;h2 id="基本代码">基本代码&lt;/h2>
+&lt;p>整数二分有两种，一种是寻找上界(即寻找不符合性质的最后一个点)，一种是下界(即寻找符合性质的第一个点)&lt;/p>
+&lt;h3 id="整数二分上界">整数二分上界&lt;/h3>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">bsearch&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> l, &lt;span style="color:#66d9ef">int&lt;/span> r)
+{
+&lt;span style="color:#66d9ef">while&lt;/span> (l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r)
+{
+&lt;span style="color:#66d9ef">int&lt;/span> mid &lt;span style="color:#f92672">=&lt;/span> l &lt;span style="color:#f92672">+&lt;/span> r &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;span style="color:#66d9ef">if&lt;/span> (check(mid)) l &lt;span style="color:#f92672">=&lt;/span> mid;
+&lt;span style="color:#66d9ef">else&lt;/span> r &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+}
+&lt;span style="color:#66d9ef">return&lt;/span> l;
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="整数二分下界">整数二分下界&lt;/h3>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">bsearch&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> l, &lt;span style="color:#66d9ef">int&lt;/span> r)
+{
+&lt;span style="color:#66d9ef">while&lt;/span> (l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r)
+{
+&lt;span style="color:#66d9ef">int&lt;/span> mid &lt;span style="color:#f92672">=&lt;/span> l &lt;span style="color:#f92672">+&lt;/span> r &lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;span style="color:#66d9ef">if&lt;/span> (check(mid)) r &lt;span style="color:#f92672">=&lt;/span> mid;
+&lt;span style="color:#66d9ef">else&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+}
+&lt;span style="color:#66d9ef">return&lt;/span> l;
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>浮点二分则比较单调，通常是函数求根、开方等问题&lt;/p>
+&lt;h3 id="浮点二分-1">浮点二分&lt;/h3>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>()
+{
+&lt;span style="color:#66d9ef">double&lt;/span> n;
+cin &lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> n;
+&lt;span style="color:#66d9ef">double&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">10000&lt;/span>, r &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">10000&lt;/span>, mid;
+&lt;span style="color:#66d9ef">while&lt;/span>(r &lt;span style="color:#f92672">-&lt;/span> l &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1e-7&lt;/span>){
+mid &lt;span style="color:#f92672">=&lt;/span> (l &lt;span style="color:#f92672">+&lt;/span> r) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;span style="color:#66d9ef">if&lt;/span>(check(mid)) r &lt;span style="color:#f92672">=&lt;/span> mid;
+&lt;span style="color:#66d9ef">else&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> mid ;
+}
+printf(&lt;span style="color:#e6db74">&amp;#34;%.6f&amp;#34;&lt;/span>, l);
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="stl">STL&lt;/h3>
+&lt;p>STL里提供了lower_bound()和upper_bound()两个函数用于一个排好序的数组二分查找&lt;/p>
+&lt;p>lower_bound:返回数组中第一个大于或等于被查数的迭代器&lt;/p>
+&lt;p>upper_bound:返回数组中第一个大于被查数的迭代器&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>(){
+&lt;span style="color:#66d9ef">int&lt;/span> num[&lt;span style="color:#ae81ff">6&lt;/span>]&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#ae81ff">1&lt;/span>,&lt;span style="color:#ae81ff">2&lt;/span>,&lt;span style="color:#ae81ff">4&lt;/span>,&lt;span style="color:#ae81ff">7&lt;/span>,&lt;span style="color:#ae81ff">15&lt;/span>,&lt;span style="color:#ae81ff">34&lt;/span>};
+sort(num.begin(),num.end());
+&lt;span style="color:#66d9ef">int&lt;/span> lower_idx &lt;span style="color:#f92672">=&lt;/span> lower_bound(num.begin(),num.end(),&lt;span style="color:#ae81ff">4&lt;/span>) &lt;span style="color:#f92672">-&lt;/span> num.begin(); &lt;span style="color:#75715e">// 值为2，lower_bound返回了位置为2的迭代器
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> upper_idx &lt;span style="color:#f92672">=&lt;/span> upper_bound(num.begin(),num.end(),&lt;span style="color:#ae81ff">4&lt;/span>) &lt;span style="color:#f92672">-&lt;/span> num.begin(); &lt;span style="color:#75715e">// 值为3, upper_bound返回了位置为3的迭代器
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> sort(num.begin(),num.end(),greater&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>()); &lt;span style="color:#75715e">//从大到小排序,此时为 [34,15,7,4,2,1]
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> greater_lower_idx &lt;span style="color:#f92672">=&lt;/span> lower_bound(num.begin(),num.end(),&lt;span style="color:#ae81ff">4&lt;/span>,greater&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>()) &lt;span style="color:#f92672">-&lt;/span> num.begin();&lt;span style="color:#75715e">// 值为3,lower_bound返回了位置为3的迭代器,即查找到第一个小于或等于4的数
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> greater_upper_idx &lt;span style="color:#f92672">=&lt;/span> lower_bound(num.begin(),num.end(),&lt;span style="color:#ae81ff">4&lt;/span>,greater&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>()) &lt;span style="color:#f92672">-&lt;/span> num.begin();&lt;span style="color:#75715e">// 值为4,lower_bound返回了位置为4的迭代器,即查找到第一个小于4的数
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里不得不提到 greater&lt;!-- raw HTML omitted -->() 和 less&lt;!-- raw HTML omitted -->() 了&lt;/p>
+&lt;p>其实其内部结构为&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">template&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">_Ty&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>
+&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">less&lt;/span>
+{ &lt;span style="color:#75715e">// functor for operator&amp;lt;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">typedef&lt;/span> _Ty first_argument_type;
+&lt;span style="color:#66d9ef">typedef&lt;/span> _Ty second_argument_type;
+&lt;span style="color:#66d9ef">typedef&lt;/span> &lt;span style="color:#66d9ef">bool&lt;/span> result_type;
+&lt;span style="color:#66d9ef">constexpr&lt;/span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">operator&lt;/span>()(&lt;span style="color:#66d9ef">const&lt;/span> _Ty&lt;span style="color:#f92672">&amp;amp;&lt;/span> _Left, &lt;span style="color:#66d9ef">const&lt;/span> _Ty&lt;span style="color:#f92672">&amp;amp;&lt;/span> _Right) &lt;span style="color:#66d9ef">const&lt;/span>
+{ &lt;span style="color:#75715e">// apply operator&amp;lt; to operands
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> (_Left &lt;span style="color:#f92672">&amp;lt;&lt;/span> _Right);
+}
+};
+&lt;span style="color:#66d9ef">template&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">_Ty&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>
+&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">greater&lt;/span>
+{ &lt;span style="color:#75715e">// functor for operator&amp;gt;
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">typedef&lt;/span> _Ty first_argument_type;
+&lt;span style="color:#66d9ef">typedef&lt;/span> _Ty second_argument_type;
+&lt;span style="color:#66d9ef">typedef&lt;/span> &lt;span style="color:#66d9ef">bool&lt;/span> result_type;
+&lt;span style="color:#66d9ef">constexpr&lt;/span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">operator&lt;/span>()(&lt;span style="color:#66d9ef">const&lt;/span> _Ty&lt;span style="color:#f92672">&amp;amp;&lt;/span> _Left, &lt;span style="color:#66d9ef">const&lt;/span> _Ty&lt;span style="color:#f92672">&amp;amp;&lt;/span> _Right) &lt;span style="color:#66d9ef">const&lt;/span>
+{ &lt;span style="color:#75715e">// apply operator&amp;gt; to operands
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> (_Left &lt;span style="color:#f92672">&amp;gt;&lt;/span> _Right);
+}
+};
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这是一个仿函数, 以greater&lt;!-- raw HTML omitted -->()为例, greater&lt;!-- raw HTML omitted -->()其实获得了一个匿名对象，而这个对象等效于&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">cmp&lt;/span>(&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;amp;&lt;/span> _Left, &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;amp;&lt;/span> _Right) &lt;span style="color:#66d9ef">const&lt;/span> {
+&lt;span style="color:#66d9ef">return&lt;/span> _Left &lt;span style="color:#f92672">&amp;gt;&lt;/span> _Right
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或者&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">[](&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;amp;&lt;/span> _Left, &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;amp;&lt;/span> _Right) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> &lt;span style="color:#66d9ef">bool&lt;/span> {
+&lt;span style="color:#66d9ef">return&lt;/span> _Left &lt;span style="color:#f92672">&amp;gt;&lt;/span> _Right
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>即一个比较函数&lt;/p>
+&lt;p>回到二分查找的STL，下面是它们的源码&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">
+_ForwardIterator
+&lt;span style="color:#a6e22e">__lower_bound&lt;/span>(_ForwardIterator __first, _ForwardIterator __last,
+&lt;span style="color:#66d9ef">const&lt;/span> _Tp&lt;span style="color:#f92672">&amp;amp;&lt;/span> __val, _Compare __comp)
+{
+&lt;span style="color:#66d9ef">typedef&lt;/span> &lt;span style="color:#66d9ef">typename&lt;/span> iterator_traits&lt;span style="color:#f92672">&amp;lt;&lt;/span>_ForwardIterator&lt;span style="color:#f92672">&amp;gt;::&lt;/span>difference_type
+_DistanceType;
+_DistanceType __len &lt;span style="color:#f92672">=&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>distance(__first, __last);
+&lt;span style="color:#66d9ef">while&lt;/span> (__len &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>)
+{
+_DistanceType __half &lt;span style="color:#f92672">=&lt;/span> __len &lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+_ForwardIterator __middle &lt;span style="color:#f92672">=&lt;/span> __first;
+std&lt;span style="color:#f92672">::&lt;/span>advance(__middle, __half);
+&lt;span style="color:#66d9ef">if&lt;/span> (__comp(__middle, __val))
+{
+__first &lt;span style="color:#f92672">=&lt;/span> __middle;
+&lt;span style="color:#f92672">++&lt;/span>__first;
+__len &lt;span style="color:#f92672">=&lt;/span> __len &lt;span style="color:#f92672">-&lt;/span> __half &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+}
+&lt;span style="color:#66d9ef">else&lt;/span>
+__len &lt;span style="color:#f92672">=&lt;/span> __half;
+}
+&lt;span style="color:#66d9ef">return&lt;/span> __first;
+}
+_ForwardIterator
+&lt;span style="color:#a6e22e">__upper_bound&lt;/span>(_ForwardIterator __first, _ForwardIterator __last,
+&lt;span style="color:#66d9ef">const&lt;/span> _Tp&lt;span style="color:#f92672">&amp;amp;&lt;/span> __val, _Compare __comp)
+{
+&lt;span style="color:#66d9ef">typedef&lt;/span> &lt;span style="color:#66d9ef">typename&lt;/span> iterator_traits&lt;span style="color:#f92672">&amp;lt;&lt;/span>_ForwardIterator&lt;span style="color:#f92672">&amp;gt;::&lt;/span>difference_type
+_DistanceType;
+_DistanceType __len &lt;span style="color:#f92672">=&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>distance(__first, __last);
+&lt;span style="color:#66d9ef">while&lt;/span> (__len &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>)
+{
+_DistanceType __half &lt;span style="color:#f92672">=&lt;/span> __len &lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+_ForwardIterator __middle &lt;span style="color:#f92672">=&lt;/span> __first;
+std&lt;span style="color:#f92672">::&lt;/span>advance(__middle, __half);
+&lt;span style="color:#66d9ef">if&lt;/span> (__comp(__val, __middle))
+__len &lt;span style="color:#f92672">=&lt;/span> __half;
+&lt;span style="color:#66d9ef">else&lt;/span>
+{
+__first &lt;span style="color:#f92672">=&lt;/span> __middle;
+&lt;span style="color:#f92672">++&lt;/span>__first;
+__len &lt;span style="color:#f92672">=&lt;/span> __len &lt;span style="color:#f92672">-&lt;/span> __half &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> __first;
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>主要的差别在于__comp()的用法，而__comp()又是我们的仿函数以less&lt;!-- raw HTML omitted -->()为例，则差别在于lower_bound比较 $ mid &amp;lt; val$ 而upper_bound比较 $val &amp;lt; mid$&lt;/p>
+&lt;p>对于 lower_bound来说，如果__comp()为true则将first设置为mid，否则将长度减少一半(STL里二分使用长度来表示)。&lt;/p>
+&lt;p>对于 upper_bound来说，如果__comp()为true则将长度减少一半，否则将将first设置为mid，&lt;/p>
+&lt;p>区别在于两个true表示的范围不一样，&lt;/p>
+&lt;p>更直观的表示是，如果将upper_bound改写成以下形式&lt;/p>
+&lt;div class="highlight">&lt;div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>__comp(__val, __middle)){
+__first &lt;span style="color:#f92672">=&lt;/span> __middle;
+&lt;span style="color:#f92672">++&lt;/span>__first;
+__len &lt;span style="color:#f92672">=&lt;/span> __len &lt;span style="color:#f92672">-&lt;/span> __half &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+}
+&lt;span style="color:#66d9ef">else&lt;/span>{
+__len &lt;span style="color:#f92672">=&lt;/span> __half;
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其实是将if else切换一下&lt;/p>
+&lt;p>这个时候$mid &amp;lt;= val$ 正巧比lower_bound多了个等号，即右范围涵盖了mid，这就是upper_bound与lower_bound的差别，&lt;/p>
+&lt;p>总的来说，STL里的upper_bound与lower_bound其实实现的是整数二分下界，区别在于__comp的应用和二段的划分&lt;/p>
+&lt;h2 id="经典题目">经典题目&lt;/h2>
+&lt;p>&lt;a class="link" href="https://leetcode-cn.com/problems/binary-search/" target="_blank" rel="noopener"
+>Leetcode704. 二分查找&lt;/a>&lt;/p>
+&lt;p>标准二分查找&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.acwing.com/problem/content/791/" target="_blank" rel="noopener"
+>acwing789. 数的范围&lt;/a>&lt;/p>
+&lt;p>二分边界查找(上界\下界)&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.acwing.com/problem/content/792/" target="_blank" rel="noopener"
+>acwing790. 数的三次方根&lt;/a>&lt;/p>
+&lt;p>二分浮点&lt;/p>
+&lt;p>&lt;a class="link" href="https://leetcode-cn.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/" target="_blank" rel="noopener"
+>Leetcode1984. 学生分数的最小差值&lt;/a>&lt;/p>
+&lt;p>这个不是很经典，但是可以用二分答案做&lt;/p>
+&lt;h2 id="参考文章">参考文章&lt;/h2>
+&lt;p>&lt;a class="link" href="https://www.acwing.com/solution/content/3338/" target="_blank" rel="noopener"
+>AcWing 789. 数的范围（详细分析二分过程）&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.acwing.com/blog/content/31/" target="_blank" rel="noopener"
+>二分查找算法模板&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.acwing.com/solution/content/8235/" target="_blank" rel="noopener"
+>AcWing 789. 二分模板笔记&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.cnblogs.com/lzhu/p/7010894.html" target="_blank" rel="noopener"
+>C++：greater和less&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.csdn.net/qq_40160605/article/details/80150252" target="_blank" rel="noopener"
+>关于lower_bound( )和upper_bound( )的常见用法&lt;/a>&lt;/p></description></item></channel></rss>

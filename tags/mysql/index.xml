@@ -1,17 +1,101 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mysql on Jhas's Blog</title><link>https://blog.jhas.cafe/tags/mysql/</link><description>Recent content in Mysql on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 04 Aug 2022 16:34:28 +0800</lastBuildDate><atom:link href="https://blog.jhas.cafe/tags/mysql/index.xml" rel="self" type="application/rss+xml"/><item><title>20220804 八股笔记</title><link>https://blog.jhas.cafe/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 04 Aug 2022 16:34:28 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</guid><description>Cpp部分 c++内存分配 cpp共有四种内存分配
-malloc(unsigned int size) 申请一个长度为size的连续空间 calloc(unsigned int num, unsigned int size) 申请一个num * size 的连续内存空间且自动初始化内存空间为 0 realloc(void *ptr, unsigned int size) 调整ptr所指向的空间的大小，若p之后的空间有足够的大小则在p后空间追加，否则申请新空间并将原空间数据拷贝至新空间. new 其中 malloc 都不会初始化内存空间，new会自动计算需要需要分配的空间，调用类构造函数初始化类
-c++中，vector的push-back与emplace-back的区别 push_back 在push对象时，需要提供一个已构造好的对象。
-emplace_back 在push时只需要提供对象构造的参数，使用in-place construction 直接在指定位置生成对象 ，可以比起push_back减少一次构造和析构.
-c++，什么是左值，右值，左值引用，右值引用 左值：指一个指向特定内存的具名值，有一个相对稳定的内存地址
-右值：通常是指向不指向稳定对象的匿名值，它的生命周期很短，通常是暂时性的
-可以通过&amp;amp;符号来判断左值和右值
-左值引用：一种CPP语法糖，可以让一个左值具有一个别名，减少指针的使用
-右值引用：右值引用是一种捕获右值的方法且只能捕获右值的方法，可以延长右值的生命周期
-数据库部分 mysql物理存储索引是按什么分类的，有哪些。按数据结构来分类索引有哪些 mysql物理存储索引按照伴随索引存放的数据的类型来分析，有聚簇索引(主键索引)和二级索引两种，区别在于聚簇索引的叶子节点存放的是完整的数据，二级索引的叶子节点存放的是数据的主键。
-当我们在查询时使用了二级索引，如果查询的数据能在二级索引里查询的到，则不需要到聚簇索引中进行再次查找(回表)
-按数据结构来分类，索引有 B-tree B+tree hash 全文索引等四种常见索引
-为什么Innodb使用B+Tree B+Tree是由BTree演变而来的一种数据结构。
-B 树是一个多叉树，B 树的每一个节点最多可以包括 M 个子节点，M 称为 B 树的阶。
-在M为2是则B树退化为二叉树，我们可知，在树节点数量一定时，每一层可存储节点数越大，则树高越小。
-首先考虑到数据是存放在硬盘中的，而硬盘的特性是一次会读取一块数据，在树的高度较大时，我们需要读取的次数就会更多。所以B树在硬盘中的读取较平衡二叉树要高效
-但是 B 树的每个节点都包含数据（索引+记录），而用户的记录数据的大小很有可能远远超过了索引数据，这就需要花费更多的磁盘 I/O 操作次数来读到有用的索引数据。</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mysql on Jhas's Blog</title><link>https://blog.jhas.cafe/tags/mysql/</link><description>Recent content in Mysql on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 04 Aug 2022 16:34:28 +0800</lastBuildDate><atom:link href="https://blog.jhas.cafe/tags/mysql/index.xml" rel="self" type="application/rss+xml"/><item><title>20220804 八股笔记</title><link>https://blog.jhas.cafe/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 04 Aug 2022 16:34:28 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="cpp部分">Cpp部分&lt;/h2>
+&lt;h3 id="c内存分配">c++内存分配&lt;/h3>
+&lt;p>cpp共有四种内存分配&lt;/p>
+&lt;ol>
+&lt;li>malloc(unsigned int size) 申请一个长度为size的连续空间&lt;/li>
+&lt;li>calloc(unsigned int num, unsigned int size) 申请一个num * size 的连续内存空间且自动初始化内存空间为 0&lt;/li>
+&lt;li>realloc(void *ptr, unsigned int size) 调整ptr所指向的空间的大小，若p之后的空间有足够的大小则在p后空间追加，否则申请新空间并将原空间数据拷贝至新空间.&lt;/li>
+&lt;li>new&lt;/li>
+&lt;/ol>
+&lt;p>其中 malloc 都不会初始化内存空间，new会自动计算需要需要分配的空间，调用类构造函数初始化类&lt;/p>
+&lt;h3 id="c中vector的push-back与emplace-back的区别">c++中，vector的push-back与emplace-back的区别&lt;/h3>
+&lt;p>push_back 在push对象时，需要提供一个已构造好的对象。&lt;/p>
+&lt;p>emplace_back 在push时只需要提供对象构造的参数，使用in-place construction 直接在指定位置生成对象 ，可以比起push_back减少一次构造和析构.&lt;/p>
+&lt;h3 id="c什么是左值右值左值引用右值引用">c++，什么是左值，右值，左值引用，右值引用&lt;/h3>
+&lt;p>左值：指一个指向特定内存的具名值，有一个相对稳定的内存地址&lt;/p>
+&lt;p>右值：通常是指向不指向稳定对象的匿名值，它的生命周期很短，通常是暂时性的&lt;/p>
+&lt;p>可以通过&amp;amp;符号来判断左值和右值&lt;/p>
+&lt;p>左值引用：一种CPP语法糖，可以让一个左值具有一个别名，减少指针的使用&lt;/p>
+&lt;p>右值引用：右值引用是一种捕获右值的方法且只能捕获右值的方法，可以延长右值的生命周期&lt;/p>
+&lt;h2 id="数据库部分">数据库部分&lt;/h2>
+&lt;h3 id="mysql物理存储索引是按什么分类的有哪些按数据结构来分类索引有哪些">mysql物理存储索引是按什么分类的，有哪些。按数据结构来分类索引有哪些&lt;/h3>
+&lt;p>mysql物理存储索引按照伴随索引存放的数据的类型来分析，有聚簇索引(主键索引)和二级索引两种，区别在于聚簇索引的叶子节点存放的是完整的数据，二级索引的叶子节点存放的是数据的主键。&lt;/p>
+&lt;p>当我们在查询时使用了二级索引，如果查询的数据能在二级索引里查询的到，则不需要到聚簇索引中进行再次查找(回表)&lt;/p>
+&lt;p>按数据结构来分类，索引有 B-tree B+tree hash 全文索引等四种常见索引&lt;/p>
+&lt;h3 id="为什么innodb使用btree">为什么Innodb使用B+Tree&lt;/h3>
+&lt;p>B+Tree是由BTree演变而来的一种数据结构。&lt;/p>
+&lt;p>B 树是一个多叉树，B 树的每一个节点最多可以包括 M 个子节点，M 称为 B 树的阶。&lt;/p>
+&lt;p>在M为2是则B树退化为二叉树，我们可知，在树节点数量一定时，每一层可存储节点数越大，则树高越小。&lt;/p>
+&lt;p>首先考虑到数据是存放在硬盘中的，而硬盘的特性是一次会读取一块数据，在树的高度较大时，我们需要读取的次数就会更多。所以B树在硬盘中的读取较平衡二叉树要高效&lt;/p>
+&lt;p>但是 B 树的每个节点都包含数据（索引+记录），而用户的记录数据的大小很有可能远远超过了索引数据，这就需要花费更多的磁盘 I/O 操作次数来读到有用的索引数据。&lt;/p>
+&lt;p>而且，在我们查询位于底层的某个节点比如 A 记录过程中，非 A 记录节点里的记录数据会从磁盘加载到内存，但是这些记录数据是没用的，我们只是想读取这些节点的索引数据来做比较查询，而非 A 记录节点里的记录数据对我们是没用的，这样不仅增多磁盘 I/O 操作次数，也占用内存资源。&lt;/p>
+&lt;p>B+ 树就是对 B 树做了一个升级，MySQL 中索引的数据结构就是采用了 B+ 树，B+ 树结构如下图：&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/b6678c667053a356f46fc5691d2f5878.png"
+loading="lazy"
+alt="图片"
+>&lt;/p>
+&lt;p>B+ 树与 B 树差异的点，主要是以下这几点：&lt;/p>
+&lt;ul>
+&lt;li>叶子节点（最底部的节点）才会存放实际数据（索引+记录），非叶子节点只会存放索引；&lt;/li>
+&lt;li>所有索引都会在叶子节点出现，叶子节点之间构成一个有序链表；&lt;/li>
+&lt;li>非叶子节点的索引也会同时存在在子节点中，并且是在子节点中所有索引的最大（或最小）。&lt;/li>
+&lt;li>非叶子节点中有多少个子节点，就有多少个索引；&lt;/li>
+&lt;/ul>
+&lt;p>相较于B树，B+tree有以下优点：&lt;/p>
+&lt;p>一、 查询时间更稳定&lt;/p>
+&lt;p>B 树进行单个索引查询时，最快可以在 O(1) 的时间代价内就查到，而从平均时间代价来看，会比 B+ 树稍快一些。&lt;/p>
+&lt;p>但是 B 树的查询波动会比较大，因为每个节点即存索引又存记录，所以有时候访问到了非叶子节点就可以找到索引，而有时需要访问到叶子节点才能找到索引。&lt;/p>
+&lt;p>B+ 树的非叶子节点不存放实际的记录数据，仅存放索引，因此数据量相同的情况下，相比存储即存索引又存记录的 B 树，B+树的非叶子节点可以存放更多的索引，因此 B+ 树可以比 B 树更「矮胖」，查询底层节点的磁盘 I/O次数会更少。&lt;/p>
+&lt;p>二、插入和删除效率更高&lt;/p>
+&lt;p>B树查询和删除都可以通过修改单个叶子节点以及查找路径上的索引完成，而B树在删除时有可能需要对树进行复杂变形，导致删除效率慢&lt;/p>
+&lt;p>三、范围查找&lt;/p>
+&lt;p>B 树和 B+ 树等值查询原理基本一致，先从根节点查找，然后对比目标数据的范围，最后递归的进入子节点查找。&lt;/p>
+&lt;p>但因为 B+ 树所有叶子节点间还有一个链表进行连接，这种设计对范围查找非常有帮助。可以不用进行树干的遍历，直接在页子节点中进行顺序遍历&lt;/p>
+&lt;h3 id="redis常见数据结构5常4新越详细越好-_-">Redis常见数据结构(5常4新)(越详细越好-_-)&lt;/h3>
+&lt;p>五常&lt;/p>
+&lt;p>String字符串&lt;/p>
+&lt;p>List列表&lt;/p>
+&lt;p>hash哈希&lt;/p>
+&lt;p>set集合&lt;/p>
+&lt;p>zset有序集合&lt;/p>
+&lt;p>四新&lt;/p>
+&lt;p>bitmap&lt;/p>
+&lt;p>geo&lt;/p>
+&lt;p>HyperLogLog&lt;/p>
+&lt;p>stream&lt;/p>
+&lt;p>详细不起来了&lt;/p>
+&lt;h3 id="redis为什么快线程模型是怎么样的为什么要用这种模型">Redis为什么快，线程模型是怎么样的，为什么要用这种模型？&lt;/h3>
+&lt;p>Redis 是一种基于内存的数据库，对数据的读写操作都是在内存中完成，因此读写速度非常快&lt;/p>
+&lt;p>Redis在6.0之前采用单线程模型&lt;/p>
+&lt;p>&lt;strong>Redis 单线程模型指的是「接收客户端请求-&amp;gt;解析请求 -&amp;gt;进行数据读写等操作-&amp;gt;发送数据给客户端」这个过程是由一个线程（主线程）来完成的&lt;/strong>，这也是我们常说 Redis 是单线程的原因。&lt;/p>
+&lt;p>但是，&lt;strong>Redis 程序并不是单线程的&lt;/strong>，Redis 在启动的时候，是会&lt;strong>启动后台线程&lt;/strong>（BIO）的：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Redis 在 2.6 版本&lt;/strong>，会启动 2 个后台线程，分别处理关闭文件、AOF 刷盘这两个任务；&lt;/li>
+&lt;li>&lt;strong>Redis 在 4.0 版本之后&lt;/strong>，新增了一个新的后台线程，用来异步释放 Redis 内存，也就是 lazyfree 线程。例如执行 unlink key / flushdb async / flushall async 等命令，会把这些删除操作交给后台线程来执行，好处是不会导致 Redis 主线程卡顿。因此，当我们要删除一个大 key 的时候，不要使用 del 命令删除，因为 del 是在主线程处理的，这样会导致 Redis 主线程卡顿，因此我们应该使用 unlink 命令来异步删除大key。&lt;/li>
+&lt;/ul>
+&lt;p>Redis 6.0 版本之前的单线程模式如下图：&lt;/p>
+&lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/redisthread.drawio.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>图中的蓝色部分是一个事件循环，是由主线程负责的，可以看到网络 I/O 和命令处理都是单线程。 Redis 初始化的时候，会做下面这几件事情：&lt;/p>
+&lt;ul>
+&lt;li>首先，调用 epoll_create() 创建一个 epoll 对象和调用 socket() 一个服务端 socket&lt;/li>
+&lt;li>然后，调用 bind() 绑定端口和调用 listen() 监听该 socket；&lt;/li>
+&lt;li>然后，将调用 epoll_ctl() 将 listen socket 加入到 epoll，同时注册「连接事件」处理函数。&lt;/li>
+&lt;/ul>
+&lt;p>初始化完后，主线程就进入到一个&lt;strong>事件循环函数&lt;/strong>，主要会做以下事情：&lt;/p>
+&lt;ul>
+&lt;li>首先，先调用&lt;strong>处理发送队列函数&lt;/strong>，看是发送队列里是否有任务，如果有发送任务，则通过 write 函数将客户端发送缓存区里的数据发送出去，如果这一轮数据没有发送完，就会注册写事件处理函数，等待 epoll_wait 发现可写后再处理 。&lt;/li>
+&lt;li>接着，调用 epoll_wait 函数等待事件的到来：
+&lt;ul>
+&lt;li>如果是&lt;strong>连接事件&lt;/strong>到来，则会调用&lt;strong>连接事件处理函数&lt;/strong>，该函数会做这些事情：调用 accpet 获取已连接的 socket -&amp;gt; 调用 epoll_ctl 将已连接的 socket 加入到 epoll -&amp;gt; 注册「读事件」处理函数；&lt;/li>
+&lt;li>如果是&lt;strong>读事件&lt;/strong>到来，则会调用&lt;strong>读事件处理函数&lt;/strong>，该函数会做这些事情：调用 read 获取客户端发送的数据 -&amp;gt; 解析命令 -&amp;gt; 处理命令 -&amp;gt; 将客户端对象添加到发送队列 -&amp;gt; 将执行结果写到发送缓存区等待发送；&lt;/li>
+&lt;li>如果是&lt;strong>写事件&lt;/strong>到来，则会调用&lt;strong>写事件处理函数&lt;/strong>，该函数会做这些事情：通过 write 函数将客户端发送缓存区里的数据发送出去，如果这一轮数据没有发送完，就会继续注册写事件处理函数，等待 epoll_wait 发现可写后再处理 。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>之所以在6.0前采用单线程模型，是因为CPU并不是制约 Redis 性能表现的瓶颈所在，更多情况下是受到内存大小和网络I/O的限制，所以 Redis 核心网络模型使用单线程并没有什么问题。&lt;/p>
+&lt;p>在6.0之后采用了多线程结构&lt;/p>
+&lt;p>这是因为随着网络硬件的性能提升，Redis 的性能瓶颈有时会出现在网络 I/O 的处理上。&lt;/p>
+&lt;p>所以为了提高网络 I/O 的并行度，Redis 6.0 对于网络 I/O 采用多线程来处理。但是对于命令的执行，Redis 仍然使用单线程来处理&lt;/p></description></item></channel></rss>
