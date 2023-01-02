@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.site/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 01 Jan 2023 09:49:20 +0800</lastBuildDate><atom:link href="https://blog.jhas.site/index.xml" rel="self" type="application/rss+xml"/><item><title>A new year gift - 如何使用Quartus启动schoolMIPS</title><link>https://blog.jhas.site/p/a-new-year-gift-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8quartus%E5%90%AF%E5%8A%A8schoolmips/</link><pubDate>Sun, 01 Jan 2023 09:49:20 +0800</pubDate><guid>https://blog.jhas.site/p/a-new-year-gift-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8quartus%E5%90%AF%E5%8A%A8schoolmips/</guid><description>&lt;p>前提条件：&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jhas's Blog</title><link>https://blog.jhas.cafe/</link><description>Recent content on Jhas's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 01 Jan 2023 09:49:20 +0800</lastBuildDate><atom:link href="https://blog.jhas.cafe/index.xml" rel="self" type="application/rss+xml"/><item><title>A new year gift - 如何使用Quartus启动schoolMIPS</title><link>https://blog.jhas.cafe/p/a-new-year-gift-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8quartus%E5%90%AF%E5%8A%A8schoolmips/</link><pubDate>Sun, 01 Jan 2023 09:49:20 +0800</pubDate><guid>https://blog.jhas.cafe/p/a-new-year-gift-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8quartus%E5%90%AF%E5%8A%A8schoolmips/</guid><description>&lt;p>前提条件：&lt;/p>
 &lt;p>准备好Quartus与&lt;a class="link" href="https://github.com/MIPSfpga/schoolMIPS" target="_blank" rel="noopener"
 >SchoolMIPS&lt;/a>的文件，并且安装好mipssdk , 保证codescape for Eclipse 可以运行&lt;/p>
 &lt;h2 id="迁移schoolmips至quartus中">迁移schoolMIPS至Quartus中&lt;/h2>
@@ -723,11 +723,12 @@ loading="lazy"
 alt="image-20230101093710326"
 >&lt;/p>
 &lt;p>至此，Quartus启动SchoolMIPS完成&lt;/p>
+&lt;h2 id="schoolmips分析与指令扩展">schoolmips分析与指令扩展&lt;/h2>
+&lt;p>该部分内容使用一个pdf进行分享，仅作参考使用，由于该部分直接来源于本人报告，所以pdf文件不允许复制，望各位谅解并且不要照抄。&lt;/p>
+&lt;p>链接：https://pan.baidu.com/s/1cQEyjlFhgbpzX232gTZdaw?pwd=0g7p&lt;/p>
 &lt;h2 id="后记">后记&lt;/h2>
 &lt;p>本实验非常感谢我可爱的女朋友的陪伴&lt;/p>
-&lt;p>看到各位哀声叹气我十分难过，仅以此贡献自己微薄之力。&lt;/p>
-&lt;p>看完全文你会发现这篇教程只讲如何Quartus启动schoolMIPS，因为指令扩充还在做(要陪女朋友的)。&lt;/p>
-&lt;p>这篇东西应该会首先发在朋友圈，如果各位对指令扩充有需求的话，欢迎朋友圈点赞催更，点越多做越快吧.&lt;/p></description></item><item><title>20220804 八股笔记</title><link>https://blog.jhas.site/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 04 Aug 2022 16:34:28 +0800</pubDate><guid>https://blog.jhas.site/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="cpp部分">Cpp部分&lt;/h2>
+&lt;p>看到各位哀声叹气我十分难过，仅以此贡献自己微薄之力。&lt;/p></description></item><item><title>20220804 八股笔记</title><link>https://blog.jhas.cafe/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 04 Aug 2022 16:34:28 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220804-%E5%85%AB%E8%82%A1%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="cpp部分">Cpp部分&lt;/h2>
 &lt;h3 id="c内存分配">c++内存分配&lt;/h3>
 &lt;p>cpp共有四种内存分配&lt;/p>
 &lt;ol>
@@ -827,7 +828,7 @@ alt="img"
 &lt;p>之所以在6.0前采用单线程模型，是因为CPU并不是制约 Redis 性能表现的瓶颈所在，更多情况下是受到内存大小和网络I/O的限制，所以 Redis 核心网络模型使用单线程并没有什么问题。&lt;/p>
 &lt;p>在6.0之后采用了多线程结构&lt;/p>
 &lt;p>这是因为随着网络硬件的性能提升，Redis 的性能瓶颈有时会出现在网络 I/O 的处理上。&lt;/p>
-&lt;p>所以为了提高网络 I/O 的并行度，Redis 6.0 对于网络 I/O 采用多线程来处理。但是对于命令的执行，Redis 仍然使用单线程来处理&lt;/p></description></item><item><title>20220311 每日一题 Leetcode2049 统计最高分的节点数目</title><link>https://blog.jhas.site/p/20220311-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2049-%E7%BB%9F%E8%AE%A1%E6%9C%80%E9%AB%98%E5%88%86%E7%9A%84%E8%8A%82%E7%82%B9%E6%95%B0%E7%9B%AE/</link><pubDate>Fri, 11 Mar 2022 08:18:06 +0800</pubDate><guid>https://blog.jhas.site/p/20220311-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2049-%E7%BB%9F%E8%AE%A1%E6%9C%80%E9%AB%98%E5%88%86%E7%9A%84%E8%8A%82%E7%82%B9%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="2049-统计最高分的节点数目httpsleetcode-cncomproblemscount-nodes-with-the-highest-score">&lt;a class="link" href="https://leetcode-cn.com/problems/count-nodes-with-the-highest-score/" target="_blank" rel="noopener"
+&lt;p>所以为了提高网络 I/O 的并行度，Redis 6.0 对于网络 I/O 采用多线程来处理。但是对于命令的执行，Redis 仍然使用单线程来处理&lt;/p></description></item><item><title>20220311 每日一题 Leetcode2049 统计最高分的节点数目</title><link>https://blog.jhas.cafe/p/20220311-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2049-%E7%BB%9F%E8%AE%A1%E6%9C%80%E9%AB%98%E5%88%86%E7%9A%84%E8%8A%82%E7%82%B9%E6%95%B0%E7%9B%AE/</link><pubDate>Fri, 11 Mar 2022 08:18:06 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220311-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2049-%E7%BB%9F%E8%AE%A1%E6%9C%80%E9%AB%98%E5%88%86%E7%9A%84%E8%8A%82%E7%82%B9%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="2049-统计最高分的节点数目httpsleetcode-cncomproblemscount-nodes-with-the-highest-score">&lt;a class="link" href="https://leetcode-cn.com/problems/count-nodes-with-the-highest-score/" target="_blank" rel="noopener"
 >2049. 统计最高分的节点数目&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一棵根节点为 0 的 二叉树 ，它总共有 n 个节点，节点编号为 0 到 n - 1 。同时给你一个下标从 0 开始的整数数组 parents 表示这棵树，其中 parents[i] 是节点 i 的父节点。由于节点 0 是根，所以 parents[0] == -1 。&lt;/p>
@@ -907,7 +908,7 @@ cnt &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220310 每日一题 Leetcode589 N叉树的前序遍历</title><link>https://blog.jhas.site/p/20220310-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode589-n%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</link><pubDate>Fri, 11 Mar 2022 08:17:39 +0800</pubDate><guid>https://blog.jhas.site/p/20220310-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode589-n%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</guid><description>&lt;h1 id="589-n-叉树的前序遍历httpsleetcode-cncomproblemsn-ary-tree-preorder-traversal">&lt;a class="link" href="https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220310 每日一题 Leetcode589 N叉树的前序遍历</title><link>https://blog.jhas.cafe/p/20220310-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode589-n%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</link><pubDate>Fri, 11 Mar 2022 08:17:39 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220310-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode589-n%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</guid><description>&lt;h1 id="589-n-叉树的前序遍历httpsleetcode-cncomproblemsn-ary-tree-preorder-traversal">&lt;a class="link" href="https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/" target="_blank" rel="noopener"
 >589. N 叉树的前序遍历&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给定一个 n 叉树的根节点 root ，返回 其节点值的 前序遍历 。&lt;/p>
@@ -948,7 +949,7 @@ dfs(node,ans);
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220309 每日一题 Leetcode798 得分最高的最小轮调</title><link>https://blog.jhas.site/p/20220309-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83/</link><pubDate>Wed, 09 Mar 2022 07:17:37 +0800</pubDate><guid>https://blog.jhas.site/p/20220309-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83/</guid><description>&lt;h1 id="798-得分最高的最小轮调httpsleetcode-cncomproblemssmallest-rotation-with-highest-score">&lt;a class="link" href="https://leetcode-cn.com/problems/smallest-rotation-with-highest-score/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220309 每日一题 Leetcode798 得分最高的最小轮调</title><link>https://blog.jhas.cafe/p/20220309-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83/</link><pubDate>Wed, 09 Mar 2022 07:17:37 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220309-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode798-%E5%BE%97%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%B0%83/</guid><description>&lt;h1 id="798-得分最高的最小轮调httpsleetcode-cncomproblemssmallest-rotation-with-highest-score">&lt;a class="link" href="https://leetcode-cn.com/problems/smallest-rotation-with-highest-score/" target="_blank" rel="noopener"
 >798. 得分最高的最小轮调&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给定一个数组 $A$，我们可以将它按一个非负整数 $K$ 进行轮调，这样可以使数组变为 $ A[K], A[K+1], A[K+2], &amp;hellip; A[A.length - 1], A[0], A[1], &amp;hellip;, A[K-1] $ 的形式。此后，任何值小于或等于其索引的项都可以记作一分。
@@ -1077,7 +1078,7 @@ ans &lt;span style="color:#f92672">=&lt;/span> i;
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220308 每日一题 Leetcode2055 蜡烛之间的盘子</title><link>https://blog.jhas.site/p/20220308-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2055-%E8%9C%A1%E7%83%9B%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%98%E5%AD%90/</link><pubDate>Tue, 08 Mar 2022 22:17:50 +0800</pubDate><guid>https://blog.jhas.site/p/20220308-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2055-%E8%9C%A1%E7%83%9B%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%98%E5%AD%90/</guid><description>&lt;h1 id="2055-蜡烛之间的盘子httpsleetcode-cncomproblemsplates-between-candles">&lt;a class="link" href="https://leetcode-cn.com/problems/plates-between-candles/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220308 每日一题 Leetcode2055 蜡烛之间的盘子</title><link>https://blog.jhas.cafe/p/20220308-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2055-%E8%9C%A1%E7%83%9B%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%98%E5%AD%90/</link><pubDate>Tue, 08 Mar 2022 22:17:50 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220308-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2055-%E8%9C%A1%E7%83%9B%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%98%E5%AD%90/</guid><description>&lt;h1 id="2055-蜡烛之间的盘子httpsleetcode-cncomproblemsplates-between-candles">&lt;a class="link" href="https://leetcode-cn.com/problems/plates-between-candles/" target="_blank" rel="noopener"
 >2055. 蜡烛之间的盘子&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>略&lt;/p>
@@ -1236,7 +1237,7 @@ ret.push_back(pre[left[q[&lt;span style="color:#ae81ff">1&lt;/span>]]] &lt;span 
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220307 每日一题 Leetcode504 七进制数</title><link>https://blog.jhas.site/p/20220307-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode504-%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0/</link><pubDate>Tue, 08 Mar 2022 22:14:56 +0800</pubDate><guid>https://blog.jhas.site/p/20220307-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode504-%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0/</guid><description>&lt;h1 id="504-七进制数httpsleetcode-cncomproblemsbase-7">&lt;a class="link" href="https://leetcode-cn.com/problems/base-7/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220307 每日一题 Leetcode504 七进制数</title><link>https://blog.jhas.cafe/p/20220307-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode504-%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0/</link><pubDate>Tue, 08 Mar 2022 22:14:56 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220307-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode504-%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0/</guid><description>&lt;h1 id="504-七进制数httpsleetcode-cncomproblemsbase-7">&lt;a class="link" href="https://leetcode-cn.com/problems/base-7/" target="_blank" rel="noopener"
 >504. 七进制数&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给定一个整数 &lt;code>num&lt;/code>，将其转化为 &lt;strong>7 进制&lt;/strong>，并以字符串形式输出。&lt;/p>
@@ -1277,7 +1278,7 @@ num&lt;span style="color:#f92672">/=&lt;/span>&lt;span style="color:#ae81ff">7&l
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220306 每日一题 Leetcode2100 适合打劫银行的日子</title><link>https://blog.jhas.site/p/20220306-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2100-%E9%80%82%E5%90%88%E6%89%93%E5%8A%AB%E9%93%B6%E8%A1%8C%E7%9A%84%E6%97%A5%E5%AD%90/</link><pubDate>Sun, 06 Mar 2022 11:56:14 +0800</pubDate><guid>https://blog.jhas.site/p/20220306-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2100-%E9%80%82%E5%90%88%E6%89%93%E5%8A%AB%E9%93%B6%E8%A1%8C%E7%9A%84%E6%97%A5%E5%AD%90/</guid><description>&lt;h1 id="2100-适合打劫银行的日子httpsleetcode-cncomproblemsfind-good-days-to-rob-the-bank">&lt;a class="link" href="https://leetcode-cn.com/problems/find-good-days-to-rob-the-bank/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220306 每日一题 Leetcode2100 适合打劫银行的日子</title><link>https://blog.jhas.cafe/p/20220306-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2100-%E9%80%82%E5%90%88%E6%89%93%E5%8A%AB%E9%93%B6%E8%A1%8C%E7%9A%84%E6%97%A5%E5%AD%90/</link><pubDate>Sun, 06 Mar 2022 11:56:14 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220306-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2100-%E9%80%82%E5%90%88%E6%89%93%E5%8A%AB%E9%93%B6%E8%A1%8C%E7%9A%84%E6%97%A5%E5%AD%90/</guid><description>&lt;h1 id="2100-适合打劫银行的日子httpsleetcode-cncomproblemsfind-good-days-to-rob-the-bank">&lt;a class="link" href="https://leetcode-cn.com/problems/find-good-days-to-rob-the-bank/" target="_blank" rel="noopener"
 >2100. 适合打劫银行的日子&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>你和一群强盗准备打劫银行。给你一个下标从 0 开始的整数数组 security ，其中 security[i] 是第 i 天执勤警卫的数量。日子从 0 开始编号。同时给你一个整数 time 。&lt;/p>
@@ -1439,7 +1440,7 @@ mov &lt;span style="color:#f92672">=&lt;/span> r;
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220305 每日一题 Leetcode521 最长特殊序列Ⅰ</title><link>https://blog.jhas.site/p/20220305-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode521-%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%BA%8F%E5%88%97/</link><pubDate>Sat, 05 Mar 2022 13:01:02 +0800</pubDate><guid>https://blog.jhas.site/p/20220305-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode521-%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%BA%8F%E5%88%97/</guid><description>&lt;h1 id="521-最长特殊序列-httpsleetcode-cncomproblemslongest-uncommon-subsequence-i">&lt;a class="link" href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-i/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220305 每日一题 Leetcode521 最长特殊序列Ⅰ</title><link>https://blog.jhas.cafe/p/20220305-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode521-%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%BA%8F%E5%88%97/</link><pubDate>Sat, 05 Mar 2022 13:01:02 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220305-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode521-%E6%9C%80%E9%95%BF%E7%89%B9%E6%AE%8A%E5%BA%8F%E5%88%97/</guid><description>&lt;h1 id="521-最长特殊序列-httpsleetcode-cncomproblemslongest-uncommon-subsequence-i">&lt;a class="link" href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-i/" target="_blank" rel="noopener"
 >521. 最长特殊序列 Ⅰ&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你两个字符串 a 和 b，请返回 这两个字符串中 最长的特殊序列 的长度。如果不存在，则返回 -1 。&lt;/p>
@@ -1468,7 +1469,7 @@ mov &lt;span style="color:#f92672">=&lt;/span> r;
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220304 每日一题 Leetcode2104 子数组范围和</title><link>https://blog.jhas.site/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/</link><pubDate>Fri, 04 Mar 2022 09:03:38 +0800</pubDate><guid>https://blog.jhas.site/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/</guid><description>&lt;h1 id="2104-子数组范围和httpsleetcode-cncomproblemssum-of-subarray-ranges">&lt;a class="link" href="https://leetcode-cn.com/problems/sum-of-subarray-ranges/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220304 每日一题 Leetcode2104 子数组范围和</title><link>https://blog.jhas.cafe/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/</link><pubDate>Fri, 04 Mar 2022 09:03:38 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220304-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2104-%E5%AD%90%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%92%8C/</guid><description>&lt;h1 id="2104-子数组范围和httpsleetcode-cncomproblemssum-of-subarray-ranges">&lt;a class="link" href="https://leetcode-cn.com/problems/sum-of-subarray-ranges/" target="_blank" rel="noopener"
 >2104. 子数组范围和&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数数组 nums 。nums 中，子数组的 范围 是子数组中最大元素和最小元素的差值。&lt;/p>
@@ -1635,7 +1636,7 @@ ans &lt;span style="color:#f92672">-=&lt;/span> (&lt;span style="color:#66d9ef">
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220303 每日一题 Leetcode258 各位相加</title><link>https://blog.jhas.site/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/</link><pubDate>Thu, 03 Mar 2022 08:12:34 +0800</pubDate><guid>https://blog.jhas.site/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/</guid><description>&lt;h1 id="258-各位相加httpsleetcode-cncomproblemsadd-digits">&lt;a class="link" href="https://leetcode-cn.com/problems/add-digits/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220303 每日一题 Leetcode258 各位相加</title><link>https://blog.jhas.cafe/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/</link><pubDate>Thu, 03 Mar 2022 08:12:34 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220303-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode258-%E5%90%84%E4%BD%8D%E7%9B%B8%E5%8A%A0/</guid><description>&lt;h1 id="258-各位相加httpsleetcode-cncomproblemsadd-digits">&lt;a class="link" href="https://leetcode-cn.com/problems/add-digits/" target="_blank" rel="noopener"
 >258. 各位相加&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给定一个非负整数 &lt;code>num&lt;/code>，反复将各个位上的数字相加，直到结果为一位数。返回这个结果。&lt;/p>
@@ -1728,7 +1729,7 @@ num &lt;span style="color:#f92672">=&lt;/span> ans;
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220302 每日一题 Leetcode564 寻找最近的回文数</title><link>https://blog.jhas.site/p/20220302-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode564-%E5%AF%BB%E6%89%BE%E6%9C%80%E8%BF%91%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0/</link><pubDate>Wed, 02 Mar 2022 08:35:07 +0800</pubDate><guid>https://blog.jhas.site/p/20220302-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode564-%E5%AF%BB%E6%89%BE%E6%9C%80%E8%BF%91%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0/</guid><description>&lt;h1 id="564-寻找最近的回文数httpsleetcode-cncomproblemsfind-the-closest-palindrome">&lt;a class="link" href="https://leetcode-cn.com/problems/find-the-closest-palindrome/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220302 每日一题 Leetcode564 寻找最近的回文数</title><link>https://blog.jhas.cafe/p/20220302-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode564-%E5%AF%BB%E6%89%BE%E6%9C%80%E8%BF%91%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0/</link><pubDate>Wed, 02 Mar 2022 08:35:07 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220302-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode564-%E5%AF%BB%E6%89%BE%E6%9C%80%E8%BF%91%E7%9A%84%E5%9B%9E%E6%96%87%E6%95%B0/</guid><description>&lt;h1 id="564-寻找最近的回文数httpsleetcode-cncomproblemsfind-the-closest-palindrome">&lt;a class="link" href="https://leetcode-cn.com/problems/find-the-closest-palindrome/" target="_blank" rel="noopener"
 >564. 寻找最近的回文数&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给定一个表示整数的字符串 &lt;code>n&lt;/code> ，返回与它最近的回文整数（不包括自身）。如果不止一个，返回较小的那个。&lt;/p>
@@ -1984,7 +1985,7 @@ string &lt;span style="color:#a6e22e">nearestPalindromic&lt;/span>(string n) {
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220301 每日一题 Leetcode6 Z字形变换</title><link>https://blog.jhas.site/p/20220301-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode6-z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/</link><pubDate>Tue, 01 Mar 2022 07:49:37 +0800</pubDate><guid>https://blog.jhas.site/p/20220301-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode6-z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/</guid><description>&lt;h1 id="6-z-字形变换httpsleetcode-cncomproblemszigzag-conversion">&lt;a class="link" href="https://leetcode-cn.com/problems/zigzag-conversion/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220301 每日一题 Leetcode6 Z字形变换</title><link>https://blog.jhas.cafe/p/20220301-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode6-z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/</link><pubDate>Tue, 01 Mar 2022 07:49:37 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220301-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode6-z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/</guid><description>&lt;h1 id="6-z-字形变换httpsleetcode-cncomproblemszigzag-conversion">&lt;a class="link" href="https://leetcode-cn.com/problems/zigzag-conversion/" target="_blank" rel="noopener"
 >6. Z 字形变换&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>将一个给定字符串 s 根据给定的行数 numRows ，以从上往下、从左到右进行 Z 字形排列。&lt;/p>
@@ -2116,7 +2117,7 @@ ans &lt;span style="color:#f92672">+=&lt;/span> s;
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220228 每日一题 Leetcode1601 最多可达成的换楼请求数目</title><link>https://blog.jhas.site/p/20220228-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1601-%E6%9C%80%E5%A4%9A%E5%8F%AF%E8%BE%BE%E6%88%90%E7%9A%84%E6%8D%A2%E6%A5%BC%E8%AF%B7%E6%B1%82%E6%95%B0%E7%9B%AE/</link><pubDate>Mon, 28 Feb 2022 08:49:52 +0800</pubDate><guid>https://blog.jhas.site/p/20220228-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1601-%E6%9C%80%E5%A4%9A%E5%8F%AF%E8%BE%BE%E6%88%90%E7%9A%84%E6%8D%A2%E6%A5%BC%E8%AF%B7%E6%B1%82%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="1601-最多可达成的换楼请求数目httpsleetcode-cncomproblemsmaximum-number-of-achievable-transfer-requests">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-number-of-achievable-transfer-requests/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220228 每日一题 Leetcode1601 最多可达成的换楼请求数目</title><link>https://blog.jhas.cafe/p/20220228-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1601-%E6%9C%80%E5%A4%9A%E5%8F%AF%E8%BE%BE%E6%88%90%E7%9A%84%E6%8D%A2%E6%A5%BC%E8%AF%B7%E6%B1%82%E6%95%B0%E7%9B%AE/</link><pubDate>Mon, 28 Feb 2022 08:49:52 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220228-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1601-%E6%9C%80%E5%A4%9A%E5%8F%AF%E8%BE%BE%E6%88%90%E7%9A%84%E6%8D%A2%E6%A5%BC%E8%AF%B7%E6%B1%82%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="1601-最多可达成的换楼请求数目httpsleetcode-cncomproblemsmaximum-number-of-achievable-transfer-requests">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-number-of-achievable-transfer-requests/" target="_blank" rel="noopener"
 >1601. 最多可达成的换楼请求数目&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>我们有 n 栋楼，编号从 0 到 n - 1 。每栋楼有若干员工。由于现在是换楼的季节，部分员工想要换一栋楼居住。&lt;/p>
@@ -2252,7 +2253,7 @@ d[requests[j][&lt;span style="color:#ae81ff">1&lt;/span>]]&lt;span style="color:
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220227 每日一题 Leetcode553 最优除法</title><link>https://blog.jhas.site/p/20220227-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode553-%E6%9C%80%E4%BC%98%E9%99%A4%E6%B3%95/</link><pubDate>Sun, 27 Feb 2022 20:58:36 +0800</pubDate><guid>https://blog.jhas.site/p/20220227-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode553-%E6%9C%80%E4%BC%98%E9%99%A4%E6%B3%95/</guid><description>&lt;h1 id="553-最优除法httpsleetcode-cncomproblemsoptimal-division">&lt;a class="link" href="https://leetcode-cn.com/problems/optimal-division/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220227 每日一题 Leetcode553 最优除法</title><link>https://blog.jhas.cafe/p/20220227-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode553-%E6%9C%80%E4%BC%98%E9%99%A4%E6%B3%95/</link><pubDate>Sun, 27 Feb 2022 20:58:36 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220227-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode553-%E6%9C%80%E4%BC%98%E9%99%A4%E6%B3%95/</guid><description>&lt;h1 id="553-最优除法httpsleetcode-cncomproblemsoptimal-division">&lt;a class="link" href="https://leetcode-cn.com/problems/optimal-division/" target="_blank" rel="noopener"
 >553. 最优除法&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给定一组正整数，相邻的整数之间将会进行浮点除法操作。例如， [2,3,4] -&amp;gt; 2 / 3 / 4 。&lt;/p>
@@ -2426,7 +2427,7 @@ dp[j][j &lt;span style="color:#f92672">+&lt;/span> i].minStr &lt;span style="col
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220226 每日一题 Leetcode2016 增量元素之间的最大差值</title><link>https://blog.jhas.site/p/20220226-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2016-%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/</link><pubDate>Sat, 26 Feb 2022 11:26:17 +0800</pubDate><guid>https://blog.jhas.site/p/20220226-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2016-%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/</guid><description>&lt;h1 id="2016-增量元素之间的最大差值httpsleetcode-cncomproblemsmaximum-difference-between-increasing-elements">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-difference-between-increasing-elements/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220226 每日一题 Leetcode2016 增量元素之间的最大差值</title><link>https://blog.jhas.cafe/p/20220226-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2016-%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/</link><pubDate>Sat, 26 Feb 2022 11:26:17 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220226-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2016-%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/</guid><description>&lt;h1 id="2016-增量元素之间的最大差值httpsleetcode-cncomproblemsmaximum-difference-between-increasing-elements">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-difference-between-increasing-elements/" target="_blank" rel="noopener"
 >2016. 增量元素之间的最大差值&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个下标从 $0$ 开始的整数数组 $nums$ ，该数组的大小为 $n$ ，请你计算 $nums[j] - nums[i]$ 能求得的 最大差值 ，其中 $0 &amp;lt;= i &amp;lt; j &amp;lt; n$ 且 $nums[i] &amp;lt; nums[j]$ 。&lt;/p>
@@ -2469,7 +2470,7 @@ pre_min &lt;span style="color:#f92672">=&lt;/span> min(pre_min,nums[i]);
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220225 每日一题 Leetcode537 复数乘法</title><link>https://blog.jhas.site/p/20220225-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode537-%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/</link><pubDate>Fri, 25 Feb 2022 00:12:42 +0800</pubDate><guid>https://blog.jhas.site/p/20220225-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode537-%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/</guid><description>&lt;h1 id="537-复数乘法httpsleetcode-cncomproblemscomplex-number-multiplication">&lt;a class="link" href="https://leetcode-cn.com/problems/complex-number-multiplication/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220225 每日一题 Leetcode537 复数乘法</title><link>https://blog.jhas.cafe/p/20220225-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode537-%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/</link><pubDate>Fri, 25 Feb 2022 00:12:42 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220225-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode537-%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/</guid><description>&lt;h1 id="537-复数乘法httpsleetcode-cncomproblemscomplex-number-multiplication">&lt;a class="link" href="https://leetcode-cn.com/problems/complex-number-multiplication/" target="_blank" rel="noopener"
 >537. 复数乘法&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>复数 可以用字符串表示，遵循 &amp;ldquo;实部+虚部i&amp;rdquo; 的形式，并满足下述条件：&lt;/p>
@@ -2553,7 +2554,7 @@ x_num&lt;span style="color:#f92672">+=&lt;/span> nums[i&lt;span style="color:#f9
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220224 每日一题 Leetcode1706 球会落何处</title><link>https://blog.jhas.site/p/20220224-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/</link><pubDate>Thu, 24 Feb 2022 20:14:15 +0800</pubDate><guid>https://blog.jhas.site/p/20220224-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/</guid><description>&lt;h1 id="1706-球会落何处httpsleetcode-cncomproblemswhere-will-the-ball-fall">&lt;a class="link" href="https://leetcode-cn.com/problems/where-will-the-ball-fall/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220224 每日一题 Leetcode1706 球会落何处</title><link>https://blog.jhas.cafe/p/20220224-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/</link><pubDate>Thu, 24 Feb 2022 20:14:15 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220224-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/</guid><description>&lt;h1 id="1706-球会落何处httpsleetcode-cncomproblemswhere-will-the-ball-fall">&lt;a class="link" href="https://leetcode-cn.com/problems/where-will-the-ball-fall/" target="_blank" rel="noopener"
 >1706. 球会落何处&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>用一个大小为 $m * n$ 的二维网格 $grid$ 表示一个箱子。你有 $n$ 颗球。箱子的顶部和底部都是开着的。&lt;/p>
@@ -2627,7 +2628,7 @@ ret.push_back(judge(&lt;span style="color:#ae81ff">0&lt;/span>,i,grid));
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220223 每日一题 Leetcode917 仅仅反转字母</title><link>https://blog.jhas.site/p/20220223-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/</link><pubDate>Wed, 23 Feb 2022 09:30:22 +0800</pubDate><guid>https://blog.jhas.site/p/20220223-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/</guid><description>&lt;h1 id="917-仅仅反转字母httpsleetcode-cncomproblemsreverse-only-letters">&lt;a class="link" href="https://leetcode-cn.com/problems/reverse-only-letters/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220223 每日一题 Leetcode917 仅仅反转字母</title><link>https://blog.jhas.cafe/p/20220223-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/</link><pubDate>Wed, 23 Feb 2022 09:30:22 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220223-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/</guid><description>&lt;h1 id="917-仅仅反转字母httpsleetcode-cncomproblemsreverse-only-letters">&lt;a class="link" href="https://leetcode-cn.com/problems/reverse-only-letters/" target="_blank" rel="noopener"
 >917. 仅仅反转字母&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个字符串 &lt;code>s&lt;/code> ，根据下述规则反转字符串：&lt;/p>
@@ -2682,7 +2683,7 @@ swap(s[l&lt;span style="color:#f92672">++&lt;/span>], s[r&lt;span style="color:#
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220222 每日一题 Leetcode1994 好子集的数目</title><link>https://blog.jhas.site/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</link><pubDate>Tue, 22 Feb 2022 14:47:07 +0800</pubDate><guid>https://blog.jhas.site/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="1994-好子集的数目httpsleetcode-cncomproblemsthe-number-of-good-subsets">&lt;a class="link" href="https://leetcode-cn.com/problems/the-number-of-good-subsets/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220222 每日一题 Leetcode1994 好子集的数目</title><link>https://blog.jhas.cafe/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</link><pubDate>Tue, 22 Feb 2022 14:47:07 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220222-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1994-%E5%A5%BD%E5%AD%90%E9%9B%86%E7%9A%84%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="1994-好子集的数目httpsleetcode-cncomproblemsthe-number-of-good-subsets">&lt;a class="link" href="https://leetcode-cn.com/problems/the-number-of-good-subsets/" target="_blank" rel="noopener"
 >1994. 好子集的数目&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数数组 $nums$ 。如果 $nums$ 的一个子集中，所有元素的乘积可以表示为一个或多个 互不相同的质数 的乘积，那么我们称它为 好子集 。&lt;/p>
@@ -2807,7 +2808,7 @@ ans &lt;span style="color:#f92672">=&lt;/span> (ans &lt;span style="color:#f9267
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220221 每日一题 Leetcode838 推多米诺</title><link>https://blog.jhas.site/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</link><pubDate>Mon, 21 Feb 2022 11:12:29 +0800</pubDate><guid>https://blog.jhas.site/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</guid><description>&lt;h1 id="838-推多米诺httpsleetcode-cncomproblemspush-dominoes">&lt;a class="link" href="https://leetcode-cn.com/problems/push-dominoes/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220221 每日一题 Leetcode838 推多米诺</title><link>https://blog.jhas.cafe/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</link><pubDate>Mon, 21 Feb 2022 11:12:29 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220221-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/</guid><description>&lt;h1 id="838-推多米诺httpsleetcode-cncomproblemspush-dominoes">&lt;a class="link" href="https://leetcode-cn.com/problems/push-dominoes/" target="_blank" rel="noopener"
 >838. 推多米诺&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>$n$ 张多米诺骨牌排成一行，将每张多米诺骨牌垂直竖立。在开始时，同时把一些多米诺骨牌向左或向右推。&lt;/p>
@@ -2920,7 +2921,7 @@ l &lt;span style="color:#f92672">=&lt;/span> i;
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220220 每日一题 Leetcode717 1比特与2比特字符</title><link>https://blog.jhas.site/p/20220220-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode717-1%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/</link><pubDate>Sun, 20 Feb 2022 10:55:44 +0800</pubDate><guid>https://blog.jhas.site/p/20220220-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode717-1%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/</guid><description>&lt;h1 id="717-1比特与2比特字符httpsleetcode-cncomproblems1-bit-and-2-bit-characters">&lt;a class="link" href="https://leetcode-cn.com/problems/1-bit-and-2-bit-characters/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220220 每日一题 Leetcode717 1比特与2比特字符</title><link>https://blog.jhas.cafe/p/20220220-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode717-1%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/</link><pubDate>Sun, 20 Feb 2022 10:55:44 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220220-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode717-1%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/</guid><description>&lt;h1 id="717-1比特与2比特字符httpsleetcode-cncomproblems1-bit-and-2-bit-characters">&lt;a class="link" href="https://leetcode-cn.com/problems/1-bit-and-2-bit-characters/" target="_blank" rel="noopener"
 >717. 1比特与2比特字符&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>有两种特殊字符：&lt;/p>
@@ -2963,7 +2964,7 @@ l &lt;span style="color:#f92672">=&lt;/span> i;
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220219 每日一题 Leetcode969 煎饼排序</title><link>https://blog.jhas.site/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</link><pubDate>Sat, 19 Feb 2022 09:21:44 +0800</pubDate><guid>https://blog.jhas.site/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</guid><description>&lt;h1 id="969-煎饼排序httpsleetcode-cncomproblemspancake-sorting">&lt;a class="link" href="https://leetcode-cn.com/problems/pancake-sorting/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220219 每日一题 Leetcode969 煎饼排序</title><link>https://blog.jhas.cafe/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</link><pubDate>Sat, 19 Feb 2022 09:21:44 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220219-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/</guid><description>&lt;h1 id="969-煎饼排序httpsleetcode-cncomproblemspancake-sorting">&lt;a class="link" href="https://leetcode-cn.com/problems/pancake-sorting/" target="_blank" rel="noopener"
 >969. 煎饼排序&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数数组 $arr$ ，请使用 煎饼翻转 完成对数组的排序。&lt;/p>
@@ -3025,7 +3026,7 @@ reverse(arr.begin(),arr.begin()&lt;span style="color:#f92672">+&lt;/span>i);
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220218 每日一题 Leetcode1791 找出星型图的中心节点</title><link>https://blog.jhas.site/p/20220218-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1791-%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9/</link><pubDate>Fri, 18 Feb 2022 08:37:24 +0800</pubDate><guid>https://blog.jhas.site/p/20220218-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1791-%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9/</guid><description>&lt;h1 id="1791-找出星型图的中心节点httpsleetcode-cncomproblemsfind-center-of-star-graph">&lt;a class="link" href="https://leetcode-cn.com/problems/find-center-of-star-graph/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220218 每日一题 Leetcode1791 找出星型图的中心节点</title><link>https://blog.jhas.cafe/p/20220218-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1791-%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9/</link><pubDate>Fri, 18 Feb 2022 08:37:24 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220218-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1791-%E6%89%BE%E5%87%BA%E6%98%9F%E5%9E%8B%E5%9B%BE%E7%9A%84%E4%B8%AD%E5%BF%83%E8%8A%82%E7%82%B9/</guid><description>&lt;h1 id="1791-找出星型图的中心节点httpsleetcode-cncomproblemsfind-center-of-star-graph">&lt;a class="link" href="https://leetcode-cn.com/problems/find-center-of-star-graph/" target="_blank" rel="noopener"
 >1791. 找出星型图的中心节点&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>有一个无向的 星型 图，由 n 个编号从 1 到 n 的节点组成。星型图有一个 中心 节点，并且恰有 n - 1 条边将中心节点与其他每个节点连接起来。&lt;/p>
@@ -3059,7 +3060,7 @@ reverse(arr.begin(),arr.begin()&lt;span style="color:#f92672">+&lt;/span>i);
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220217 每日一题 Leetcode688 骑士在棋盘上的概率</title><link>https://blog.jhas.site/p/20220217-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/</link><pubDate>Thu, 17 Feb 2022 00:05:45 +0800</pubDate><guid>https://blog.jhas.site/p/20220217-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/</guid><description>&lt;h1 id="688-骑士在棋盘上的概率httpsleetcode-cncomproblemsknight-probability-in-chessboard">&lt;a class="link" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220217 每日一题 Leetcode688 骑士在棋盘上的概率</title><link>https://blog.jhas.cafe/p/20220217-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/</link><pubDate>Thu, 17 Feb 2022 00:05:45 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220217-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/</guid><description>&lt;h1 id="688-骑士在棋盘上的概率httpsleetcode-cncomproblemsknight-probability-in-chessboard">&lt;a class="link" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/" target="_blank" rel="noopener"
 >688. 骑士在棋盘上的概率&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>在一个 $n * n$ 的国际象棋棋盘上，一个骑士从单元格 (row, column) 开始，并尝试进行 $k$ 次移动。行和列是 从 $0$ 开始 的，所以左上单元格是 $(0,0)$ ，右下单元格是 $(n - 1, n - 1)$ 。&lt;/p>
@@ -3153,7 +3154,7 @@ cnt &lt;span style="color:#f92672">+=&lt;/span> dp[k&lt;span style="color:#f9267
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220216 每日一题 Leetcode1719 重构一颗树的方案数</title><link>https://blog.jhas.site/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</link><pubDate>Wed, 16 Feb 2022 10:18:20 +0800</pubDate><guid>https://blog.jhas.site/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</guid><description>&lt;h1 id="1719-重构一棵树的方案数httpsleetcode-cncomproblemsnumber-of-ways-to-reconstruct-a-tree">&lt;a class="link" href="https://leetcode-cn.com/problems/number-of-ways-to-reconstruct-a-tree/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220216 每日一题 Leetcode1719 重构一颗树的方案数</title><link>https://blog.jhas.cafe/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</link><pubDate>Wed, 16 Feb 2022 10:18:20 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220216-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1719-%E9%87%8D%E6%9E%84%E4%B8%80%E9%A2%97%E6%A0%91%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</guid><description>&lt;h1 id="1719-重构一棵树的方案数httpsleetcode-cncomproblemsnumber-of-ways-to-reconstruct-a-tree">&lt;a class="link" href="https://leetcode-cn.com/problems/number-of-ways-to-reconstruct-a-tree/" target="_blank" rel="noopener"
 >1719. 重构一棵树的方案数&lt;/a>&lt;/h1>
 &lt;p>今天这道题前前后后看了两小时，最后忍不住看答案了&lt;/p>
 &lt;h2 id="题面">题面&lt;/h2>
@@ -3391,7 +3392,7 @@ fa[nodes[i]] &lt;span style="color:#f92672">=&lt;/span> nodes[j];
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220215 每日一题 Leetcode1380 矩阵中的幸运数</title><link>https://blog.jhas.site/p/20220215-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1380-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/</link><pubDate>Tue, 15 Feb 2022 01:37:58 +0800</pubDate><guid>https://blog.jhas.site/p/20220215-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1380-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/</guid><description>&lt;h1 id="1380-矩阵中的幸运数httpsleetcode-cncomproblemslucky-numbers-in-a-matrix">&lt;a class="link" href="https://leetcode-cn.com/problems/lucky-numbers-in-a-matrix/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220215 每日一题 Leetcode1380 矩阵中的幸运数</title><link>https://blog.jhas.cafe/p/20220215-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1380-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/</link><pubDate>Tue, 15 Feb 2022 01:37:58 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220215-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1380-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/</guid><description>&lt;h1 id="1380-矩阵中的幸运数httpsleetcode-cncomproblemslucky-numbers-in-a-matrix">&lt;a class="link" href="https://leetcode-cn.com/problems/lucky-numbers-in-a-matrix/" target="_blank" rel="noopener"
 >1380. 矩阵中的幸运数&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个 m * n 的矩阵，矩阵中的数字 各不相同 。请你按 任意 顺序返回矩阵中的所有幸运数。&lt;/p>
@@ -3470,7 +3471,7 @@ c[x] &lt;span style="color:#f92672">=&lt;/span> true;
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220214 每日一题 Leetcode540 有序数组中的单一元素</title><link>https://blog.jhas.site/p/20220214-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/</link><pubDate>Mon, 14 Feb 2022 07:48:38 +0800</pubDate><guid>https://blog.jhas.site/p/20220214-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/</guid><description>&lt;h1 id="540-有序数组中的单一元素httpsleetcode-cncomproblemssingle-element-in-a-sorted-array">&lt;a class="link" href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220214 每日一题 Leetcode540 有序数组中的单一元素</title><link>https://blog.jhas.cafe/p/20220214-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/</link><pubDate>Mon, 14 Feb 2022 07:48:38 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220214-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/</guid><description>&lt;h1 id="540-有序数组中的单一元素httpsleetcode-cncomproblemssingle-element-in-a-sorted-array">&lt;a class="link" href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/" target="_blank" rel="noopener"
 >540. 有序数组中的单一元素&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。&lt;/p>
@@ -3602,7 +3603,7 @@ l &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220213 Leetcode280周赛</title><link>https://blog.jhas.site/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/</link><pubDate>Sun, 13 Feb 2022 12:14:10 +0800</pubDate><guid>https://blog.jhas.site/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/</guid><description>&lt;h1 id="leetcode第280场周赛">Leetcode第280场周赛&lt;/h1>
+&lt;/div></description></item><item><title>20220213 Leetcode280周赛</title><link>https://blog.jhas.cafe/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/</link><pubDate>Sun, 13 Feb 2022 12:14:10 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220213-leetcode280%E5%91%A8%E8%B5%9B/</guid><description>&lt;h1 id="leetcode第280场周赛">Leetcode第280场周赛&lt;/h1>
 &lt;h2 id="6004-得到-0-的操作数httpsleetcode-cncomproblemscount-operations-to-obtain-zero">&lt;a class="link" href="https://leetcode-cn.com/problems/count-operations-to-obtain-zero/" target="_blank" rel="noopener"
 >6004. 得到 0 的操作数&lt;/a>&lt;/h2>
 &lt;h3 id="题面">题面&lt;/h3>
@@ -3782,7 +3783,7 @@ ans &lt;span style="color:#f92672">=&lt;/span> min(ans,mans);
 &lt;h3 id="解析-3">解析&lt;/h3>
 &lt;p>待补题&lt;/p>
 &lt;h3 id="解法-3">解法&lt;/h3>
-&lt;p>待补题&lt;/p></description></item><item><title>20220213 每日一题 Leetcode1189 气球的最大数量</title><link>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</link><pubDate>Sat, 12 Feb 2022 23:06:52 +0800</pubDate><guid>https://blog.jhas.site/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</guid><description>&lt;h1 id="1189-气球-的最大数量httpsleetcode-cncomproblemsmaximum-number-of-balloons">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-number-of-balloons/" target="_blank" rel="noopener"
+&lt;p>待补题&lt;/p></description></item><item><title>20220213 每日一题 Leetcode1189 气球的最大数量</title><link>https://blog.jhas.cafe/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</link><pubDate>Sat, 12 Feb 2022 23:06:52 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220213-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/</guid><description>&lt;h1 id="1189-气球-的最大数量httpsleetcode-cncomproblemsmaximum-number-of-balloons">&lt;a class="link" href="https://leetcode-cn.com/problems/maximum-number-of-balloons/" target="_blank" rel="noopener"
 >1189. “气球” 的最大数量&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个字符串 text，你需要使用 text 中的字母来拼凑尽可能多的单词 &amp;ldquo;balloon&amp;rdquo;（气球）。&lt;/p>
@@ -3875,7 +3876,7 @@ c_text[i]&lt;span style="color:#f92672">/=&lt;/span>c_target[i];
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>或许你会很奇怪为什么2月13号的每日一题2月12号就做了，因为我明天要出去玩&amp;lt;-_&amp;lt;-
-ps:leetcode每日一题是可以提前看到的&lt;/p></description></item><item><title>20220212 每日一题 Leetcode1020 飞地的数量</title><link>https://blog.jhas.site/p/20220212-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1020-%E9%A3%9E%E5%9C%B0%E7%9A%84%E6%95%B0%E9%87%8F/</link><pubDate>Sat, 12 Feb 2022 09:50:17 +0800</pubDate><guid>https://blog.jhas.site/p/20220212-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1020-%E9%A3%9E%E5%9C%B0%E7%9A%84%E6%95%B0%E9%87%8F/</guid><description>&lt;h1 id="1020-飞地的数量httpsleetcode-cncomproblemsnumber-of-enclaves">&lt;a class="link" href="https://leetcode-cn.com/problems/number-of-enclaves/" target="_blank" rel="noopener"
+ps:leetcode每日一题是可以提前看到的&lt;/p></description></item><item><title>20220212 每日一题 Leetcode1020 飞地的数量</title><link>https://blog.jhas.cafe/p/20220212-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1020-%E9%A3%9E%E5%9C%B0%E7%9A%84%E6%95%B0%E9%87%8F/</link><pubDate>Sat, 12 Feb 2022 09:50:17 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220212-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1020-%E9%A3%9E%E5%9C%B0%E7%9A%84%E6%95%B0%E9%87%8F/</guid><description>&lt;h1 id="1020-飞地的数量httpsleetcode-cncomproblemsnumber-of-enclaves">&lt;a class="link" href="https://leetcode-cn.com/problems/number-of-enclaves/" target="_blank" rel="noopener"
 >1020. 飞地的数量&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个大小为 $m * n$ 的二进制矩阵 $grid$ ，其中 $0$ 表示一个海洋单元格、$1$ 表示一个陆地单元格。&lt;/p>
@@ -4119,7 +4120,7 @@ u.merge(i&lt;span style="color:#f92672">*&lt;/span>m&lt;span style="color:#f9267
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220211 每日一题 Leetcode1984 学生分数的最小差值</title><link>https://blog.jhas.site/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/</link><pubDate>Fri, 11 Feb 2022 12:56:58 +0800</pubDate><guid>https://blog.jhas.site/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/</guid><description>&lt;h1 id="1984-学生分数的最小差值httpsleetcode-cncomproblemsminimum-difference-between-highest-and-lowest-of-k-scores">&lt;a class="link" href="https://leetcode-cn.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220211 每日一题 Leetcode1984 学生分数的最小差值</title><link>https://blog.jhas.cafe/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/</link><pubDate>Fri, 11 Feb 2022 12:56:58 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220211-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1984-%E5%AD%A6%E7%94%9F%E5%88%86%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BC/</guid><description>&lt;h1 id="1984-学生分数的最小差值httpsleetcode-cncomproblemsminimum-difference-between-highest-and-lowest-of-k-scores">&lt;a class="link" href="https://leetcode-cn.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/" target="_blank" rel="noopener"
 >1984. 学生分数的最小差值&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个 下标从 0 开始 的整数数组 $nums$ ，其中 $nums[i]$ 表示第 $i$ 名学生的分数。另给你一个整数 $k$ 。&lt;/p>
@@ -4160,7 +4161,7 @@ ans &lt;span style="color:#f92672">=&lt;/span> min(ans,nums[i] &lt;span style="c
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>二分范围查找笔记</title><link>https://blog.jhas.site/p/%E4%BA%8C%E5%88%86%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 10 Feb 2022 12:07:04 +0800</pubDate><guid>https://blog.jhas.site/p/%E4%BA%8C%E5%88%86%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E7%AC%94%E8%AE%B0/</guid><description>&lt;h1 id="二分搜索">二分搜索&lt;/h1>
+&lt;/div></description></item><item><title>二分范围查找笔记</title><link>https://blog.jhas.cafe/p/%E4%BA%8C%E5%88%86%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 10 Feb 2022 12:07:04 +0800</pubDate><guid>https://blog.jhas.cafe/p/%E4%BA%8C%E5%88%86%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%E7%AC%94%E8%AE%B0/</guid><description>&lt;h1 id="二分搜索">二分搜索&lt;/h1>
 &lt;h2 id="简述">简述&lt;/h2>
 &lt;p>二分搜索是一种效率较高的查找方法，用于在有序(二段)数组内查找一个特定数。得益于有序(二段)数组的性质，每一次查找可以筛除一段&lt;strong>数量大于一&lt;/strong>的数段(常见为$\frac{n}{2} $),故能在$ O(\log n) $的时间复杂度内找到对应答案。&lt;/p>
 &lt;p>二分的本质是二段性而不是单调性&lt;/p>
@@ -4538,7 +4539,7 @@ __len &lt;span style="color:#f92672">=&lt;/span> __half;
 &lt;p>&lt;a class="link" href="https://www.cnblogs.com/lzhu/p/7010894.html" target="_blank" rel="noopener"
 >C++：greater和less&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.csdn.net/qq_40160605/article/details/80150252" target="_blank" rel="noopener"
->关于lower_bound( )和upper_bound( )的常见用法&lt;/a>&lt;/p></description></item><item><title>20220210 每日一题 Leetcode1447 最简分数</title><link>https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</link><pubDate>Thu, 10 Feb 2022 08:40:23 +0800</pubDate><guid>https://blog.jhas.site/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</guid><description>&lt;h1 id="1447-最简分数httpsleetcode-cncomproblemssimplified-fractions">&lt;a class="link" href="https://leetcode-cn.com/problems/simplified-fractions/" target="_blank" rel="noopener"
+>关于lower_bound( )和upper_bound( )的常见用法&lt;/a>&lt;/p></description></item><item><title>20220210 每日一题 Leetcode1447 最简分数</title><link>https://blog.jhas.cafe/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</link><pubDate>Thu, 10 Feb 2022 08:40:23 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220210-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode1447-%E6%9C%80%E7%AE%80%E5%88%86%E6%95%B0/</guid><description>&lt;h1 id="1447-最简分数httpsleetcode-cncomproblemssimplified-fractions">&lt;a class="link" href="https://leetcode-cn.com/problems/simplified-fractions/" target="_blank" rel="noopener"
 >1447. 最简分数&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数 &lt;code>n&lt;/code> ，请你返回所有 0 到 1 之间（不包括 0 和 1）满足分母小于等于 &lt;code>n&lt;/code> 的 &lt;strong>最简&lt;/strong> 分数 。分数可以以 &lt;strong>任意&lt;/strong> 顺序返回。&lt;/p>
@@ -4591,7 +4592,7 @@ string &lt;span style="color:#a6e22e">itoa&lt;/span>(&lt;span style="color:#66d9
 };
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目</title><link>https://blog.jhas.site/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/</link><pubDate>Wed, 09 Feb 2022 20:42:21 +0800</pubDate><guid>https://blog.jhas.site/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="2006-差的绝对值为-k-的数对数目httpsleetcode-cncomproblemscount-number-of-pairs-with-absolute-difference-k">&lt;a class="link" href="https://leetcode-cn.com/problems/count-number-of-pairs-with-absolute-difference-k/" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>20220209 每日一题 Leetcode2006 差的绝对值为K的数对数目</title><link>https://blog.jhas.cafe/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/</link><pubDate>Wed, 09 Feb 2022 20:42:21 +0800</pubDate><guid>https://blog.jhas.cafe/p/20220209-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-leetcode2006-%E5%B7%AE%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%BAk%E7%9A%84%E6%95%B0%E5%AF%B9%E6%95%B0%E7%9B%AE/</guid><description>&lt;h1 id="2006-差的绝对值为-k-的数对数目httpsleetcode-cncomproblemscount-number-of-pairs-with-absolute-difference-k">&lt;a class="link" href="https://leetcode-cn.com/problems/count-number-of-pairs-with-absolute-difference-k/" target="_blank" rel="noopener"
 >2006. 差的绝对值为 K 的数对数目&lt;/a>&lt;/h1>
 &lt;h2 id="题面">题面&lt;/h2>
 &lt;p>给你一个整数数组 nums 和一个整数 k ，请你返回数对 (i, j) 的数目，满足 i &amp;lt; j 且 |nums[i] - nums[j]| == k 。&lt;/p>
