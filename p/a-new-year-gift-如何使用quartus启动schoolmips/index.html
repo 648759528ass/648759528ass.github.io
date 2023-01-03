@@ -556,7 +556,7 @@ sm_rom reset_rom(pc,instr);
 <p>然后打开schoolMIPS/src/sm_rom.v ，复制<code>module sm_rom</code> 的内容进去</p>
 <p><img src=https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101083325552.png loading=lazy alt=image-20230101083325552></p>
 <p>保存为rom.v</p>
-<p>在guide/ 下创建一个 program.hex的空白新文件</p>
+<p>在guide/ 下创建一个 program.hex的空白新文件。一定要在目录下自己手动新建，不要使用quartus提供的新建；quartus的新建会自带偏移值，不是空白新文件</p>
 <p><img src=https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101083819572.png loading=lazy alt=image-20230101083819572></p>
 <h3 id=sm_register_file模块>sm_register_file模块</h3>
 <p>File -> New -> Verilog HDL File 创建一个 verilog 新文件</p>
@@ -582,7 +582,7 @@ sm_rom reset_rom(pc,instr);
 <h3 id=sm_control模块>sm_control模块</h3>
 <p>File -> New -> Verilog HDL File 创建一个 verilog 新文件</p>
 <p>然后打开schoolMIPS/src/sm_cpu.v ，复制<code>module sm_control</code> 的内容进去</p>
-<p>同样注意在首行加入 ```include &ldquo;sm_cpu.vh&rdquo;``</p>
+<p>同样注意在首行加入 `include &ldquo;sm_cpu.vh&rdquo;</p>
 <p><img src=https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101084937750.png loading=lazy alt=image-20230101084937750></p>
 <p>保存为control.v</p>
 <p>至此，五模块完成</p>
