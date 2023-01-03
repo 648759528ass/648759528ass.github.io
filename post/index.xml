@@ -441,7 +441,7 @@ alt="image-20230101084538989"
 &lt;h3 id="sm_alu-模块">sm_alu 模块&lt;/h3>
 &lt;p>File -&amp;gt; New -&amp;gt; Verilog HDL File 创建一个 verilog 新文件&lt;/p>
 &lt;p>然后打开schoolMIPS/src/sm_cpu.v ，复制&lt;code>module sm_alu&lt;/code> 的内容进去&lt;/p>
-&lt;p>注意在首行加入 ```include &amp;ldquo;sm_cpu.vh&amp;rdquo;``&lt;/p>
+&lt;p>注意在首行加入 &lt;!-- raw HTML omitted -->`include &amp;ldquo;sm_cpu.vh&amp;rdquo;&lt;!-- raw HTML omitted -->&lt;/p>
 &lt;p>&lt;img src="https://image-1255315175.cos.ap-shanghai.myqcloud.com/image-20230101085213642.png"
 loading="lazy"
 alt="image-20230101085213642"
